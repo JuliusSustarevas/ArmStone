@@ -1,0 +1,23 @@
+<launch>
+    <param name="robot_description" command="xacro '$(find asdesc)/robots/basearm.xacro'" />
+    <param name="use_gui" value= "true" />
+
+    <!-- <node name="swiftpro_rviz_node" pkg="swiftpro" type="swiftpro_rviz_node" />
+	<node name="swiftpro_read_node" pkg="swiftpro" type="swiftpro_read_node" /> -->
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+        <param name="use_gui" value="true"/>
+        <param name="rate" value="50"/>
+        <!-- Try to resolve this with groups -->
+        <rosparam param="source_list">[joint_states]</rosparam>
+    </node>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find asdesc)/rviz/rviz.rviz" />
+
+    <node pkg="center_of_mass" type="com.py" name="center_of_mass">
+        <param name="base_link_frame" value="base_link_footprint"/>
+    </node>
+    <!-- Trasforms -->
+    <node pkg="tf" type="static_transform_publisher" name="World_broadcaster" args="0 0 0 0 0 0 1 world base_link_footprint 100" />
+</launch>
