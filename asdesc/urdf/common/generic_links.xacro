@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:macro name="generic_box" params="parent name xyz rpy dx dy dz m material gmaterial">
+
+        <joint name="${name}_joint" type="fixed">
+            <parent link="${parent}"/>
+            <child link="${name}_link"/>
+            <origin xyz= "${xyz}" rpy = "${rpy}" />
+        </joint>
+
+        <link name="${name}_link">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="${m}"/>
+                <xacro:box_inertia_tensor m="${m}" dx="${dx}" dy="${dy}" dz="${dz}"/>
+            </inertial>
+            <visual>
+                <geometry>
+                    <box size="${dx} ${dy} ${dz}" />
+                </geometry>
+                <material name="${material}"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${dx} ${dy} ${dz}" />
+                </geometry>
+            </collision>
+
+        </link>
+        <gazebo reference="${name}_link">
+            <material>${gmaterial}</material>
+        </gazebo>
+    </xacro:macro>
+
+
+
+    <xacro:macro name="generic_cylinder" params="parent name xyz rpy r h m material gmaterial">
+
+        <joint name="${name}_joint" type="fixed">
+            <parent link="${parent}"/>
+            <child link="${name}_link"/>
+            <origin xyz= "${xyz}" rpy = "${rpy}" />
+        </joint>
+
+        <link name="${name}_link">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="${m}"/>
+                <xacro:cylinder_inertia_tensor m="${m}" r="${r}" h="${h}"/>
+            </inertial>
+            <visual>
+                <geometry>
+                    <cylinder radius="${r}" length="${h}" />
+                </geometry>
+                <material name="${material}"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <cylinder radius="${r}" length="${h}" />
+                </geometry>
+            </collision>
+
+        </link>
+        <gazebo reference="${name}_link">
+            <material>${gmaterial}</material>
+        </gazebo>
+    </xacro:macro>
+
+</robot>
