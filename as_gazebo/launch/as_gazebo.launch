@@ -1,21 +1,8 @@
 <launch>
-	
-    <param name="robot_description" command="xacro '$(find as_description)/robots/base_only.xacro'"/>
-	<param name="use_gui" value= "true" />
 
-    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-        <param name="use_gui" value="true"/>
-        <param name="rate" value="50"/>
-        <!-- Try to resolve this with groups -->
-        <rosparam param="source_list">[joint_states]</rosparam>       
-    </node>
-	
-	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"  />
-	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find oarm_desc)/Rviz/rviz.rviz" />    
-    
+
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find gazebo_ros)/worlds/HereEast Model/here_east_model_thomas.world"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
-    <!-- <arg name="world_name" value="worlds/empty.world"/> Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
+    <arg name="world_name" value="$(find gazebo_ros)/worlds/HereEast Model/here_east_model_thomas.world"/> 
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="true"/>
@@ -24,7 +11,7 @@
     <arg name="verbose" value="false"/>
   </include>
 
-    <!-- <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model asbase -x 0 -y 0 -z 1" output="screen" /> -->
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model asbase -x 0 -y 0 -z 1" output="screen" />
 
 
 </launch>
