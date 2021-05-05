@@ -1,0 +1,31 @@
+<launch>
+    <!-- Variables -->
+    <arg name="platform_name" />
+    <arg name="config_package" />
+    <arg name="description_package" />
+    <arg name="use_namespace" default="true"/>
+    <arg name="namespace" default="/rr_robot"/>
+
+
+    <!-- Platform specific -->
+    <rosparam file="$(eval find(config_package) + '/config/diff_drive/control.yaml')" command="load"/>
+
+    <include file="$(find ros_control_boilerplate)/rr_robot_control/launch/rr_robot_hardware.launch">
+        <arg name="hw_iface_controllers_path" value="$(eval find(config_package) + '/config/diff_drive/hw_interface.yaml')"/>
+        <arg name="robot_description" value="$(eval find(description_package) + '/urdf/' + platform_name + '.xacro')" />
+    </include>
+
+    <!-- Platform agnostic -->
+    <group if="$(eval arg('use_namespace') == true)">
+        <node name="diff_drive_controller_spawner" pkg="controller_manager" ns="$(arg namespace)" type="spawner"
+            output="screen" args="joint_state_controller mobile_base_controller"/>
+    </group>
+
+    <group if="$(eval arg('use_namespace') == false)">
+        <node name="diff_drive_controller_spawner" pkg="controller_manager" type="spawner"
+            output="screen" args="joint_state_controller mobile_base_controller"/>
+    </group>
+
+    <include file="$(find joint_state_aggregator)/launch/joint_aggregator.launch"/>
+    <include file="$(find vel_mux)/launch/rr_vel_mux.launch" />
+</launch>

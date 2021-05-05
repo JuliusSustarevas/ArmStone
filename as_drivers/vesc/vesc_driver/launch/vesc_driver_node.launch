@@ -1,0 +1,43 @@
+<launch>
+    <arg name="node_name" default="$(anon vesc_driver_node)" />
+    <arg name="joint_name" default="undefined" />
+    <arg name="direction" default="0" />
+    <arg name="pole_pair_count" default="8" />
+    <arg name="gear_ratio" default="1" />
+    <arg name="pulse_speed_rads" default="0.3" />
+    <arg name="pulse_duration" default="0.02" />
+    <arg name="config_package" default="vesc_driver"/>
+    <arg name="motor_type" default="motor_config"/>
+    <arg name="avg_filter_size" default="8" />
+
+    <arg name="read_param_files" default="true" />
+    <arg name="port" default="/dev/ttyACM0" />
+
+    <group if="$(arg read_param_files)">
+      <rosparam file="$(eval find(config_package) + '/config/motor/' + motor_type + '.yaml')" command="load" ns="$(arg node_name)"/>
+      <!-- Set dynamic reconfigure parameters -->
+      <!-- <node name= "$(eval 'dynparam_' + node_name)" pkg="dynamic_reconfigure" type="dynparam" args="$(eval 'load ' + node_name + ' '+ find(config_package) + '/config/motor/' + 'module_settings.yaml')" output="screen"/> -->
+      <node name="$(anon dynparam)" pkg="dynamic_reconfigure" type="dynparam" args="$(eval 'load ' + node_name + ' '+ find(config_package) + '/config/motor/' + 'module_settings.yaml')" output="screen"/>
+    </group>
+
+    <!-- Optionally launch in GDB, for debugging -->
+    <arg name="debug" default="false" />
+    <arg if="$(arg debug)" name="launch_prefix" value="xterm -e gdb --args" />
+    <arg unless="$(arg debug)" name="launch_prefix" value="" />
+
+    <!-- VESC driver node -->
+    <node pkg="vesc_driver" type="vesc_driver_node" name="$(arg node_name)"
+          output="screen" launch-prefix="$(arg launch_prefix)" >
+      <param name="port" value="$(arg port)" />
+      <param name="config_package" value="$(arg config_package)" />
+      <param name="averaging_flter_capacity" value="$(arg avg_filter_size)"/>
+
+      <!-- Only read below parameters if not reading from file -->
+      <param name="joint_name" value="$(arg joint_name)" unless="$(arg read_param_files)" />
+      <param name="motor_direction" value="$(arg direction)" unless="$(arg read_param_files)"/>
+      <param name="pole_pair_count" value="$(arg pole_pair_count)" unless="$(arg read_param_files)"/>
+      <param name="gear_ratio" value="$(arg gear_ratio)" unless="$(arg read_param_files)"/>
+      <param name="pulse_speed_rads" value="$(arg pulse_speed_rads)" unless="$(arg read_param_files)"/>
+      <param name="pulse_duration" value="$(arg pulse_duration)" unless="$(arg read_param_files)"/>
+    </node>
+</launch>
