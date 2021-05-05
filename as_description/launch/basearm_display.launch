@@ -1,5 +1,5 @@
 <launch>
-    <param name="robot_description" command="xacro '$(find asdesc)/robots/base_only.xacro'" />
+    <param name="robot_description" command="xacro '$(find as_description)/robots/basearm.xacro'" />
     <param name="use_gui" value= "true" />
 
     <!-- <node name="swiftpro_rviz_node" pkg="swiftpro" type="swiftpro_rviz_node" />
@@ -13,9 +13,9 @@
     </node>
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find asdesc)/rviz/rviz.rviz" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find as_description)/rviz/rviz.rviz" />
 
-    <node pkg="center_of_mass" type="com.py" name="center_of_mass">
+    <node pkg="center_of_mass" type="com.py" name="center_of_mass" output="screen">
         <param name="base_link_frame" value="base_link_footprint"/>
     </node>
     <!-- Trasforms -->

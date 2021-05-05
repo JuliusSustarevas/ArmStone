@@ -42,8 +42,8 @@
 	<xacro:property name="ground_clearance" value="${motor_link_r/2 +wheel_link_r/2}"/>
 
 	<!-- Import Things -->
-	<xacro:include filename="$(find asdesc)/urdf/base/chasis.xacro"/>
-	<xacro:include filename="$(find asdesc)/urdf/components/components.xacro"/>
+	<xacro:include filename="$(find as_description)/urdf/base/chasis.xacro"/>
+	<xacro:include filename="$(find as_description)/urdf/components/components.xacro"/>
 
 	<!-- Componenet positions-->
 	<xacro:property name="battery_xyz" value="-${base_link_dx/2 - 0.18} 0 -${base_link_dz/2 - 0.01 - battery_link_dz/2}"/>

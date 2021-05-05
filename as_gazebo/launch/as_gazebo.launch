@@ -1,6 +1,6 @@
 <launch>
 	
-    <param name="robot_description" command="xacro '$(find asdesc)/robots/base_only.xacro'"/>
+    <param name="robot_description" command="xacro '$(find as_description)/robots/base_only.xacro'"/>
 	<param name="use_gui" value= "true" />
 
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">

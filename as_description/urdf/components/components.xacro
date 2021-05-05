@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-	<xacro:include filename="$(find asdesc)/urdf/common/generic_links.xacro"/>
+	<xacro:include filename="$(find as_description)/urdf/common/generic_links.xacro"/>
 
 	<!-- battery_link -->
 	<xacro:property name="battery_link_dx" value="0.35"/>
@@ -78,11 +78,3 @@
 	</xacro:macro>
 
 </robot>
-
-
-
-
-
-
-		
-		

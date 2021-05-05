@@ -3,5 +3,5 @@
        xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
        xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
        xmlns:xacro="http://ros.org/wiki/xacro" name="asbase">
-      <xacro:include filename="$(find asdesc)/urdf/base/asbase.xacro" />     
+      <xacro:include filename="$(find as_description)/urdf/base/asbase.xacro" />     
 </robot>
