@@ -1,0 +1,23 @@
+#http://linux-tips.org/t/prevent-modem-manager-to-capture-usb-serial-devices/284/2.
+
+#find the arrtibutes for each serial device using:
+#udevadm info --name=/dev/ttyACMx --attribute-walk
+
+
+#cp rules /etc/udev/rules.d/
+#sudo udevadm control --reload-rules
+#sudo udevadm trigger
+
+#get the device info this way
+#udevadm info --name=/dev/ttyUSB0 --attribute-walk | grep KERNELS
+#Make sure that the value of the KERNELS matches the KERNELS of the USB port you’ve used with the device
+
+#MOTORS
+KERNEL=="ttyACM*", KERNELS=="1-4.1", SYMLINK+="R_MOTOR", MODE:="0666"
+KERNEL=="ttyACM*", KERNELS=="1-4.2", SYMLINK+="L_MOTOR", MODE:="0666"
+
+#RPlidar
+KERNEL=="ttyUSB*", ATTRS{interface}=="CP2102 USB to UART Bridge Controller", SYMLINK+="RP_LiDAR", MODE:="0666"
+
+#Realsense t265
+#TODO
