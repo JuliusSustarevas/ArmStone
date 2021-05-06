@@ -130,25 +130,25 @@
 		<joint name="motor_wheel_assembly_joint_fl" type="fixed">
 			<parent link="base_link"/>
 			<child link="motor_gearbox_fl"/>
-			<origin xyz= "${motor_wheel_assemply_xyz_fl}" rpy = "${motor_wheel_assemply_rpy_fl}" />
+			<origin xyz= "${motor_wheel_assembly_xyz_fl}" rpy = "${motor_wheel_assembly_rpy_fl}" />
 		</joint>
 
 		<joint name="motor_wheel_assembly_joint_fr" type="fixed">
 			<parent link="base_link"/>
 			<child link="motor_gearbox_fr"/>
-			<origin xyz= "${motor_wheel_assemply_xyz_fr}" rpy = "${motor_wheel_assemply_rpy_fr}" />
+			<origin xyz= "${motor_wheel_assembly_xyz_fr}" rpy = "${motor_wheel_assembly_rpy_fr}" />
 		</joint>
 
 		<joint name="motor_wheel_assembly_joint_bl" type="fixed">
 			<parent link="base_link"/>
 			<child link="motor_gearbox_bl"/>
-			<origin xyz= "${motor_wheel_assemply_xyz_bl}" rpy = "${motor_wheel_assemply_rpy_bl}" />
+			<origin xyz= "${motor_wheel_assembly_xyz_bl}" rpy = "${motor_wheel_assembly_rpy_bl}" />
 		</joint>
 
 		<joint name="motor_wheel_assembly_joint_br" type="fixed">
 			<parent link="base_link"/>
 			<child link="motor_gearbox_br"/>
-			<origin xyz= "${motor_wheel_assemply_xyz_br}" rpy = "${motor_wheel_assemply_rpy_br}" />
+			<origin xyz= "${motor_wheel_assembly_xyz_br}" rpy = "${motor_wheel_assembly_rpy_br}" />
 		</joint>
 
 		<gazebo>
