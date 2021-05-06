@@ -59,7 +59,7 @@ VescDriver::VescDriver(ros::NodeHandle nh,
   speed_sub_ = private_nh.subscribe("motor/speed_rads", 10, &VescDriver::speedCallback, this);
   position_sub_ = private_nh.subscribe("motor/position", 10, &VescDriver::positionCallback, this);
   servo_sub_ = private_nh.subscribe("servo/position", 10, &VescDriver::servoCallback, this);
-  joint_sub_ = nh.subscribe("/rr_robot/joint_commands", 1, &VescDriver::jointStateCallback, this);
+  joint_sub_ = nh.subscribe("/as_base/joint_commands", 1, &VescDriver::jointStateCallback, this);
   pulse_serv_ = private_nh.advertiseService("motor/pulse", &VescDriver::pulseCallback, this);
   disable_serv_ = private_nh.advertiseService("disable", &VescDriver::disableCallback, this);
   enable_serv_ = private_nh.advertiseService("enable", &VescDriver::enableCallback, this);
@@ -156,13 +156,13 @@ void VescDriver::setDirection()
 
   if(fabs(last_speed_) < dir_change_threshod_rad_s)
   {
-    ROS_INFO_NAMED("rr_motor", "Motor direction changed");
+    ROS_INFO_NAMED("as_motor", "Motor direction changed");
     dir_change_requested_ = false;
     motor_direction_ = queued_motor_direction_;
   }
   else
   {
-    ROS_WARN_THROTTLE_NAMED(10, "rr_motor","Motor direction will be set when motor speed falls around 0");
+    ROS_WARN_THROTTLE_NAMED(10, "as_motor","Motor direction will be set when motor speed falls around 0");
   }
 }
 
@@ -341,6 +341,8 @@ void VescDriver::speedCallback(const std_msgs::Float64::ConstPtr& speed)
   if (driver_mode_ == MODE_OPERATING) {
     double erpm = radPerSecToErpm(speed->data*motor_direction_);
     vesc_.setSpeed(speed_limit_.clip(erpm));
+  } else {
+     ROS_INFO_STREAM_THROTTLE(10, "VESC in disabled mode. Cannot set speed");
   }
 }
 
