@@ -21,8 +21,8 @@
   <build_depend>roscpp</build_depend>
   <build_depend>std_msgs</build_depend>
   <build_depend>std_srvs</build_depend>
-  <build_depend>sensor_msgs</build_depend>
-  <build_depend>rr_custom_msgs</build_depend>
+  <build_depend>sensor_msgs</build_depend>  
+  <build_depend>vesc_msgs</build_depend>  
   <build_depend>serial</build_depend>
   <build_depend>dynamic_reconfigure</build_depend>
 
@@ -31,8 +31,8 @@
   <run_depend>roscpp</run_depend>
   <run_depend>std_msgs</run_depend>
   <run_depend>std_srvs</run_depend>
-  <run_depend>sensor_msgs</run_depend>
-  <run_depend>rr_custom_msgs</run_depend>
+  <run_depend>sensor_msgs</run_depend>  
+  <run_depend>vesc_msgs</run_depend>  
   <run_depend>serial</run_depend>
   <run_depend>dynamic_reconfigure</run_depend>
 

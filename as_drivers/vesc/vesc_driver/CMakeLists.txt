@@ -8,7 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   sensor_msgs
-  rr_custom_msgs
+  vesc_msgs  
   std_srvs
   serial
   dynamic_reconfigure
@@ -20,7 +20,7 @@ generate_dynamic_reconfigure_options(
 
 catkin_package(
   INCLUDE_DIRS include
-  CATKIN_DEPENDS nodelet pluginlib roscpp std_msgs sensor_msgs rr_custom_msgs std_srvs serial dynamic_reconfigure
+  CATKIN_DEPENDS nodelet pluginlib roscpp std_msgs sensor_msgs std_srvs serial dynamic_reconfigure
 )
 
 ###########

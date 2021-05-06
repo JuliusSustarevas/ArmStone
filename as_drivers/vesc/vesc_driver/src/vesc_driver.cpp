@@ -7,7 +7,7 @@
 #include <sstream>
 
 #include <boost/bind.hpp>
-#include <rr_custom_msgs/VescStateStamped.h>
+#include <vesc_msgs/VescStateStamped.h>
 
 namespace vesc_driver
 {
@@ -43,7 +43,7 @@ VescDriver::VescDriver(ros::NodeHandle nh,
   }
 
   // create vesc state (telemetry) publisher
-  state_pub_ = private_nh.advertise<rr_custom_msgs::VescStateStamped>("sensors/core", 10);
+  state_pub_ = private_nh.advertise<vesc_msgs::VescStateStamped>("sensors/core", 10);
   joint_state_pub_ = nh.advertise<sensor_msgs::JointState>("/vesc_driver/joint_state", 10);
   battery_pub_ = nh.advertise<sensor_msgs::BatteryState>("/vesc_driver/battery", 10);
 
@@ -234,7 +234,7 @@ void VescDriver::vescPacketCallback(const boost::shared_ptr<VescPacket const>& p
       first_value_read_ = false;
     }
 
-    rr_custom_msgs::VescStateStamped::Ptr state_msg(new rr_custom_msgs::VescStateStamped);
+    vesc_msgs::VescStateStamped::Ptr state_msg(new vesc_msgs::VescStateStamped);
     state_msg->header.stamp = ros::Time::now();
     state_msg->state.voltage_input = values->v_in();
     state_msg->state.temperature_pcb = values->temp_pcb();
