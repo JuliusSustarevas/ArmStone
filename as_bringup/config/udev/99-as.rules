@@ -13,8 +13,10 @@
 #Make sure that the value of the KERNELS matches the KERNELS of the USB port you’ve used with the device
 
 #MOTORS
-KERNEL=="ttyACM*", KERNELS=="1-4.1", SYMLINK+="R_MOTOR", MODE:="0666"
-KERNEL=="ttyACM*", KERNELS=="1-4.2", SYMLINK+="L_MOTOR", MODE:="0666"
+KERNEL=="ttyACM*", KERNELS=="1-4.1", SYMLINK+="BL_MOTOR", MODE:="0666"
+KERNEL=="ttyACM*", KERNELS=="1-4.2", SYMLINK+="BR_MOTOR", MODE:="0666"
+KERNEL=="ttyACM*", KERNELS=="1-4.3", SYMLINK+="FL_MOTOR", MODE:="0666"
+KERNEL=="ttyACM*", KERNELS=="1-4.4", SYMLINK+="FR_MOTOR", MODE:="0666"
 
 #RPlidar
 KERNEL=="ttyUSB*", ATTRS{interface}=="CP2102 USB to UART Bridge Controller", SYMLINK+="RP_LiDAR", MODE:="0666"
