@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<xacro:include filename="$(find as_description)/urdf/common/generic_links.xacro"/>
+
+	<!-- battery_link -->
+	<xacro:property name="battery_link_dx" value="0.375"/>
+	<xacro:property name="battery_link_dy" value="0.130"/>
+	<xacro:property name="battery_link_dz" value="0.082"/>
+	<xacro:property name="battery_link_m" value="6.7"/>
+
+	<!-- nuc_link -->
+	<xacro:property name="nuc_link_dx" value="0.12"/>
+	<xacro:property name="nuc_link_dy" value="0.12"/>
+	<xacro:property name="nuc_link_dz" value="0.06"/>
+	<xacro:property name="nuc_link_m" value="0.3"/>
+
+	<!-- DC Control box -->
+	<xacro:property name="dc_box_dx" value="0.18"/>
+	<xacro:property name="dc_box_dy" value="0.145"/>
+	<xacro:property name="dc_box_dz" value="0.068"/>
+	<xacro:property name="dc_box_m" value="1.8"/>
+
+	<!-- Material Cylinder 3 -->
+	<xacro:property name="material3_r" value="0.0525"/>
+	<xacro:property name="material3_h" value="0.42"/>
+	<xacro:property name="material3_m" value="${3*1760/1000}"/>
+
+	<!-- Aluminium plate -->
+	<xacro:property name="mount_plate_dx" value="${0.72/2}"/>
+	<xacro:property name="mount_plate_dy" value="${0.455}"/>
+	<xacro:property name="mount_plate_dz" value="0.008"/>
+	<!-- Aluminium density 2.7/cm3  or 2700 kgm3-->
+	<!-- About 3.5 kg aluminium plate. -->
+	<xacro:property name="mount_plate_m" value="${2700*mount_plate_dx*mount_plate_dy*mount_plate_dz}"/>
+
+	<!-- Compressor -->
+	<xacro:property name="compressor_r" value="0.05"/>
+	<xacro:property name="compressor_h" value="0.13"/>
+	<xacro:property name="compressor_m" value="1.4"/>
+
+
+	<!-- Extruder -->
+	<xacro:property name="extruder_r" value="0.05"/>
+	<xacro:property name="extruder_h" value="0.18"/>
+	<!--Without material m 0.8  -->
+	<xacro:property name="extruder_m" value="1.5"/>
+
+</robot>

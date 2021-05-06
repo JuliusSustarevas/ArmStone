@@ -8,53 +8,6 @@
 	<xacro:include filename="$(find as_description)/urdf/common/inertia.xacro"/>
 	<xacro:include filename="$(find as_description)/urdf/common/materials.xacro"/>
 
-	<!-- Link Dimensions -->
-	<!-- base_link -->
-	<xacro:property name="base_link_dx" value="0.8"/>
-	<xacro:property name="base_link_dy" value="0.5"/>
-	<xacro:property name="base_link_dz" value="0.2"/>
-	<xacro:property name="base_link_m" value="2"/>
-	<!-- alluminium frame only -->
-
-	<!-- wheel_link -->
-	<xacro:property name="wheel_link_r" value="${0.152/2}"/>
-	<xacro:property name="wheel_link_m" value="0.6"/>
-	<xacro:property name="wheel_roller_angle" value="${45*M_PI/180}"/>
-
-	<!-- motor_gearbox_link -->
-	<xacro:property name="motor_link_r" value="0.025"/>
-	<xacro:property name="motor_link_h" value="0.12"/>
-	<xacro:property name="motor_link_m" value="0.5"/>
-	<!-- True is 1460mNm -->
-	<xacro:property name="motor_effort_limit" value="1.4"/>
-	<!-- True is 6110rpm -->
-	<xacro:property name="motor_velocity_limit" value="600"/>
-	<xacro:property name="gearbox_reduction" value="91"/>
-	<!-- battery_link -->
-	<xacro:property name="battery_link_dx" value="0.8"/>
-	<xacro:property name="battery_link_dy" value="0.5"/>
-	<xacro:property name="battery_link_dz" value="0.2"/>
-	<xacro:property name="battery_link_m" value="6.7"/>
-	<!-- nuc_link -->
-	<xacro:property name="nuc_link_dx" value="0.12"/>
-	<xacro:property name="nuc_link_dy" value="0.12"/>
-	<xacro:property name="nuc_link_dz" value="0.06"/>
-	<xacro:property name="nuc_link_m" value="0.3"/>
-
-	<!-- offsets -->
-	<xacro:property name="motor_wheel_assembly_xyz_fl" value="0.375 0.25 -0.08"/>
-	<xacro:property name="motor_wheel_assembly_rpy_fl" value="${- M_PI/2} 0 0"/>
-	<xacro:property name="motor_wheel_assembly_xyz_fr" value="0.375 -0.25 -0.08"/>
-	<xacro:property name="motor_wheel_assembly_rpy_fr" value="${M_PI/2} 0 0"/>
-	<xacro:property name="motor_wheel_assembly_xyz_bl" value="-0.375 0.25 -0.08"/>
-	<xacro:property name="motor_wheel_assembly_rpy_bl" value="${ M_PI/2} 0 ${M_PI}"/>
-	<xacro:property name="motor_wheel_assembly_xyz_br" value="-0.375 -0.25 -0.08"/>
-	<xacro:property name="motor_wheel_assembly_rpy_br" value="${-M_PI/2} 0 ${M_PI}"/>
-
-	<xacro:property name="ground_clearance" value="0.05"/>
-
-
-
 	<xacro:macro name="as_motor_wheel_assembly" params="suffix">
 
 		<link name="motor_gearbox${suffix}">
@@ -129,7 +82,7 @@
 	</xacro:macro>
 
 
-	<xacro:macro name="as_base">
+	<xacro:macro name="as_base_chasis">
 
 		<!-- Projection of base_link origin to xy plane -->
 		<link name="base_link_footprint"/>
@@ -200,7 +153,7 @@
 
 		<gazebo>
 			<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-				<robotNamespace>/asbase</robotNamespace>
+				<robotNamespace>/as_base</robotNamespace>
 			</plugin>
 		</gazebo>
 

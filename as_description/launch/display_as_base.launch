@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find as_description)/launch/load_description_as_base.launch" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find as_description)/rviz/rviz.rviz" />
+</launch>
