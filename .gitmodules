@@ -1,3 +1,6 @@
 [submodule "as_xarm/xarm_ros"]
 	path = as_xarm/xarm_ros
 	url = https://github.com/xArm-Developer/xarm_ros.git
+[submodule "as_control/mecanum_drive_controller"]
+	path = as_control/mecanum_drive_controller
+	url = https://github.com/JuliusSustarevas/mecanum_controller.git
