@@ -1,0 +1,9 @@
+# Note all controllers at base level are named the same but will be loaded from different files. 
+#Multi vesc controller  i.e. set all joint velocities simultaniously
+as_base_controller:
+  type: velocity_controllers/JointGroupVelocityController
+  joints: 
+      - motor_wheel_joint_fl
+      - motor_wheel_joint_fr
+      - motor_wheel_joint_bl
+      - motor_wheel_joint_br

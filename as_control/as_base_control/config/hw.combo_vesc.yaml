@@ -11,7 +11,7 @@ vesc_driver_fl:
   joint_name: motor_wheel_joint_fl
   gear_ratio: 91
   torque_const: 0.0369
-  robot_description_name: robot_description
+  robot_description_name: /as_base/robot_description
   erpm_limit: 30000
   duty_limit: 0.5
   pole_pairs: 8
@@ -24,7 +24,7 @@ vesc_driver_fr:
   joint_name: motor_wheel_joint_fr
   gear_ratio: 91
   torque_const: 0.0369
-  robot_description_name: robot_description
+  robot_description_name: /as_base/robot_description
   erpm_limit: 30000
   duty_limit: 0.5
   pole_pairs: 8
@@ -38,7 +38,7 @@ vesc_driver_bl:
   joint_name: motor_wheel_joint_bl
   gear_ratio: 91
   torque_const: 0.0369
-  robot_description_name: robot_description
+  robot_description_name: /as_base/robot_description
   erpm_limit: 30000
   duty_limit: 0.5
   pole_pairs: 8
@@ -52,7 +52,7 @@ vesc_driver_br:
   joint_name: motor_wheel_joint_br
   gear_ratio: 91
   torque_const: 0.0369
-  robot_description_name: robot_description
+  robot_description_name: /as_base/robot_description
   erpm_limit: 30000
   duty_limit: 0.5
   pole_pairs: 8

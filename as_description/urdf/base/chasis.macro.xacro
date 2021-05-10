@@ -35,7 +35,7 @@
 			<origin xyz= "0 0 ${motor_link_h/2}" rpy = "0 ${wheel_roller_angle} 0" />
 			<axis xyz="0 0 1"/>
 			<limit effort = "${motor_effort_limit}" velocity = "${motor_velocity_limit}" />
-			<dynamics damping="1.5"/>
+			<!-- <dynamics damping="1.5"/> -->
 		</joint>
 
 		<transmission name="motor_wheel_joint_transmission${suffix}">

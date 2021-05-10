@@ -1,0 +1,22 @@
+<launch>
+    <!-- possible values as per controllers.yaml config -->
+    <arg name="base_controller" default="as_base_controller" />
+
+    <!-- This group enforces a namespace. Optionallity was annoying to make work. If you want to change namespace, change config files too-->
+    <group ns="as_base">
+
+        <arg name="joy_config" default="logitech_holonomic" />
+        <arg name="joy_dev" default="/dev/input/js0" />
+        <node pkg="joy" type="joy_node" name="joy_node">
+            <param name="dev" value="$(arg joy_dev)" />
+            <param name="deadzone" value="0.1" />
+            <param name="autorepeat_rate" value="20" />
+        </node>
+        <node pkg="teleop_twist_joy" name="teleop_twist_joy" type="teleop_node">
+            <rosparam command="load" file="$(find as_base_control)/config/misc.joystick.yaml" />
+            <remap from="cmd_vel" to="$(arg base_controller)/cmd_vel" />
+        </node>
+
+    </group>
+
+</launch>

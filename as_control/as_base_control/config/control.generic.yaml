@@ -1,0 +1,22 @@
+# Note  these arent really base level contorllers
+# joint_state_controller is actually an observer. i.e. publishes joint states... not confusing at all
+joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+
+# Individual wheell velocity controllers incase you wanna test something
+joint_fl_motor_controller:
+    type: velocity_controllers/JointVelocityController
+    joint: motor_wheel_joint_fl
+    
+joint_fr_motor_controller:
+    type: velocity_controllers/JointVelocityController
+    joint: motor_wheel_joint_fr
+
+joint_bl_motor_controller:
+    type: velocity_controllers/JointVelocityController
+    joint: motor_wheel_joint_bl
+
+joint_br_motor_controller:
+    type: velocity_controllers/JointVelocityController
+    joint: motor_wheel_joint_br
