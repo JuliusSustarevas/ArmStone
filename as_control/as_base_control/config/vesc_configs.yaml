@@ -1,0 +1,37 @@
+vesc_driver_fl:
+  type: vesc_hw_interface/VescHwInterface
+  port: /dev/ttyACM0
+  command_mode: velocity    
+  joint_name: motor_wheel_joint_fl
+  gear_ratio: 91
+  torque_const: 0.0369
+  robot_description_name: /robot_description
+
+vesc_driver_fr:
+  type: vesc_hw_interface/VescHwInterface
+  port: /dev/ttyACM1
+  command_mode: velocity    
+  joint_name: motor_wheel_joint_fr
+  gear_ratio: 91
+  torque_const: 0.0369
+  robot_description_name: /robot_description
+
+
+vesc_driver_bl:
+  type: vesc_hw_interface/VescHwInterface
+  port: /dev/ttyACM2
+  command_mode: velocity    
+  joint_name: motor_wheel_joint_bl
+  gear_ratio: 91
+  torque_const: 0.0369
+  robot_description_name: /robot_description
+
+
+vesc_driver_br:
+  type: vesc_hw_interface/VescHwInterface
+  port: /dev/ttyACM3
+  command_mode: velocity    
+  joint_name: motor_wheel_joint_br
+  gear_ratio: 91
+  torque_const: 0.0369
+  robot_description_name: /robot_description

@@ -1,0 +1,64 @@
+<launch>
+
+    <include file="$(find as_description)/launch/load_description_as_base.launch" />
+    
+    <rosparam ns="base_controller_params" file="$(find as_base_control)/config/dd_control.yaml" command="load" />
+    <node name="diff_drive_controller_spawner" pkg="controller_manager" ns="base_controller_params" type="spawner" output="screen" args="joint_state_controller as_base_controller" />
+    
+
+    <!-- 
+    <include file="$(find ros_control_boilerplate)/rr_robot_control/launch/rr_robot_hardware.launch">
+        <arg name="hw_iface_controllers_path" value="$(find dev_platform_base)/config/diff_drive/hw_interface.yaml" />
+        <arg name="robot_description" value="$(find dev_platform_description)/urdf/dev_platform.xacro" />
+    </include>     -->
+
+    
+
+    <arg name="read_param_files" default="false" />
+    <arg name="pole_pairs" default="8" />
+    <arg name="gear_ratio" default="91" />
+    <arg name="pulse_speed" default="0.25" />
+    <arg name="pulse_duration" default="0.03" />
+
+    <!-- <include file="$(find vesc_driver)/launch/vesc_driver_node.launch">
+        <arg name="node_name" value="vesc_node_fl" />
+        <arg name="port" value="/dev/ttyACM0" />
+        <arg name="joint_name" value="motor_wheel_joint_fl" />
+        <arg name="direction" value="1" />
+        <arg name="pole_pair_count" value="$(arg pole_pairs)" />
+        <arg name="gear_ratio" value="$(arg gear_ratio)" />
+        <arg name="read_param_files" value="$(arg read_param_files)" />
+    </include>
+
+    <include file="$(find vesc_driver)/launch/vesc_driver_node.launch">
+        <arg name="node_name" value="vesc_node_fr" />
+        <arg name="port" value="/dev/ttyACM1" />
+        <arg name="joint_name" value="motor_wheel_joint_fr" />
+        <arg name="direction" value="1" />
+        <arg name="pole_pair_count" value="$(arg pole_pairs)" />
+        <arg name="gear_ratio" value="$(arg gear_ratio)" />
+        <arg name="read_param_files" value="$(arg read_param_files)" />
+    </include>
+
+    <include file="$(find vesc_driver)/launch/vesc_driver_node.launch">
+        <arg name="node_name" value="vesc_node_bl" />
+        <arg name="port" value="/dev/ttyACM2" />
+        <arg name="joint_name" value="motor_wheel_joint_bl" />
+        <arg name="direction" value="1" />
+        <arg name="pole_pair_count" value="$(arg pole_pairs)" />
+        <arg name="gear_ratio" value="$(arg gear_ratio)" />
+        <arg name="read_param_files" value="$(arg read_param_files)" />
+    </include>
+
+    <include file="$(find vesc_driver)/launch/vesc_driver_node.launch">
+        <arg name="node_name" value="vesc_node_br" />
+        <arg name="port" value="/dev/ttyACM3" />
+        <arg name="joint_name" value="motor_wheel_joint_br" />
+        <arg name="direction" value="1" />
+        <arg name="pole_pair_count" value="$(arg pole_pairs)" />
+        <arg name="gear_ratio" value="$(arg gear_ratio)" />
+        <arg name="read_param_files" value="$(arg read_param_files)" />
+    </include> -->
+
+
+</launch>

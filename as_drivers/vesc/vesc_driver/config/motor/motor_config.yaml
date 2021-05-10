@@ -1,6 +1,0 @@
-# Config containing RR motor module related definitions
-pole_pair_count: 8
-gear_ratio: 72 #gold module
-#gear_ratio: 60 #silver module
-pulse_speed_rads: 0.3
-pulse_duration: 0.02

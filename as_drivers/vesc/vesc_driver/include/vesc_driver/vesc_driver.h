@@ -1,55 +1,68 @@
-// -*- mode:c++; fill-column: 100; -*-
+/*********************************************************************
+ * Copyright (c) 2019, SoftBank Corp.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of Softbank Corp. nor the names of its
+ *       contributors may be used to endorse or promote products derived from
+ *       this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ ********************************************************************/
+
+/** NOTE *************************************************************
+ * This program had been developed by Michael T. Boulet at MIT under
+ * the BSD 3-clause License until Dec. 2016. Since Nov. 2019, Softbank
+ * Corp. takes over development as new packages.
+ ********************************************************************/
 
 #ifndef VESC_DRIVER_VESC_DRIVER_H_
 #define VESC_DRIVER_VESC_DRIVER_H_
 
 #include <string>
+#include <cassert>
+#include <cmath>
+#include <sstream>
+
+#include <boost/optional.hpp>
+#include <boost/bind.hpp>
 
 #include <ros/ros.h>
-#include <ros/package.h>
-#include <ros/console.h>
 #include <std_msgs/Float64.h>
-#include <sensor_msgs/BatteryState.h>
-#include <sensor_msgs/JointState.h>
-#include <boost/optional.hpp>
-#include <boost/circular_buffer.hpp>
-#include <numeric>
-#include <std_srvs/Trigger.h>
+#include <vesc_msgs/VescStateStamped.h>
 
 #include "vesc_driver/vesc_interface.h"
 #include "vesc_driver/vesc_packet.h"
 
-#include <dynamic_reconfigure/server.h>
-#include <vesc_driver/MotorSetupConfig.h>
-
-#include <std_srvs/Trigger.h>
-#include <std_srvs/TriggerRequest.h>
-#include <std_srvs/TriggerResponse.h>
-
-#include <fstream>
-#include <iostream>
-
 namespace vesc_driver
 {
-
 class VescDriver
 {
 public:
-
-  VescDriver(ros::NodeHandle nh,
-             ros::NodeHandle private_nh);
+  VescDriver(ros::NodeHandle nh, ros::NodeHandle private_nh);
 
 private:
   // interface to the VESC
   VescInterface vesc_;
   void vescPacketCallback(const boost::shared_ptr<VescPacket const>& packet);
   void vescErrorCallback(const std::string& error);
-  void vescFaultCallback(const int& fault_code);
-
-  double radPerSecToErpm(double rad_s);
-  double erpmToRadPerSec(double erpm);
-  double ticksToRad(double ticks);
-  void setDirection();
 
   // limits on VESC commands
   struct CommandLimit
@@ -71,8 +84,6 @@ private:
 
   // ROS services
   ros::Publisher state_pub_;
-  ros::Publisher joint_state_pub_;
-  ros::Publisher battery_pub_;
   ros::Publisher servo_sensor_pub_;
   ros::Subscriber duty_cycle_sub_;
   ros::Subscriber current_sub_;
@@ -80,71 +91,19 @@ private:
   ros::Subscriber speed_sub_;
   ros::Subscriber position_sub_;
   ros::Subscriber servo_sub_;
-  ros::Subscriber joint_sub_;
-  ros::ServiceServer pulse_serv_;
-  ros::ServiceServer disable_serv_;
-  ros::ServiceServer enable_serv_;
   ros::Timer timer_;
-  ros::Timer batt_timer_;
-
-  // Mutexes
-  boost::mutex joint_mtx_;
 
   // driver modes (possible states)
-  typedef enum {
+  typedef enum
+  {
     MODE_INITIALIZING,
-    MODE_OPERATING,
-    MODE_DISABLED
+    MODE_OPERATING
   } driver_mode_t;
 
-  //TODO: possibly change the order,
-  //TOOD: consider changing to DIRECTION_NORMAL/NONE/REVERSED
-  //TODO: consider using vesc_driver_cfg enum instead
-  // direction of motor rotation
-  typedef enum {
-    DIRECTION_CLOCKWISE = -1,
-    DIRECTION_NONE,
-    DIRECTION_COUNTERCLOCKWISE,
-  } motor_direction_t;
-
-  std::string joint_name;
-
-  // motor pulse variables
-  bool pulse_engaged_ = false;
-  float pulse_duration_ = 0.0;
-  float pulse_speed_rads_ = 0.0;
-
   // other variables
-  driver_mode_t driver_mode_;           ///< driver state machine mode (state)
-  int fw_version_major_;                ///< firmware major version reported by vesc
-  int fw_version_minor_;                ///< firmware minor version reported by vesc
-  motor_direction_t motor_direction_;
-  motor_direction_t queued_motor_direction_; //queue motor direction until almost 0 speed achieved
-  double last_speed_;
-  bool dir_change_requested_;
-  bool first_dyn_callback_ = true;
-  std::string config_package_;
-
-  // battery measurements
-  float last_voltage_ = -1.0;
-  float last_current_ = -1.0;
-  boost::circular_buffer<double> ang_speed_buffer_;
-  int avg_filter_capacity_;
-
-  // motor parameters
-  int gear_ratio_;
-  int pole_pair_count_;
-
-  // initial state variables
-  bool first_value_read_ = true;
-  double initial_tachometer_;
-  double initial_tachometer_abs_;
-
-  // consts
-  const double rad_s_to_rpm_ = 9.54929659642538;
-  const double rpm_to_rad_s = 0.104719755;
-  // only apply direction change when speed is within lower then this threshold
-  const double dir_change_threshod_rad_s = 0.02;
+  driver_mode_t driver_mode_;  ///< driver state machine mode (state)
+  int fw_version_major_;       ///< firmware major version reported by vesc
+  int fw_version_minor_;       ///< firmware minor version reported by vesc
 
   // ROS callbacks
   void timerCallback(const ros::TimerEvent& event);
@@ -154,18 +113,8 @@ private:
   void speedCallback(const std_msgs::Float64::ConstPtr& speed);
   void positionCallback(const std_msgs::Float64::ConstPtr& position);
   void servoCallback(const std_msgs::Float64::ConstPtr& servo);
-  void dynParamCallback(const vesc_driver_cfg::MotorSetupConfig &config, uint32_t level);
-  void jointStateCallback(const sensor_msgs::JointState::ConstPtr& jointState);
-  bool pulseCallback(std_srvs::TriggerRequest& request, std_srvs::TriggerResponse& response);
-  bool disableCallback(std_srvs::TriggerRequest& request, std_srvs::TriggerResponse& response);
-  bool enableCallback(std_srvs::TriggerRequest& request, std_srvs::TriggerResponse& response);
-  dynamic_reconfigure::Server<vesc_driver_cfg::MotorSetupConfig> dyn_param_server_;
-  dynamic_reconfigure::Server<vesc_driver_cfg::MotorSetupConfig>::CallbackType dyn_param_server_callback_function_;
-  void saveToParam(std::string filename, std::string config_package);
-
-  void batteryPubTimerCallback(const ros::TimerEvent& event);
 };
 
-} // namespace vesc_driver
+}  // namespace vesc_driver
 
-#endif // VESC_DRIVER_VESC_DRIVER_H_
+#endif  // VESC_DRIVER_VESC_DRIVER_H_

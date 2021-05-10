@@ -41,10 +41,11 @@
 		<transmission name="motor_wheel_joint_transmission${suffix}">
 			<type>transmission_interface/SimpleTransmission</type>
 			<joint name="motor_wheel_joint${suffix}">
-				<hardwareInterface>VelocityJointInterface</hardwareInterface>
+				<hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="motor_wheel_joint_actuator${suffix}">
 				<mechanicalReduction>${gearbox_reduction}</mechanicalReduction>
+				<hardwareInterface>VelocityJointInterface</hardwareInterface>
 			</actuator>
 		</transmission>
 

@@ -3,14 +3,13 @@
     <include file="$(find as_description)/launch/load_description_as_base.launch" />
 
     <rosparam file="$(find as_base_control)/config/dd_config.yaml" command="load" />
-    <rosparam file="$(find as_base_control)/config/vesc_configs.yaml" command="load" />
 
-    <!-- <node name="vesc_driver_fl" pkg="vesc_hw_interface" type="vesc_hw_interface_node" output="screen" />
-    <node name="vesc_driver_fr" pkg="vesc_hw_interface" type="vesc_hw_interface_node" output="screen" />
-    <node name="vesc_driver_bl" pkg="vesc_hw_interface" type="vesc_hw_interface_node" output="screen" />
-    <node name="vesc_driver_br" pkg="vesc_hw_interface" type="vesc_hw_interface_node" output="screen" /> -->
-    
-    <!-- <node name="as_base_controller_spawner" pkg="controller_manager" type="spawner" output="screen" ns="/" args="joint_state_controller multi_vesc_controller" /> -->
+    <rosparam file="$(find as_base_control)/config/multi_vesc_configs.yaml" command="load" />
+    <node name="multi_vesc_driver" pkg="vesc_hw_interface" type="multi_vesc_hw_interface_node" output="screen" />
+
+    <node name="as_base_controller_spawner" pkg="controller_manager" type="spawner" output="screen" ns="/" args="
+    joint_state_controller  multi_vesc_controller  
+    " />
 
 
     <!-- <node name="controller"
@@ -29,9 +28,9 @@
     <arg name="pole_pairs" default="8" />
     <arg name="gear_ratio" default="91" />
     <arg name="pulse_speed" default="0.25" />
-    <arg name="pulse_duration" default="0.03" />
+    <arg name="pulse_duration" default="0.03" /> -->
 
-    <include file="$(find vesc_driver)/launch/vesc_driver_node.launch">
+    <!-- <include file="$(find vesc_driver)/launch/vesc_driver_node.launch">
         <arg name="node_name" value="vesc_node_fl" />
         <arg name="port" value="/dev/ttyACM0" />
         <arg name="joint_name" value="motor_wheel_joint_fl" />
