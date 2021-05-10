@@ -1,30 +1,14 @@
 <launch>
 
-    <include file="$(find as_description)/launch/load_description_as_base.launch" />
-
-    <rosparam file="$(find as_base_control)/config/dd_config.yaml" command="load" />
+    <include file="$(find as_description)/launch/load_description_as_base.launch" />   
 
     <rosparam file="$(find as_base_control)/config/multi_vesc_configs.yaml" command="load" />
+    <rosparam file="$(find as_base_control)/config/dd_config.yaml" command="load" />
     <node name="multi_vesc_driver" pkg="vesc_hw_interface" type="multi_vesc_hw_interface_node" output="screen" />
 
     <node name="as_base_controller_spawner" pkg="controller_manager" type="spawner" output="screen" ns="/" args="
-    joint_state_controller   as_base_controller
+    joint_state_controller  joint_fl_motor_controller
     " />
-
-
-    <arg name="joy_config" default="logitech_holonomic" />
-    <arg name="joy_dev" default="/dev/input/js0" />
-    <node pkg="joy" type="joy_node" name="joy_node">
-        <param name="dev" value="$(arg joy_dev)" />
-        <param name="deadzone" value="0.1" />
-        <param name="autorepeat_rate" value="20" />
-    </node>
-    <node pkg="teleop_twist_joy" name="teleop_twist_joy" type="teleop_node">
-        <rosparam command="load" file="$(find as_base_control)/config/joystick.yaml" />
-        <remap from="cmd_vel" to="as_base_controller/cmd_vel"/>
-    </node>
-    
-
 
     <!-- <node name="controller"
       pkg="controller_manager"
