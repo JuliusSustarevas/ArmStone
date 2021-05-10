@@ -26,7 +26,7 @@
 	<!-- True is 1460mNm -->
 	<xacro:property name="motor_effort_limit" value="1.4" />
 	<!-- True is 6110rpm -->
-	<xacro:property name="motor_velocity_limit" value="600" />
+	<xacro:property name="motor_velocity_limit" value="8" />
 	<xacro:property name="gearbox_reduction" value="91" />
 
 	<!-- offsets -->
