@@ -14,8 +14,18 @@ as_base_controller:
   robot_description: /as_base/robot_description
   cmd_vel_timeout: 0.1 #Velocity commands will be considered old if they are older than 
   base_frame_id: base_link
-  base_frame_offset:
-    x: 0.4 #TODO find meaning
-    y: 0.25 #TODO find meaning
-    theta: 1 #TODO find meaning
+  # base_frame_offset:
+  #   x: 0.4 #TODO find meaning
+  #   y: 0.25 #TODO find meaning
+  #   theta: 1 #TODO find meaning
+  wheel0_x: 0.317 #0.72/2 - 0.043. 4 cm ish into the robot
+  wheel0_y: 0.2705 #0.455/2 + 0.043. 42-43 mm ish away from frame end.
+  wheel1_x: -0.317
+  wheel1_y: 0.2705 
+  wheel2_x: -0.317
+  wheel2_y: -0.2705 
+  wheel3_x: 0.317
+  wheel3_y: -0.2705 
+  
+  
   

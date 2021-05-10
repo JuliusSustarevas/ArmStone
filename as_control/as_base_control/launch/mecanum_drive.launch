@@ -1,6 +1,7 @@
 <launch>
     <!-- possible values mecanum, group_velocity -->
-    <arg name="base_controller" value="differential_drive" />
+    <!-- <arg name="base_controller" value="differential_drive" /> -->
+    <arg name="base_controller" value="mecanum_drive" />
 
     <include file="$(find as_base_control)/launch/load_control_stack.launch">
         <!-- possible values mecanum, group_velocity -->
