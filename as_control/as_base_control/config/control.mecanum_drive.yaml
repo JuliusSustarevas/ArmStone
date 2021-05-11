@@ -1,31 +1,64 @@
 # Note all controllers at base level are named the same but will be loaded from different files. 
 #Experimental ROS holonomic controller
 as_base_controller:
-  type: mecanum_drive_controller/MecanumDriveController
-  use_realigned_roller_joints: false # Use the roller's radius rather than the wheel's:
-  front_left_wheel_joint: motor_wheel_joint_fl
-  back_left_wheel_joint: motor_wheel_joint_bl
-  back_right_wheel_joint: motor_wheel_joint_br
-  front_right_wheel_joint: motor_wheel_joint_fr
+  type: mecanum_drive_controller/MecanumDriveController 
+
+  # Wheel parameters
+  wheels:
+    fl:
+      name: motor_wheel_joint_fl
+      x: 0.317 #0.72/2 - 0.043. 4 cm ish into the robot
+      y: 0.2705 #0.455/2 + 0.043. 42-43 mm ish away from frame end.
+    bl:
+      name: motor_wheel_joint_bl
+      x: -0.317
+      y: 0.2705 
+    br:
+      name: motor_wheel_joint_br
+      x: -0.317
+      y: -0.2705 
+    fr:
+      name: motor_wheel_joint_fr
+      x: 0.317
+      y: -0.2705 
+    r: 0.0762  
+  
+  # Odometry
+  odom_frame_id: odom  
   enable_odom_tf: true #Publishing to tf 
   publish_rate: 50 #publish odometry
   pose_covariance_diagonal: [0.01, 0.01, 1000000.0, 1000000.0, 1000000.0, 0.03]
-  twist_covariance_diagonal: [0.01, 0.01, 1000000.0, 1000000.0, 1000000.0, 0.03]
-  robot_description: /as_base/robot_description
+  twist_covariance_diagonal: [0.01, 0.01, 1000000.0, 1000000.0, 1000000.0, 0.03]  
+
+  # Misc
   cmd_vel_timeout: 0.1 #Velocity commands will be considered old if they are older than 
-  base_frame_id: base_link
-  # base_frame_offset:
-  #   x: 0.4 #TODO find meaning
-  #   y: 0.25 #TODO find meaning
-  #   theta: 1 #TODO find meaning
-  wheel0_x: 0.317 #0.72/2 - 0.043. 4 cm ish into the robot
-  wheel0_y: 0.2705 #0.455/2 + 0.043. 42-43 mm ish away from frame end.
-  wheel1_x: -0.317
-  wheel1_y: 0.2705 
-  wheel2_x: -0.317
-  wheel2_y: -0.2705 
-  wheel3_x: 0.317
-  wheel3_y: -0.2705 
+  base_frame_id: base_link 
+  publish_cmd: true # Publish limited cmd 
+
+  # Limits:
+  linear:
+    x:
+      has_velocity_limits    : true
+      max_velocity           : 0.8   # m/s
+      has_acceleration_limits: true
+      max_acceleration       : 0.5   # m/s^2
+      has_jerk_limits        : false
+      max_jerk               : 0.1  # m/s^3
+    y:
+      has_velocity_limits    : true
+      max_velocity           : 0.8   # m/s
+      has_acceleration_limits: true
+      max_acceleration       : 0.5   # m/s^2
+      has_jerk_limits        : false
+      max_jerk               : 0.1  # m/s^3
+  angular:
+    z:
+      has_velocity_limits    : true
+      max_velocity           : 2   # rad/s
+      has_acceleration_limits: true
+      max_acceleration       : 1   # rad/s^2
+      has_jerk_limits        : false
+      max_jerk               : 0.4  # rad/s^3
   
   
   
