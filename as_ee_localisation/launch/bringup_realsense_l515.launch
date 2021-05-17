@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<launch>
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+        <!-- <param name="usb_port_id" value="" /> -->
+        <param name="device_type" value="l515" />
+        <param name="initial_reset" value="true" />
+        <!-- Alligns depth to color  -->
+        <param name="align_depth" value="true" />
+        <!-- Publishes pointclouds  -->
+        <param name="filters" value="pointcloud" />
+        <!-- Enables streams -->
+        <param name="enable_gyro" value="true" />
+        <param name="enable_accel" value="true" />
+        <param name="enable_pose" value="true" />
+        <param name="enable_confidence" value="true" />
+        <!-- Frames -->
+        <param name="odom_frame_id" value="ee_odom" />
+        <param name="base_frame_id" value="base_link" />
+        <!-- clip distance -->
+        <param name="clip_distance" value="false" />
+        <!-- covariances -->
+        <!-- <param name="linear_accel_cov" value="false" />
+        <param name="angular_velocity_cov" value="false" /> -->
+        
+
+
+    </include>
+</launch>
+
+<!-- Check more params -->
+<!-- hold_back_imu_for_frames -->
+<!-- publish_tf
+tf_publish_rate
+publish_odom_tf -->
