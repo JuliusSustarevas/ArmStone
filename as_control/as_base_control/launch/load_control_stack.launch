@@ -5,7 +5,7 @@
     <!-- This group enforces a namespace. Optionallity was annoying to make work. If you want to change namespace, change config files too-->
     <group ns="as_base">
 
-        <include file="$(find as_description)/launch/load_description_as_base.launch" />
+        <param name="robot_description" command="xacro '$(find as_description)/robots/as_base.urdf.xacro'" />    
 
         <rosparam file="$(find as_base_control)/config/control.generic.yaml" command="load" />
         <rosparam file="$(find as_base_control)/config/control.$(arg base_controller_config).yaml" command="load" />
@@ -16,5 +16,13 @@
         <node name="as_base_controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="joint_state_controller as_base_controller" />
 
     </group>
+
+    <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+        <param name="use_gui" value="false" />
+        <param name="rate" value="50" />
+        <rosparam param="source_list">[as_base/joint_states, as_xarm/joint_states ]</rosparam>
+    </node> -->
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
 </launch>

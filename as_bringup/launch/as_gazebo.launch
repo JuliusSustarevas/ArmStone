@@ -1,0 +1,10 @@
+<launch>
+    <!-- Choose gazebo env -->           
+    <include file="$(find as_gazebo)/launch/as_gazebo_empty.launch"/>        
+
+    <!--  -->
+
+    <!-- UI -->
+    <include file="$(find as_ui)/launch/load_joy_stack.launch" />   
+    
+</launch>

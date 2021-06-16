@@ -1,15 +1,14 @@
 <launch>
-    <arg name="device_type" default="l515" />
-    <!-- <arg name="device_type" value="d435i" />         -->
+    <!-- <arg name="device_type" default="l515" /> -->
+    <arg name="device_type" value="d435i" />        
     <arg name="serial_no_d435i" default="937622070491" />
     <arg name="serial_no_l515" default="f0221003" />
     
     <!-- Pass Params -->
     <include file="$(find realsense2_camera)/launch/rs_camera.launch" ns="$(arg device_type)">
         <!-- Nodelet manager: -->
-        <arg name="manager" value="realsense2_camera_manager" />
-        <!-- <param name="device_type" value="l515" /> -->
-        <!-- <arg name="camera" value="$(arg device_type)" />    -->
+        <arg name="manager" value="realsense2_camera_manager" />        
+        <arg name="camera" value="$(arg device_type)" />   
         <arg name="serial_no" value="$(eval arg('serial_no_'+arg('device_type')))" />
         <arg name="initial_reset" value="true" />
         <!-- <arg name="json_file_path" default=""/> -->
@@ -22,7 +21,7 @@
         <arg name="enable_gyro" value="true" />
         <arg name="enable_accel" value="true" />
         <arg name="enable_confidence" value="true" />
-        <arg name="tf_publish_rate"           default="50"/>
+        <!-- <arg name="tf_publish_rate"   default="50"/> -->
 
         <!-- POINT CLOUD -->
         <arg name="filters" value="pointcloud" />
@@ -38,7 +37,7 @@
 
 </launch>
 
-
+<!-- -->
 
 
 
