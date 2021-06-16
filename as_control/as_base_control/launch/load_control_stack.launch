@@ -6,6 +6,7 @@
     <group ns="as_base">
 
         <param name="robot_description" command="xacro '$(find as_description)/robots/as_base.urdf.xacro'" />    
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
         <rosparam file="$(find as_base_control)/config/control.generic.yaml" command="load" />
         <rosparam file="$(find as_base_control)/config/control.$(arg base_controller_config).yaml" command="load" />
@@ -23,6 +24,6 @@
         <rosparam param="source_list">[as_base/joint_states, as_xarm/joint_states ]</rosparam>
     </node> -->
 
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    
 
 </launch>
