@@ -1,4 +1,13 @@
 <launch>
-    <include file="$(find as_description)/launch/as_display.launch"/>        
+    <!-- Control stack -->
+    <arg name="base_controller" value="mecanum_drive" />
+    
+    <include file="$(find as_base_control)/launch/load_control_stack.launch">
+        <!-- possible values mecanum, group_velocity -->
+        <arg name="base_controller_config" value="$(arg base_controller)" />
+    </include>
+
+    <!-- UI -->
+    <include file="$(find as_ui)/launch/load_joy_stack.launch" />   
     
 </launch>
