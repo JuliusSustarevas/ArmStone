@@ -8,7 +8,7 @@
 	<xacro:include filename="$(find as_description)/urdf/common/inertia.xacro"/>
 	<xacro:include filename="$(find as_description)/urdf/common/materials.xacro"/>
 
-	<xacro:macro name="as_motor_wheel_assembly" params="suffix">
+	<xacro:macro name="as_motor_wheel_assembly" params="suffix wheel_angle" >
 
 		<link name="motor_gearbox${suffix}">
 			<inertial>
@@ -17,10 +17,10 @@
 				<xacro:cylinder_inertia_tensor m="${motor_link_m}" r="${motor_link_r}" h="${motor_link_h}" />
 			</inertial>
 			<visual>
-				<geometry>
-					<cylinder length="${motor_link_h}" radius="${motor_link_r}"/>
-				</geometry>
-				<material name="BlackClear"/>
+				<origin xyz= "${motor_mxyz}" rpy = "${motor_mrpy}" />
+				<geometry>										
+					<mesh filename="package://as_description/meshes/${motor_meshfile}" />
+				</geometry>				
 			</visual>
 			<collision>
 				<geometry>
@@ -32,7 +32,7 @@
 		<joint name="motor_wheel_joint${suffix}" type="continuous">
 			<parent link="motor_gearbox${suffix}"/>
 			<child link="omniwheel${suffix}"/>
-			<origin xyz= "0 0 ${motor_link_h/2}" rpy = "0 ${wheel_roller_angle} 0" />
+			<origin xyz= "0 0 ${motor_link_h/2}" rpy = "0 ${wheel_angle} 0" />
 			<axis xyz="0 0 1"/>
 			<limit effort = "${motor_effort_limit}" velocity = "${motor_velocity_limit}" />
 			<!-- <dynamics damping="1.5"/> -->
@@ -56,12 +56,7 @@
 				<mass value="${wheel_link_m}"/>
 				<xacro:sphere_inertia_tensor m="${wheel_link_m}" r="${wheel_link_r}" />
 			</inertial>
-			<visual>
-				<geometry>
-					<cylinder radius="${wheel_link_r}" length="0.05"/>
-				</geometry>
-				<material name="WhiteClear"/>
-			</visual>
+			<!-- No visual. -->
 			<collision>
 				<geometry>
 					<sphere radius="${wheel_link_r}"/>
@@ -106,11 +101,11 @@
 				<mass value="${base_link_m}"/>
 				<xacro:box_inertia_tensor m="${base_link_m}" dx="${base_link_dx}" dy="${base_link_dy}" dz="${base_link_dz}"/>
 			</inertial>
-			<visual>
-				<geometry>
-					<box size="${base_link_dx} ${base_link_dy} ${base_link_dz}" />
-				</geometry>
-				<material name="DarkGreyClear"/>
+			<visual>				
+				<origin xyz= "${base_mxyz}" rpy = "${base_mrpy}" />
+				<geometry>										
+					<mesh filename="package://as_description/meshes/${base_meshfile}" />
+				</geometry>				
 			</visual>
 			<collision>
 				<geometry>
@@ -123,10 +118,10 @@
 			</gazebo>
 		</link>
 
-		<xacro:as_motor_wheel_assembly suffix="_fl"/>
-		<xacro:as_motor_wheel_assembly suffix="_fr"/>
-		<xacro:as_motor_wheel_assembly suffix="_bl"/>
-		<xacro:as_motor_wheel_assembly suffix="_br"/>
+		<xacro:as_motor_wheel_assembly suffix="_fl"  wheel_angle="${-wheel_roller_angle}"/>
+		<xacro:as_motor_wheel_assembly suffix="_fr"  wheel_angle="${wheel_roller_angle}"/>
+		<xacro:as_motor_wheel_assembly suffix="_bl"  wheel_angle="${wheel_roller_angle}"/>
+		<xacro:as_motor_wheel_assembly suffix="_br"  wheel_angle="${-wheel_roller_angle}"/>
 
 		<joint name="motor_wheel_assembly_joint_fl" type="fixed">
 			<parent link="base_link"/>

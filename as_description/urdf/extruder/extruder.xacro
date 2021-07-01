@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    
+    <xacro:include filename="$(find as_description)/urdf/common/generic_links.xacro"/>
+    <!-- Extruder -->
+    <xacro:property name="extruder_r" value="0.05"/>
+    <xacro:property name="extruder_h" value="0.18"/>
+    <!--Without material m 0.8  -->
+    <xacro:property name="extruder_m" value="1.5"/>
+
+    <!-- Extruder should not be macro. Probably own file -->
+    <xacro:macro name="extruder" params="parent xyz rpy">
+        <xacro:generic_cylinder name="extruder" parent="${parent}" xyz="${xyz}" rpy="${rpy}" r="${extruder_r}" h="${extruder_h}" m="${extruder_m}" material="Red" gmaterial="Gazebo/Red" meshfile="" mxyz="" mrpy=""/>
+    </xacro:macro>
+
+
+</robot>

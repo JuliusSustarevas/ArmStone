@@ -1,4 +1,15 @@
 <launch>
+  
+    <!-- Top level infrastructure -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" /> -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+        <param name="use_gui" value="false" />
+        <param name="rate" value="50" />
+        <rosparam param="source_list">[as_base/joint_states, as_xarm/joint_states ]</rosparam>
+    </node>    
+
+    <!-- xArm stack -->    
+    
     <!-- Control stack -->
     <arg name="base_controller" value="mecanum_drive" />
     

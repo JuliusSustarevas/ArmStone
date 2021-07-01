@@ -4,9 +4,9 @@
 	<xacro:include filename="$(find as_description)/urdf/common/generic_links.xacro"/>
 
 	<!-- battery_link -->
-	<xacro:property name="battery_link_dx" value="0.35"/>
-	<xacro:property name="battery_link_dy" value="0.130"/>
-	<xacro:property name="battery_link_dz" value="0.082"/>
+	<xacro:property name="battery_link_dx" value="0.40"/>
+	<xacro:property name="battery_link_dy" value="0.150"/>
+	<xacro:property name="battery_link_dz" value="0.085"/>
 	<xacro:property name="battery_link_m" value="6.7"/>
 
 	<!-- nuc_link -->
@@ -27,7 +27,7 @@
 	<xacro:property name="material3_m" value="${3*1760/1000}"/>
 
 	<!-- Aluminium plate -->
-	<xacro:property name="mount_plate_dx" value="${0.72/2}"/>
+	<xacro:property name="mount_plate_dx" value="${0.27}"/>
 	<xacro:property name="mount_plate_dy" value="${0.455}"/>
 	<xacro:property name="mount_plate_dz" value="0.008"/>
 	<!-- Aluminium density 2.7/cm3  or 2700 kgm3-->
@@ -39,42 +39,28 @@
 	<xacro:property name="compressor_h" value="0.13"/>
 	<xacro:property name="compressor_m" value="1.4"/>
 
-
-	<!-- Extruder -->
-	<xacro:property name="extruder_r" value="0.05"/>
-	<xacro:property name="extruder_h" value="0.18"/>
-	<!--Without material m 0.8  -->
-	<xacro:property name="extruder_m" value="1.5"/>
-
-
-
 	<xacro:macro name="battery48" params="parent xyz rpy">
-		<xacro:generic_box name="battery48" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${battery_link_dx}" dy="${battery_link_dy}" dz="${battery_link_dz}" m="${battery_link_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" />
+		<xacro:generic_box name="battery48" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${battery_link_dx}" dy="${battery_link_dy}" dz="${battery_link_dz}" m="${battery_link_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="battery.dae" mxyz="0.035 0 ${-battery_link_dz/2}" mrpy="0 0 ${M_PI}" />
 	</xacro:macro>
 
 	<xacro:macro name="nuc" params="parent xyz rpy">
-		<xacro:generic_box name="nuc" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${nuc_link_dx}" dy="${nuc_link_dy}" dz="${nuc_link_dz}" m="${nuc_link_m}" material="DarkGrey" gmaterial="Gazebo/DarkGrey" />
+		<xacro:generic_box name="nuc" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${nuc_link_dx}" dy="${nuc_link_dy}" dz="${nuc_link_dz}" m="${nuc_link_m}" material="DarkGrey" gmaterial="Gazebo/DarkGrey" meshfile="" mxyz="" mrpy="" />
 	</xacro:macro>
 
 	<xacro:macro name="dc_box" params="parent xyz rpy">
-		<xacro:generic_box name="dc_box" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${dc_box_dx}" dy="${dc_box_dy}" dz="${dc_box_dz}" m="${dc_box_m}" material="Orange" gmaterial="Gazebo/Orange" />
+		<xacro:generic_box name="dc_box" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${dc_box_dx}" dy="${dc_box_dy}" dz="${dc_box_dz}" m="${dc_box_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="dcbox.stl" mxyz="0 ${-dc_box_dx/2} 0" mrpy="0 ${M_PI/2} ${M_PI/2}" />
 	</xacro:macro>
 
 	<xacro:macro name="mount_plate" params="parent xyz rpy">
-		<xacro:generic_box name="mount_plate" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${mount_plate_dx}" dy="${mount_plate_dy}" dz="${mount_plate_dz}" m="${mount_plate_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" />
+		<xacro:generic_box name="mount_plate" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${mount_plate_dx}" dy="${mount_plate_dy}" dz="${mount_plate_dz}" m="${mount_plate_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="mounting_plate.stl" mxyz="0 0 ${-mount_plate_dz/2}" mrpy="0 0 ${M_PI/2}" />
 	</xacro:macro>
 
 	<xacro:macro name="compressor" params="parent xyz rpy">
-		<xacro:generic_cylinder name="compressor" parent="${parent}" xyz="${xyz}" rpy="${rpy}" r="${compressor_r}" h="${compressor_h}" m="${compressor_m}" material="Grey" gmaterial="Gazebo/Grey" />
-	</xacro:macro>
-
-	<!-- Extruder should not be macro. Probably own file -->
-	<xacro:macro name="extruder" params="parent xyz rpy">
-		<xacro:generic_cylinder name="extruder" parent="${parent}" xyz="${xyz}" rpy="${rpy}" r="${extruder_r}" h="${extruder_h}" m="${extruder_m}" material="Red" gmaterial="Gazebo/Red" />
+		<xacro:generic_cylinder name="compressor" parent="${parent}" xyz="${xyz}" rpy="${rpy}" r="${compressor_r}" h="${compressor_h}" m="${compressor_m}" material="Grey" gmaterial="Gazebo/Grey" meshfile="" mxyz="" mrpy="" />
 	</xacro:macro>
 
 	<xacro:macro name="material3" params="parent xyz rpy">
-		<xacro:generic_cylinder name="material3" parent="${parent}" xyz="${xyz}" rpy="${rpy}" r="${material3_r}" h="${material3_h}" m="${material3_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" />
+		<xacro:generic_cylinder name="material3" parent="${parent}" xyz="${xyz}" rpy="${rpy}" r="${material3_r}" h="${material3_h}" m="${material3_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="" mxyz="" mrpy=""/>
 	</xacro:macro>
 
 </robot>

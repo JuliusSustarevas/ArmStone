@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor" xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" xmlns:xacro="http://ros.org/wiki/xacro" name="as_base">
+
+	<!-- Import macro params -->
+	<xacro:include filename="$(find as_description)/urdf/base/chasis.params.xacro" />
+	<xacro:include filename="$(find as_description)/urdf/base/components.params.xacro" />
+	
+	<!-- Componenet positions-->
+	<xacro:property name="dc_box_xyz" value=" ${-base_link_dx/2 + 0.02 +dc_box_dy/2} 0 ${base_link_dz/2 - dc_box_dz/2}" />
+	<xacro:property name="dc_box_rpy" value=" 0 0 0" />
+
+	<xacro:property name="material3_xyz" value="-${base_link_dx/4} 0 ${base_link_dz/2+0.01 + battery_link_dz/2}" />
+	<xacro:property name="material3_rpy" value="0 ${M_PI/2} 0" />
+
+	<xacro:property name="mount_plate_xyz" value=" ${base_link_dx/2 - mount_plate_dx/2} 0 ${ -base_link_dz/2 +mount_plate_dz/2 +0.02}" />
+	<xacro:property name="mount_plate_rpy" value="0 0 0" />
+
+	<xacro:property name="compressor_xyz" value="-${base_link_dx/2-compressor_h/2 } ${base_link_dy/2 - compressor_r/2} ${base_link_dz/2-compressor_r }" />
+	<xacro:property name="compressor_rpy" value="0 ${M_PI/2} 0" />
+
+	<xacro:property name="battery_xyz" value="${-base_link_dx/2 + battery_link_dx/2 -0.08} 0  ${-base_link_dz/2 +0.02 + battery_link_dz/2 }" />
+	<xacro:property name="battery_rpy" value="0 0 0" />
+
+	<!-- TODO dealwith nuc -->
+	<!-- <xacro:property name="nuc_xyz" value="${-base_link_dx/2 + battery_link_dx/2 } 0  ${-base_link_dz/2 +0.02 + battery_link_dz/2 }" />
+	<xacro:property name="nuc_rpy" value="0 0 0" /> -->
+
+	<!-- Import macros -->
+	<xacro:include filename="$(find as_description)/urdf/base/chasis.macro.xacro" />
+	<xacro:include filename="$(find as_description)/urdf/base/components.macro.xacro" />
+
+	<!-- Compose the ArmStone Base -->
+	<xacro:as_base_chasis />
+	<xacro:battery48 parent="base_link" xyz="${battery_xyz}" rpy="${battery_rpy}" />
+	<!-- <xacro:nuc parent="base_link" xyz="${nuc_xyz}" rpy="${nuc_rpy}" /> -->
+	<xacro:dc_box parent="base_link" xyz="${dc_box_xyz}" rpy="${dc_box_rpy}" />
+	<xacro:mount_plate parent="base_link" xyz="${mount_plate_xyz}" rpy="${mount_plate_rpy}" />
+	<!-- <xacro:compressor parent="base_link" xyz="${compressor_xyz}" rpy="${compressor_rpy}" /> -->
+	<!-- <xacro:material3 parent="base_link" xyz="${material3_xyz}" rpy="${material3_rpy}" /> -->
+
+</robot>
