@@ -4,22 +4,32 @@
       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
       xmlns:xacro="http://ros.org/wiki/xacro" name="armstone">
 
+
+      <xacro:include filename="$(find as_description)/urdf/base/chasis.params.xacro" />
+
       <!-- Arm arguments -->
       <xacro:arg name="prefix" default="xarm"/>
       <xacro:arg name="ros_namespace" default="xarm"/>
       <xacro:arg name="limited" default="true"/>
       <xacro:arg name="effort_control" default="false"/>
+      <xacro:arg name="velocity_control" default="false"/>            
+      <xacro:property name="arm_xyz" value="${-0.185+base_link_dx/2} 0 ${0.005+0.028-base_link_dz/2}"/>
+      <xacro:property name="arm_rpy" value="0 0 0"/>
+      <xacro:property name="extruder_xyz" value="0 0 ${extruder_h/2}"/>
+      <xacro:property name="extruder_rpy" value="0 0 ${-M_PI/2}"/>
+
+      
       
       <!-- includes -->      
       <xacro:include filename="$(find xarm_description)/urdf/xarm6_robot_macro.xacro" />
 
       <!-- formation-->
       <xacro:include filename="$(find as_description)/robots/as_base.xacro" />
-      <xacro:xarm6_robot prefix="$(arg prefix)" namespace="$(arg ros_namespace)" limited="$(arg limited)" effort_control="$(arg effort_control)" attach_to="base_link" xyz="${-0.15 + base_link_dx/2} 0 ${0.03-base_link_dz/2}" rpy="0 0 0" />
+      <xacro:xarm6_robot prefix="$(arg prefix)" namespace="$(arg ros_namespace)" limited="$(arg limited)" effort_control="$(arg effort_control)" velocity_control="$(arg velocity_control)" attach_to="base_link" xyz="${arm_xyz}" rpy="${arm_rpy}" />
+      <xacro:extruder parent="xarmlink_eef" xyz="${extruder_xyz}" rpy="${extruder_rpy}" />
 
+     
 
-      <!-- <xacro:property name="extruder_parent" value=" 0 0 0"/>
-	<xacro:property name="extruder_xyz" value=" 0 0 0"/>
-	<xacro:property name="extruder_rpy" value="0.455"/> -->
+      
 
 </robot>

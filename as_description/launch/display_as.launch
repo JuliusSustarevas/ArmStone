@@ -1,6 +1,6 @@
 <launch>
     <arg name="jsp_gui" default="True" doc="joint_state_publisher gui."/>    
-    <arg name="baseonly" default="True" doc="Load just the as base" />   
+    <arg name="baseonly" default="False" doc="Load just the as base" />   
 
     <param name="robot_description" unless="$(arg baseonly)" command="$(find xacro)/xacro  '$(find as_description)/robots/as.xacro'" />
 

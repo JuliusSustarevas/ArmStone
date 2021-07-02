@@ -91,6 +91,15 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        extruder_ee:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        extruder_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         motor_gearbox_bl:
           Alpha: 1
           Show Axes: false
@@ -136,6 +145,45 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        xarmlink1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink6:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink_eef:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
@@ -157,6 +205,10 @@ Visualization Manager:
           Value: true
         dc_box_link:
           Value: true
+        extruder_ee:
+          Value: true
+        extruder_link:
+          Value: true
         motor_gearbox_bl:
           Value: true
         motor_gearbox_br:
@@ -174,6 +226,22 @@ Visualization Manager:
         omniwheel_fl:
           Value: true
         omniwheel_fr:
+          Value: true
+        xarmlink1:
+          Value: true
+        xarmlink2:
+          Value: true
+        xarmlink3:
+          Value: true
+        xarmlink4:
+          Value: true
+        xarmlink5:
+          Value: true
+        xarmlink6:
+          Value: true
+        xarmlink_base:
+          Value: true
+        xarmlink_eef:
           Value: true
       Marker Scale: 0.05000000074505806
       Name: TF
@@ -202,6 +270,17 @@ Visualization Manager:
                   {}
               mount_plate_link:
                 {}
+              xarmlink_base:
+                xarmlink1:
+                  xarmlink2:
+                    xarmlink3:
+                      xarmlink4:
+                        xarmlink5:
+                          xarmlink6:
+                            xarmlink_eef:
+                              extruder_link:
+                                extruder_ee:
+                                  {}
       Update Interval: 0
       Value: true
     - Class: rviz/Marker
@@ -240,25 +319,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.8409196138381958
+      Distance: 1.0264705419540405
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.1299717277288437
-        Y: 0.151037335395813
-        Z: 0.22300562262535095
+        X: 0.10578246414661407
+        Y: 0.07291342318058014
+        Z: 0.25460904836654663
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6197981238365173
+      Pitch: 0.44766005873680115
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.0122506618499756
+      Yaw: 1.1391971111297607
     Saved: ~
 Window Geometry:
   Displays:
