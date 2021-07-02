@@ -43,12 +43,12 @@
 		<xacro:generic_box name="battery48" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${battery_link_dx}" dy="${battery_link_dy}" dz="${battery_link_dz}" m="${battery_link_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="battery.dae" mxyz="0.035 0 ${-battery_link_dz/2}" mrpy="0 0 ${M_PI}" />
 	</xacro:macro>
 
-	<xacro:macro name="nuc" params="parent xyz rpy">
-		<xacro:generic_box name="nuc" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${nuc_link_dx}" dy="${nuc_link_dy}" dz="${nuc_link_dz}" m="${nuc_link_m}" material="DarkGrey" gmaterial="Gazebo/DarkGrey" meshfile="" mxyz="" mrpy="" />
+	<xacro:macro name="nuc" params="parent xyz rpy suffix">
+		<xacro:generic_box name="nuc${suffix}" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${nuc_link_dx}" dy="${nuc_link_dy}" dz="${nuc_link_dz}" m="${nuc_link_m}" material="DarkGrey" gmaterial="Gazebo/DarkGrey" meshfile="nuc.stl" mxyz="0 0 0" mrpy="0 0 0" />
 	</xacro:macro>
 
 	<xacro:macro name="dc_box" params="parent xyz rpy">
-		<xacro:generic_box name="dc_box" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${dc_box_dx}" dy="${dc_box_dy}" dz="${dc_box_dz}" m="${dc_box_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="dcbox.stl" mxyz="0 ${-dc_box_dx/2} 0" mrpy="0 ${M_PI/2} ${M_PI/2}" />
+		<xacro:generic_box name="dc_box" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${dc_box_dx}" dy="${dc_box_dy}" dz="${dc_box_dz}" m="${dc_box_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="dcbox.dae" mxyz="0 0 ${dc_box_dz/2}" mrpy="0 0 ${M_PI/2} " />
 	</xacro:macro>
 
 	<xacro:macro name="mount_plate" params="parent xyz rpy">

@@ -4,7 +4,7 @@
 	xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
 	xmlns:xacro="http://ros.org/wiki/xacro">
 
-<!-- Link Dimensions -->
+	<!-- Link Dimensions -->
 	<!-- base_link -->
 	<xacro:property name="base_link_dx" value="0.72" />
 	<xacro:property name="base_link_dy" value="0.455" />
@@ -16,19 +16,18 @@
 	<xacro:property name="base_mrpy" value="0 0 0" />
 	<!-- alluminium frame only -->
 
-	<!-- wheel_link -->	
+	<!-- wheel_link -->
 	<xacro:property name="wheel_link_r" value="${0.152/2}" />
 	<xacro:property name="wheel_link_m" value="0.6" />
 	<xacro:property name="wheel_roller_angle" value="${45*M_PI/180}" />
 
 	<!-- motor_gearbox_link -->
-	<xacro:property name="motor_link_r" value="0.025" />
-	<!-- motor normal 12 cm. But with coupler +5cm -->
+	<xacro:property name="motor_link_r" value="0.025" />	
 	<xacro:property name="motor_link_h" value="${0.12+0.1}" />
 	<xacro:property name="motor_link_m" value="${0.14 +0.36}" />
 	<xacro:property name="motor_pad_l" value="0.0931" />
 	<xacro:property name="motor_mrpy" value="${M_PI/2} ${- M_PI/2} 0" />
-	<xacro:property name="motor_mxyz" value="0 ${motor_link_r/2 +0.012} 0.025" />	
+	<xacro:property name="motor_mxyz" value="0 ${motor_link_r/2 +0.012} 0.025" />
 	<xacro:property name="motor_meshfile" value="motor.dae" />
 	<!-- True is 1460mNm -->
 	<xacro:property name="motor_effort_limit" value="1" />
@@ -46,7 +45,7 @@
 	<xacro:property name="motor_wheel_assembly_xyz_br" value="-${base_link_dx/2-0.077/2} -${base_link_dy/2 -motor_pad_l/2 - 0.025} -${base_link_dz/2 + motor_link_r/2 +0.012}" />
 	<xacro:property name="motor_wheel_assembly_rpy_br" value="${M_PI/2} 0 0" />
 
-	<xacro:property name="ground_clearance" value="${motor_link_r/2 +wheel_link_r/2}" />
+	<xacro:property name="ground_clearance" value="${0.012+ motor_link_r/2 +wheel_link_r}" />
 
 
 

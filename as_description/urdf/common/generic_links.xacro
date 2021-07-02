@@ -42,8 +42,6 @@
         </gazebo>
     </xacro:macro>
 
-
-
     <xacro:macro name="generic_cylinder" params="parent name xyz rpy r h m material gmaterial meshfile mxyz mrpy">
 
         <joint name="${name}_joint" type="fixed">

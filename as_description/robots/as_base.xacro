@@ -20,19 +20,14 @@
 
 	<xacro:property name="battery_xyz" value="${-base_link_dx/2 + battery_link_dx/2 -0.08} 0  ${-base_link_dz/2 +0.02 + battery_link_dz/2 }" />
 	<xacro:property name="battery_rpy" value="0 0 0" />
-
-	<!-- TODO dealwith nuc -->
-	<!-- <xacro:property name="nuc_xyz" value="${-base_link_dx/2 + battery_link_dx/2 } 0  ${-base_link_dz/2 +0.02 + battery_link_dz/2 }" />
-	<xacro:property name="nuc_rpy" value="0 0 0" /> -->
-
+		
 	<!-- Import macros -->
 	<xacro:include filename="$(find as_description)/urdf/base/chasis.macro.xacro" />
 	<xacro:include filename="$(find as_description)/urdf/base/components.macro.xacro" />
 
 	<!-- Compose the ArmStone Base -->
 	<xacro:as_base_chasis />
-	<xacro:battery48 parent="base_link" xyz="${battery_xyz}" rpy="${battery_rpy}" />
-	<!-- <xacro:nuc parent="base_link" xyz="${nuc_xyz}" rpy="${nuc_rpy}" /> -->
+	<xacro:battery48 parent="base_link" xyz="${battery_xyz}" rpy="${battery_rpy}" />	
 	<xacro:dc_box parent="base_link" xyz="${dc_box_xyz}" rpy="${dc_box_rpy}" />
 	<xacro:mount_plate parent="base_link" xyz="${mount_plate_xyz}" rpy="${mount_plate_rpy}" />
 	<!-- <xacro:compressor parent="base_link" xyz="${compressor_xyz}" rpy="${compressor_rpy}" /> -->
