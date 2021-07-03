@@ -4,11 +4,13 @@
 	xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
 	xmlns:xacro="http://ros.org/wiki/xacro">
 
+
+
 	<!-- Common -->
 	<xacro:include filename="$(find as_description)/urdf/common/inertia.xacro"/>
 	<xacro:include filename="$(find as_description)/urdf/common/materials.xacro"/>
 
-	<xacro:macro name="as_motor_wheel_assembly" params="suffix wheel_angle" >
+	<xacro:macro name="as_motor_wheel_assembly" params="suffix wheel_angle  " >
 
 		<link name="motor_gearbox${suffix}">
 			<inertial>
@@ -35,7 +37,7 @@
 			<origin xyz= "0 0 ${motor_link_h/2}" rpy = "0 ${wheel_angle} 0" />
 			<axis xyz="0 0 1"/>
 			<limit effort = "${motor_effort_limit}" velocity = "${motor_velocity_limit}" />
-			<!-- <dynamics damping="1.5"/> -->
+			<dynamics damping="1.5" friction="1.0"/>
 		</joint>
 
 		<transmission name="motor_wheel_joint_transmission${suffix}">
@@ -54,7 +56,7 @@
 			<inertial>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<mass value="${wheel_link_m}"/>
-				<xacro:sphere_inertia_tensor m="${wheel_link_m}" r="${wheel_link_r}" />
+				<xacro:sphere_inertia_tensor m="${wheel_link_m}" r="${wheel_link_r/2}" />
 			</inertial>
 			<!-- No visual. -->
 			<collision>
@@ -154,12 +156,7 @@
 			<origin xyz= "${motor_wheel_assembly_xyz_br}" rpy = "${motor_wheel_assembly_rpy_br}" />
 		</joint>
 
-		<gazebo>
-			<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-				<robotNamespace>/as_base</robotNamespace>
-			</plugin>
-		</gazebo>
-
+		
 	</xacro:macro>
 
 

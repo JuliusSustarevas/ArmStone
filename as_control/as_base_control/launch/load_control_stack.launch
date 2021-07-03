@@ -1,17 +1,18 @@
 <launch>  
     <!-- possible values "differential_drive","mecanum_drive", "group_velocity" -->
     <arg name="base_controller_config" default="differential_drive"/>
+    <arg name="sim" default="false" doc="Dont launch vesc hardware interface if its gazebo sim"/>
 
     <!-- This group enforces a namespace. Optionallity was annoying to make work. If you want to change namespace, change config files too-->
     <group ns="as_base">
 
-        <param name="robot_description" command="xacro '$(find as_description)/robots/as_base.urdf.xacro'" /> 
+        <param name="robot_description" command="xacro '$(find as_description)/robots/as_base.xacro'" /> 
 
         <rosparam file="$(find as_base_control)/config/control.generic.yaml" command="load" />
         <rosparam file="$(find as_base_control)/config/control.$(arg base_controller_config).yaml" command="load" />
         <rosparam file="$(find as_base_control)/config/hw.combo_vesc.yaml" command="load" />
 
-        <node name="multi_vesc_driver" pkg="vesc_hw_interface" type="multi_vesc_hw_interface_node" output="screen" />
+        <node unless="$(arg sim)" name="multi_vesc_driver" pkg="vesc_hw_interface" type="multi_vesc_hw_interface_node" output="screen" />
 
         <node name="as_base_controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="joint_state_controller as_base_controller" />
 

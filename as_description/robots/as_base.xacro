@@ -33,4 +33,14 @@
 	<!-- <xacro:compressor parent="base_link" xyz="${compressor_xyz}" rpy="${compressor_rpy}" /> -->
 	<!-- <xacro:material3 parent="base_link" xyz="${material3_xyz}" rpy="${material3_rpy}" /> -->
 
+
+	<!-- gazebo_plugin -->
+	<!-- <xacro:if value="${load_gazebo_plugin}"> -->
+		<gazebo>
+			<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+				<robotNamespace>/as_base</robotNamespace>
+			</plugin>			
+		</gazebo>			
+	<!-- </xacro:if> -->
+
 </robot>

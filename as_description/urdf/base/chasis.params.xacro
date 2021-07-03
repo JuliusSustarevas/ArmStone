@@ -30,10 +30,11 @@
 	<xacro:property name="motor_mxyz" value="0 ${motor_link_r/2 +0.012} 0.025" />
 	<xacro:property name="motor_meshfile" value="motor.dae" />
 	<!-- True is 1460mNm -->
-	<xacro:property name="motor_effort_limit" value="1" />
+	<xacro:property name="motor_effort_limit" value="50" />
 	<!-- True is 6110rpm. Which is 7.031 rad/s I think. So 5 to be safe.-->
 	<xacro:property name="motor_velocity_limit" value="5" />
-	<xacro:property name="gearbox_reduction" value="91" />
+	<!-- <xacro:property name="gearbox_reduction" value="91" /> -->
+	<xacro:property name="gearbox_reduction" value="1" />
 
 	<!-- offsets -->
 	<xacro:property name="motor_wheel_assembly_xyz_fl" value="${base_link_dx/2-0.077/2} ${base_link_dy/2 -motor_pad_l/2 - 0.025} -${base_link_dz/2 + motor_link_r/2 +0.012}" />
