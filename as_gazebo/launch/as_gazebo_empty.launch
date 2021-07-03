@@ -11,6 +11,14 @@
     <arg name="verbose" value="false" />
   </include>
 
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model asbase -x 0 -y 0 -z 0.2" output="screen" />
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model armstone -x 0 -y 0 -z 0.2 
+  -J xarmjoint1 0.0
+  -J xarmjoint2 -1.0
+  -J xarmjoint3 -1.0
+  -J xarmjoint4 0.0
+  -J xarmjoint5 1.0
+  -J xarmjoint6 0.0"
+   output="screen" />
+  
 
 </launch>

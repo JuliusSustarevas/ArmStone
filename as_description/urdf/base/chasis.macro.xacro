@@ -63,6 +63,13 @@
 				</geometry>
 			</collision>
 
+			<visual>
+				<!-- dummy visual so gazebo doesnt freakout -->
+				<geometry>
+					<sphere radius="${wheel_link_r/10}"/>
+				</geometry>
+			</visual>
+
 		</link>
 
 		<gazebo reference="omniwheel${suffix}">

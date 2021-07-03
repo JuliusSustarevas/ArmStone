@@ -88,25 +88,15 @@
 				<origin xyz= "0 0 ${-extruder_h/2}" rpy = "0 0 0" />
 				<geometry>                        
 					<mesh filename="package://as_description/meshes/extruder.dae" />
-				</geometry>              
-                <material name="Red"/>
+				</geometry>                              
             </visual>
             <collision>				
-                <geometry>
-                    <cylinder radius="${extruder_r}" length="${extruder_h}" />
-                </geometry>
-            </collision>
-			<collision>
-				<origin xyz= "0 0 ${-extruder_h/2}" rpy = "0 0 0" />				
-                <geometry>
-                    <cylinder radius="${extruder_r*1.5}" length="${extruder_h/2}" />
-                </geometry>
-            </collision>
+                <origin xyz= "0 0 ${-extruder_h/2}" rpy = "0 0 0" />
+				<geometry>                        
+					<mesh filename="package://as_description/meshes/extruder_collision.dae" />
+				</geometry>              
+            </collision>		
         </link>  
-
-		<gazebo reference="extruder_link">
-            <material>Gazebo/Red</material>
-        </gazebo>
 
 		<link name="extruder_ee"/>
 		<joint name="extruder_ee_joint" type="fixed">
