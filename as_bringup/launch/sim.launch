@@ -1,0 +1,8 @@
+<launch>
+
+    <include file="$(find as_description)/launch/display_as.launch" />
+    <include file="$(find as_gazebo)/launch/as_gazebo_empty.launch" />
+
+
+
+</launch>
