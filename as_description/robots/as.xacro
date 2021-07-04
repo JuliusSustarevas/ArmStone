@@ -1,32 +1,38 @@
 <?xml version="1.0"?>
-<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
-      xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
-      xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
-      xmlns:xacro="http://ros.org/wiki/xacro" name="armstone">
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor" xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" xmlns:xacro="http://ros.org/wiki/xacro" name="armstone">
 
-      <xacro:include filename="$(find as_description)/urdf/base/chasis.params.xacro" />
+      <!-- includes -->
+      <xacro:include filename="$(find xarm_description)/urdf/xarm6_robot_macro.xacro" />
+      <xacro:include filename="$(find as_description)/urdf/base/as_base.macro.xacro" />
 
       <!-- Arm arguments -->
       <!-- XARM -->
-      <xacro:arg name="prefix" default="xarm"/>
-      <xacro:arg name="ros_namespace" default="xarm"/>
-      <xacro:arg name="limited" default="true"/>
-      <xacro:arg name="effort_control" default="false"/>
-      <xacro:arg name="velocity_control" default="false"/>        
-      <xacro:arg name="load_gazebo_plugin" default="false"/>        
+      <xacro:arg name="prefix" default="xarm" />
+      <xacro:arg name="ros_namespace" default="/xarm" />
+      <xacro:arg name="limited" default="true" />
+      <xacro:arg name="effort_control" default="false" />
+      <xacro:arg name="velocity_control" default="false" />
+      <xacro:arg name="load_gazebo_plugin" default="false" />
       <!-- placement -->
-      <xacro:property name="arm_xyz" value="${-0.185+base_link_dx/2} 0 ${0.005+0.028-base_link_dz/2}"/>
-      <xacro:property name="arm_rpy" value="0 0 0"/>
-      <xacro:property name="extruder_xyz" value="0 0 ${extruder_h/2}"/>
-      <xacro:property name="extruder_rpy" value="0 0 ${-M_PI/2}"/>
-      
-      <!-- includes -->      
-      <xacro:include filename="$(find xarm_description)/urdf/xarm6_robot_macro.xacro" />
+      <xacro:property name="arm_xyz" value="${-0.185+base_link_dx/2} 0 ${0.005+0.028-base_link_dz/2}" />
+      <xacro:property name="arm_rpy" value="0 0 0" />
+      <xacro:property name="extruder_xyz" value="0 0 ${extruder_h/2}" />
+      <xacro:property name="extruder_rpy" value="0 0 ${-M_PI/2}" />
+
 
       <!-- formation-->
-      <xacro:include filename="$(find as_description)/robots/as_base.xacro" />
+      <xacro:as_base load_gazebo_plugin="$(arg load_gazebo_plugin)" />
       <xacro:xarm6_robot prefix="$(arg prefix)" namespace="$(arg ros_namespace)" limited="$(arg limited)" effort_control="$(arg effort_control)" velocity_control="$(arg velocity_control)" attach_to="base_link" xyz="${arm_xyz}" rpy="${arm_rpy}" load_gazebo_plugin="$(arg load_gazebo_plugin)" />
       <xacro:extruder parent="xarmlink_eef" xyz="${extruder_xyz}" rpy="${extruder_rpy}" />
-      
+
+
+      <!-- Gazebo: My current understanding is that libgazebo_ros_control is a per-model-plugin
+      and most recent spawn will override the last one. So there is no nice way to namespace this.
+      Therefore the approach here disables individual base/arm plugins and launches a common one -->
+      <gazebo>
+            <plugin name="armstone_gazebo_ros_control" filename="libgazebo_ros_control.so">
+                  <robotNamespace>/as_control</robotNamespace>
+            </plugin>
+      </gazebo>
 
 </robot>

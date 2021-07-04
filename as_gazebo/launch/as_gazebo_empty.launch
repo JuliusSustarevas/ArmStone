@@ -4,7 +4,7 @@
     <!-- <arg name="world_name" value="$(find gazebo_ros)/worlds/HereEast Model/here_east_model_thomas.world"/>  -->
     <arg name="world_name" value="$(find gazebo_ros)/worlds/empty.world" />
     <arg name="paused" value="true" />
-    <arg name="use_sim_time" value="false" />
+    <arg name="use_sim_time" value="true" />
     <arg name="gui" value="true" />
     <arg name="recording" value="false" />
     <arg name="debug" value="false" />

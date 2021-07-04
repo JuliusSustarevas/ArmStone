@@ -1,10 +1,12 @@
 <launch>
 
-    <include file="$(find as_description)/launch/display_as.launch" />
+    <!-- <include file="$(find as_description)/launch/display_as.launch" /> -->
+    <param name="robot_description" command="xacro '$(find as_description)/robots/as.xacro'" /> 
     <include file="$(find as_gazebo)/launch/as_gazebo_empty.launch" />
 
 <!-- Control stack -->
 <arg name="base_controller" value="mecanum_drive" />
+<!-- <arg name="base_controller" value="differential_drive" /> -->
     
 <include file="$(find as_base_control)/launch/load_control_stack.launch">
     <!-- possible values mecanum, group_velocity -->
@@ -13,8 +15,24 @@
 </include>
 
  <!-- UI -->
- <include file="$(find as_ui)/launch/load_joy_stack.launch" />   
+ <group ns="ui">
+    <include file="$(find as_ui)/launch/load_joy_stack.launch" />        
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find as_description)/rviz/as.rviz" />
+ </group>
     
+ 
+    
+
+
+     <!-- Top level infrastructure -->
+     
+     
+     <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+         <param name="use_gui" value="false" />
+         <param name="rate" value="50" />
+         <rosparam param="source_list">[as_base/joint_states, as_xarm/joint_states ]</rosparam>
+     </node>     -->
+ 
     
 
 </launch>

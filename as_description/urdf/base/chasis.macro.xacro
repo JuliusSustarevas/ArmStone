@@ -10,7 +10,7 @@
 	<xacro:include filename="$(find as_description)/urdf/common/inertia.xacro"/>
 	<xacro:include filename="$(find as_description)/urdf/common/materials.xacro"/>
 
-	<xacro:macro name="as_motor_wheel_assembly" params="suffix wheel_angle  " >
+	<xacro:macro name="as_motor_wheel_assembly" params="suffix wheel_angle axis " >
 
 		<link name="motor_gearbox${suffix}">
 			<inertial>
@@ -35,7 +35,7 @@
 			<parent link="motor_gearbox${suffix}"/>
 			<child link="omniwheel${suffix}"/>
 			<origin xyz= "0 0 ${motor_link_h/2}" rpy = "0 ${wheel_angle} 0" />
-			<axis xyz="0 0 1"/>
+			<axis xyz="${axis}"/>
 			<limit effort = "${motor_effort_limit}" velocity = "${motor_velocity_limit}" />
 			<dynamics damping="1.5" friction="1.0"/>
 		</joint>
@@ -68,19 +68,25 @@
 			<visual>
 				<!-- dummy visual so gazebo doesnt freakout -->
 				<geometry>
-					<sphere radius="${wheel_link_r/10}"/>
+					<sphere radius="${wheel_link_r/3}"/>
 				</geometry>
 			</visual>
+
+			<surface>
+				<bounce restitution_coefficient="0.0001" />
+			</surface>
 
 		</link>
 
 		<gazebo reference="omniwheel${suffix}">
-			<mu1 value="0.2"/>
+			<!-- not sure if mu or mu1 is used -->
+			<mu value="0.15"/>
+			<mu1 value="0.15"/>
 			<mu2 value="1.5"/>
 			<kp value="10000000.0" />
 			<kd value="10000.0" />
-			<fdir1 value="0 0 1"/>
-			<maxContacts value= "1"/>
+			<fdir1 value="1 0 0"/>
+			<!-- <maxContacts value= "1"/> -->
 			<material>Gazebo/White</material>
 		</gazebo>
 
@@ -127,10 +133,10 @@
 			</gazebo>
 		</link>
 
-		<xacro:as_motor_wheel_assembly suffix="_fl"  wheel_angle="${-wheel_roller_angle}"/>
-		<xacro:as_motor_wheel_assembly suffix="_fr"  wheel_angle="${wheel_roller_angle}"/>
-		<xacro:as_motor_wheel_assembly suffix="_bl"  wheel_angle="${wheel_roller_angle}"/>
-		<xacro:as_motor_wheel_assembly suffix="_br"  wheel_angle="${-wheel_roller_angle}"/>
+		<xacro:as_motor_wheel_assembly suffix="_fl"  wheel_angle="${wheel_roller_angle}" axis="-1 0 0"/>
+		<xacro:as_motor_wheel_assembly suffix="_fr"  wheel_angle="${-wheel_roller_angle}" axis="-1 0 0"/>
+		<xacro:as_motor_wheel_assembly suffix="_bl"  wheel_angle="${-wheel_roller_angle}" axis="1 0 0"/>
+		<xacro:as_motor_wheel_assembly suffix="_br"  wheel_angle="${wheel_roller_angle}" axis="1 0 0"/>
 
 		<joint name="motor_wheel_assembly_joint_fl" type="fixed">
 			<parent link="base_link"/>
