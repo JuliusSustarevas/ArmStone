@@ -79,8 +79,7 @@
 		</link>
 
 		<gazebo reference="omniwheel${suffix}">
-			<!-- not sure if mu or mu1 is used -->
-			<mu value="0.15"/>
+			<!-- not sure if mu or mu1 is used -->			
 			<mu1 value="0.15"/>
 			<mu2 value="1.5"/>
 			<kp value="10000000.0" />

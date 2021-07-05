@@ -8,7 +8,7 @@
       <!-- Arm arguments -->
       <!-- XARM -->
       <xacro:arg name="prefix" default="xarm" />
-      <xacro:arg name="ros_namespace" default="/xarm" />
+      <xacro:arg name="ros_namespace" default="/as_control" />
       <xacro:arg name="limited" default="true" />
       <xacro:arg name="effort_control" default="false" />
       <xacro:arg name="velocity_control" default="false" />
