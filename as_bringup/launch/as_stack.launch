@@ -3,8 +3,8 @@
     <arg name="sim" default="false" doc="Switch between gazebo/hw stacks" />
     <arg name="rviz" default="false" doc="Turn off rviz, but optionally allow for sim modes" />
     <arg name="xarm_on" default="true" doc="Turn on/off xarm" />
+    <arg name="base_on" default="true" doc="Turn on/off base" />
     <arg name="xarm_velocity_control" default="false" doc="Switch between velocity and trajectory controllers" />
-
 
     <!-- Top level infrastructure -->
     <param if="$(arg xarm_on)" name="robot_description" command="xacro '$(find as_description)/robots/as.xacro' velocity_control:=$(arg xarm_velocity_control)" />
@@ -17,26 +17,26 @@
     </node>
 
     <!-- Control stack -->
-\
-    <!-- base control -->
     <group ns="as_control">
-        <arg name="base_controller" value="mecanum_drive" />
-        <include file="$(find as_base_control)/launch/load_control_stack.launch">
+        <!-- base control -->
+        <arg name="base_controller" value="mecanum_drive" doc="switch betwen mecanum or differential" />
+        <!-- <arg name="xarm_controller" default="trajectory" doc="Switch between velocity and trajectory controllers" /> -->
+
+        <include if="$(arg base_on)" file="$(find as_base_control)/launch/load_control_stack.launch">
+            <!-- <arg name="load_vesc_hw_interface" value="$(eval not arg('xarm_on'))" /> -->
             <arg name="base_controller_config" value="$(arg base_controller)" />
             <arg name="sim" value="$(arg sim)" />
         </include>
         <!-- xArm control -->
-        <include if="$(arg xarm_on)" file="$(find as_xarm)/launch/xarm6_control.launch">
-            <arg name="velocity_control" value="$(arg xarm_velocity_control)" />
+        <include if="$(arg xarm_on)" file="$(find as_bringup)/launch/test_arm.launch">
+            <!-- <arg name="velocity_control" value="false" /> -->
         </include>
     </group>
-
 
     <!-- UI -->
     <group ns="ui">
         <include file="$(find as_ui)/launch/load_joy_stack.launch" />
         <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find as_description)/rviz/as.rviz" />
     </group>
-
 
 </launch>

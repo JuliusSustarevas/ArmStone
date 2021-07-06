@@ -1,0 +1,2 @@
+DOF: 6
+joint_names: ['xarmjoint1', 'xarmjoint2', 'xarmjoint3', 'xarmjoint4', 'xarmjoint5', 'xarmjoint6']

@@ -1,0 +1,67 @@
+robot_hardware:
+  - vesc_driver_fl
+  - vesc_driver_fr
+  - vesc_driver_bl
+  - vesc_driver_br
+  - xarm
+
+xarm:
+  type: xarm_control/XArmHW
+  DOF: 6
+  joint_names: ['xarmjoint1', 'xarmjoint2', 'xarmjoint3', 'xarmjoint4', 'xarmjoint5', 'xarmjoint6']
+
+
+vesc_driver_fl:
+  type: vesc_hw_interface/VescHwInterface
+  port: /dev/FL_MOTOR
+  command_mode: velocity    
+  joint_name: motor_wheel_joint_fl
+  gear_ratio: 91
+  torque_const: 0.0369
+  robot_description_name: /robot_description
+  erpm_limit: 40000 # 8*6110 =48880. to be save 40k
+  duty_limit: 0.5
+  pole_pairs: 8
+  state_pub_rate: 10.0
+
+vesc_driver_fr:
+  type: vesc_hw_interface/VescHwInterface
+  port: /dev/FR_MOTOR
+  command_mode: velocity    
+  joint_name: motor_wheel_joint_fr
+  gear_ratio: 91
+  torque_const: 0.0369
+  robot_description_name: /robot_description
+  erpm_limit: 40000
+  duty_limit: 0.5
+  pole_pairs: 8
+  state_pub_rate: 10.0
+
+
+vesc_driver_bl:
+  type: vesc_hw_interface/VescHwInterface
+  port: /dev/BL_MOTOR
+  command_mode: velocity    
+  joint_name: motor_wheel_joint_bl
+  gear_ratio: 91
+  torque_const: 0.0369
+  robot_description_name: /robot_description
+  erpm_limit: 40000
+  duty_limit: 0.5
+  pole_pairs: 8
+  state_pub_rate: 10.0
+
+
+vesc_driver_br:
+  type: vesc_hw_interface/VescHwInterface
+  port: /dev/BR_MOTOR
+  command_mode: velocity    
+  joint_name: motor_wheel_joint_br
+  gear_ratio: 91
+  torque_const: 0.0369
+  robot_description_name: /robot_description
+  erpm_limit: 40000
+  duty_limit: 0.5
+  pole_pairs: 8
+  state_pub_rate: 10.0
+

@@ -1,0 +1,29 @@
+<launch>
+    <arg name="robot_ip" default="192.168.1.212" />
+    <arg name="report_type" default="normal" />
+
+    <param name="robot_description" command="xacro '$(find as_description)/robots/as.xacro'" />
+    <rosparam file="$(find as_drivers)/config/hw.armstone.yaml" command="load" />
+
+
+    <!-- <rosparam ns="xarm" file="$(find as_xarm)/config/xarm6_params.yaml" command="load" /> -->
+
+    <group ns="xarm">
+
+        <param name="xarm_robot_ip" type="str" value="$(arg robot_ip)" />
+        <param name="xarm_report_type" type="str" value="$(arg report_type)" />
+        <node name="xarm_driver" pkg="xarm_api" type="xarm_driver_node" output="screen" />        
+
+    </group>
+
+    <node name="armstone_driver" pkg="as_drivers" type="armstone_hw_interface_node" output="screen" />
+
+    <rosparam file="$(find as_xarm)/config/xarm6_controllers.yaml" command="load" />
+    <rosparam file="$(find as_xarm)/config/joint_limits.yaml" command="load" />
+    <node name="traj_controller_spawner"
+        pkg="controller_manager"
+        type="spawner"
+        respawn="false"
+        output="screen"    
+        args="xarm6_traj_controller"/>
+</launch>
