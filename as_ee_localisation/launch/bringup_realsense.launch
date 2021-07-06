@@ -37,10 +37,6 @@
 
 </launch>
 
-<!-- -->
-
-
-
 
 <!-- Check more params -->
 <!-- <arg name="serial_no"           default=""/>

@@ -1,16 +1,27 @@
 <launch>
+  <arg name="world_name" default="empty.world" doc="gazebo world to load. Options:'barrels.world' 'empty.world' 'inspection.world' 'construction.world'"/>
 
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <!-- <arg name="world_name" value="$(find gazebo_ros)/worlds/HereEast Model/here_east_model_thomas.world"/>  -->
-    <arg name="world_name" value="$(find gazebo_ros)/worlds/empty.world" />
+  <!-- <env name="GAZEBO_RESOURCE_PATH" value="$(find as_gazebo)" /> -->
+  <env name="GAZEBO_MODEL_PATH" value="$(find as_gazebo)/models" />
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">    
+    <arg name="world_name" value="$(find as_gazebo)/worlds/$(arg world_name)" />
     <arg name="paused" value="true" />
     <arg name="use_sim_time" value="true" />
     <arg name="gui" value="true" />
     <arg name="recording" value="false" />
     <arg name="debug" value="false" />
     <arg name="verbose" value="false" />
+    <arg name="headless" default="false"/>    
   </include>
 
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model asbase -x 0 -y 0 -z 0" output="screen" />
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model armstone -x 0 -y 0 -z 0 
+  -J xarmjoint1 0.0
+  -J xarmjoint2 -1.0
+  -J xarmjoint3 -1.0
+  -J xarmjoint4 0.0
+  -J xarmjoint5 1.0
+  -J xarmjoint6 0.0"
+   output="screen" />  
 
 </launch>
