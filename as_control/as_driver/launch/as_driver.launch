@@ -3,7 +3,7 @@
     <arg name="report_type" default="normal" />
 
     <param name="robot_description" command="xacro '$(find as_description)/robots/as.xacro'" />
-    <rosparam file="$(find as_drivers)/config/hw.armstone.yaml" command="load" />
+    <rosparam file="$(find as_driver)/config/hw.armstone.yaml" command="load" />
 
 
     <!-- <rosparam ns="xarm" file="$(find as_xarm)/config/xarm6_params.yaml" command="load" /> -->
@@ -16,7 +16,7 @@
 
     </group>
 
-    <node name="armstone_driver" pkg="as_drivers" type="armstone_hw_interface_node" output="screen" />
+    <node name="armstone_driver" pkg="as_driver" type="armstone_hw_interface_node" output="screen" />
 
     <rosparam file="$(find as_xarm)/config/xarm6_controllers.yaml" command="load" />
     <rosparam file="$(find as_xarm)/config/joint_limits.yaml" command="load" />

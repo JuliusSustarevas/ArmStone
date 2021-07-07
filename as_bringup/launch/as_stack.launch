@@ -2,7 +2,7 @@
     <!-- Launch args -->
     <arg name="sim" default="false" doc="Switch between gazebo/hw stacks" />
     <arg name="rviz" default="false" doc="Turn off rviz, but optionally allow for sim modes" />
-    <arg name="xarm_on" default="true" doc="Turn on/off xarm" />
+    <arg name="xarm_on" default="false" doc="Turn on/off xarm" />
     <arg name="base_on" default="true" doc="Turn on/off base" />
     <arg name="xarm_velocity_control" default="false" doc="Switch between velocity and trajectory controllers" />
 

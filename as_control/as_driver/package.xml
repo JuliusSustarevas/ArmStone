@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>as_drivers</name>
+  <name>as_driver</name>
   <version>0.0.0</version>
-  <description>The as_drivers package</description>
+  <description>The as_driver package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
