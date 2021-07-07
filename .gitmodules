@@ -4,3 +4,6 @@
 [submodule "as_control/mecanum_drive_controller"]
 	path = as_control/mecanum_drive_controller
 	url = https://github.com/JuliusSustarevas/mecanum_controller.git
+[submodule "as_control/vesc"]
+	path = as_control/vesc
+	url = git@github.com:JuliusSustarevas/vesc.git
