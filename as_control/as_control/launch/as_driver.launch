@@ -1,29 +1,43 @@
 <launch>
     <arg name="robot_ip" default="192.168.1.212" />
     <arg name="report_type" default="normal" />
+    <arg name="xarmon" default="true" />
+    <arg name="baseon" default="true" />
 
+    <!-- temp -->
     <param name="robot_description" command="xacro '$(find as_description)/robots/as.xacro'" />
-    <rosparam file="$(find as_driver)/config/hw.armstone.yaml" command="load" />
 
+    <!-- Load hardware interfaces -->
+    <group unlessf="$(arg sim)">
+        <!-- xarm drivers required -->
+        <group if="$(arg xarmon)" ns="xarm">
+            <param name="xarm_robot_ip" type="str" value="$(arg robot_ip)" />
+            <param name="xarm_report_type" type="str" value="$(arg report_type)" />
+            <node name="xarm_driver" pkg="xarm_api" type="xarm_driver_node" output="screen" />            
+        </group>
 
-    <!-- <rosparam ns="xarm" file="$(find as_xarm)/config/xarm6_params.yaml" command="load" /> -->
+        <!-- Load interface params -->
+        <rosparam file="$(find as_control)/config/hw.interfaces.yaml" command="load" />        
 
-    <group ns="xarm">
-
-        <param name="xarm_robot_ip" type="str" value="$(arg robot_ip)" />
-        <param name="xarm_report_type" type="str" value="$(arg report_type)" />
-        <node name="xarm_driver" pkg="xarm_api" type="xarm_driver_node" output="screen" />        
-
+        <!-- Load the right set of hardware -->
+        <param if="$(eval arg('baseon') and not arg('xarmon'))" name="robot_hardware" value="[vesc_driver_fl, vesc_driver_fr, vesc_driver_bl, vesc_driver_br]"/>
+        <param if="$(eval arg('baseon') and arg('xarmon'))" name="robot_hardware" value="[xarm,vesc_driver_fl, vesc_driver_fr, vesc_driver_bl, vesc_driver_br]"/>
+        <param if="$(eval not arg('baseon') and arg('xarmon'))" name="robot_hardware" value="[xarm]"/>
+          
+        <node name="armstone_driver" pkg="as_driver" type="armstone_hw_interface_node" output="screen" />        
+        
     </group>
 
-    <node name="armstone_driver" pkg="as_driver" type="armstone_hw_interface_node" output="screen" />
 
+
+<!-- Spawn Controllers -->
     <rosparam file="$(find as_xarm)/config/xarm6_controllers.yaml" command="load" />
-    <rosparam file="$(find as_xarm)/config/joint_limits.yaml" command="load" />
-    <node name="traj_controller_spawner"
+    <rosparam file="$(find as_xarm)/config/xarm6_joint_limits.yaml" command="load" />
+    <node name="controller_spawner"
         pkg="controller_manager"
         type="spawner"
         respawn="false"
         output="screen"    
-        args="xarm6_traj_controller"/>
+        args="xarm6_traj_controller joint_state_controller as_base_controller"/>
+
 </launch>
