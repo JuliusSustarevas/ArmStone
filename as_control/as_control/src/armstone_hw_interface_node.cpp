@@ -17,6 +17,7 @@ int main(int argc, char **argv)
     if(init_success){
         ROS_WARN("CombinedRobotHW initialised");
     }
+    // Just in case xarm needs second to power up
     ros::Duration(3.0).sleep();
 
     ROS_WARN("Attempting to load controller manager");

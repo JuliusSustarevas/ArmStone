@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(as_driver)
+project(as_control)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-add_compile_options(-std=c++11)
+# add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -26,7 +26,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS
-    include
+    #include
   LIBRARIES
   ${PROJECT_NAME}
   CATKIN_DEPENDS
@@ -54,15 +54,3 @@ add_executable(armstone_hw_interface_node
 )
 
 target_link_libraries(armstone_hw_interface_node ${catkin_LIBRARIES})
-
-#install(TARGETS ${PROJECT_NAME}
-#  LIBRARY DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-#)
-
-#install(DIRECTORY include/
-#  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-#)
-
-#install(DIRECTORY launch/
-#  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
-#)
