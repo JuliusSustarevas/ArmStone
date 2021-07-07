@@ -6,4 +6,4 @@
 	url = https://github.com/JuliusSustarevas/mecanum_controller.git
 [submodule "as_control/vesc"]
 	path = as_control/vesc
-	url = git@github.com:JuliusSustarevas/vesc.git
+	url = https://github.com/JuliusSustarevas/vesc.git
