@@ -107,5 +107,7 @@ as_base_holonomic_controller:
       has_jerk_limits        : false
       max_jerk               : 0.4  # rad/s^3
   
-  
+joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
   
