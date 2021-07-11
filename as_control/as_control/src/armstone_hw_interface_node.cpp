@@ -8,8 +8,12 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "armstone_control_node");
 
     ros::AsyncSpinner spinner(1);
-    spinner.start();
+    spinner.start();    
     ros::NodeHandle nh;
+
+    // Just in case xarm needs second to power up
+    ros::Duration(2.0).sleep();
+
     ROS_WARN("Attempting to load CombinedRobotHW");
     combined_robot_hw::CombinedRobotHW hw;
     ROS_WARN("CombinedRobotHW loaded");
@@ -18,7 +22,7 @@ int main(int argc, char **argv)
         ROS_WARN("CombinedRobotHW initialised");
     }
     // Just in case xarm needs second to power up
-    ros::Duration(3.0).sleep();
+    ros::Duration(2.0).sleep();    
 
     ROS_WARN("Attempting to load controller manager");
     controller_manager::ControllerManager cm(&hw, nh);

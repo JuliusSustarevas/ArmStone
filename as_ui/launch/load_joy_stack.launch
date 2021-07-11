@@ -1,7 +1,6 @@
 <launch>
     <!-- possible values as per controllers.yaml config -->
-    <arg name="base_controller_ns" default="/as_control/as_base_controller" />
-
+    <arg name="base_controller_ns" default="/as_control" />
 
     <arg name="joy_config" default="logitech_holonomic" />
     <arg name="joy_dev" default="/dev/input/js0" />
@@ -11,7 +10,7 @@
         <param name="autorepeat_rate" value="20" />
     </node>
     <node pkg="teleop_twist_joy" name="teleop_twist_joy" type="teleop_node">
-        <rosparam command="load" file="$(find as_base_control)/config/misc.joystick.yaml" />
+        <rosparam command="load" file="$(find as_ui)/config/misc.joystick.yaml" />
         <remap from="cmd_vel" to="$(arg base_controller_ns)/cmd_vel" />
     </node>
 

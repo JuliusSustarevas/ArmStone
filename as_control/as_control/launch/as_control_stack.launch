@@ -1,0 +1,46 @@
+<launch>
+    <arg name="robot_ip" default="192.168.1.212" />
+    <arg name="report_type" default="normal" />
+    <arg name="xarmon" default="false" />
+    <arg name="baseon" default="true" />
+    <arg name="sim" default="false" />
+
+    <!-- Controller options -->
+    <arg name="xarm_controller" default="xarm_joint_position_controller" doc="xarm_joint_position_controller or xarm_joint_velocity_controller" />
+    <arg name="base_controller" default="as_base_holonomic_controller" doc="as_base_differential_controller  or  as_base_holonomic_controller" />
+    <arg if="$(eval arg('baseon') and not arg('xarmon'))" name="controllers" default="$(arg base_controller) joint_state_controller" />    
+    <arg if="$(eval arg('baseon') and arg('xarmon'))" name="controllers" default="$(arg base_controller) $(arg xarm_controller) joint_state_controller" />
+    <arg if="$(eval not arg('baseon') and arg('xarmon'))" name="controllers" default="$(arg xarm_controller) joint_state_controller" />   
+
+    <!-- Load hardware interfaces -->
+    <group unless="$(arg sim)">
+        <!-- xarm drivers required -->
+        <group if="$(arg xarmon)" ns="xarm">
+            <param name="xarm_robot_ip" type="str" value="$(arg robot_ip)" />
+            <param name="xarm_report_type" type="str" value="$(arg report_type)" />
+            <rosparam file="$(find as_control)/config/joint_limits.yaml" command="load" />
+            <node name="xarm_driver" pkg="xarm_api" type="xarm_driver_node" output="screen" />
+            
+        </group>
+
+        <!-- Load interface params -->
+        <rosparam file="$(find as_control)/config/hw.interfaces.yaml" command="load" />
+        <!-- Base only -->
+        <arg if="$(eval arg('baseon') and not arg('xarmon'))" name="hw_interfaces" default="[vesc_driver_fl, vesc_driver_fr, vesc_driver_bl, vesc_driver_br]" />
+        <!-- Both -->
+        <arg if="$(eval arg('baseon') and arg('xarmon'))" name="hw_interfaces" default="[xarm, vesc_driver_fl, vesc_driver_fr, vesc_driver_bl, vesc_driver_br]" />
+        <!-- arm only -->
+        <arg if="$(eval not arg('baseon') and arg('xarmon'))" name="hw_interfaces" default="[xarm]" />
+        <rosparam param="robot_hardware" subst_value="True">$(arg hw_interfaces)</rosparam>
+        <node launch-prefix="nice -n -10" name="armstone_driver" pkg="as_control" type="armstone_hw_interface_node" output="screen" />
+
+    </group>
+
+    <!-- Spawn Controllers -->
+    <rosparam file="$(find as_control)/config/xarm_controllers.yaml" command="load" />
+    <rosparam file="$(find as_control)/config/base_controllers.yaml" command="load" />
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="$(arg controllers)">        
+        <remap from="cmd_vel" to="/as_control/cmd_vel"/>    
+    </node>
+
+</launch>

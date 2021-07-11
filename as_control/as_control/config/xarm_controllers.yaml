@@ -1,4 +1,4 @@
-xarm6_traj_controller:
+xarm_joint_position_controller:
   type: position_controllers/JointTrajectoryController
   joints:
       - xarmjoint1
@@ -20,7 +20,7 @@ xarm6_traj_controller:
   state_publish_rate:  25
   action_monitor_rate: 10
 
-xarm6_traj_controller_velocity:
+xarm_joint_velocity_controller:
   type: velocity_controllers/JointTrajectoryController
   joints:
       - xarmjoint1
