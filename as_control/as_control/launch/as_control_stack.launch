@@ -6,7 +6,7 @@
     <arg name="sim" default="false" />
 
     <!-- Controller options -->
-    <arg name="xarm_controller" default="xarm_joint_position_controller" doc="xarm_joint_position_controller or xarm_joint_velocity_controller" />
+    <arg name="xarm_controller" default="xarm_position_trajectory_controller" doc="xarm_position_trajectory_controller or xarm_velocity_trajectory_controller or xarm_joint_velocity_controller" />
     <arg name="base_controller" default="as_base_holonomic_controller" doc="as_base_differential_controller  or  as_base_holonomic_controller" />
     <arg if="$(eval arg('base_on') and not arg('xarm_on'))" name="controllers" default="$(arg base_controller) joint_state_controller" />    
     <arg if="$(eval arg('base_on') and arg('xarm_on'))" name="controllers" default="$(arg base_controller) $(arg xarm_controller) joint_state_controller" />

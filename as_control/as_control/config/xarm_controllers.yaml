@@ -1,4 +1,4 @@
-xarm_joint_position_controller:
+xarm_position_trajectory_controller:
   type: position_controllers/JointTrajectoryController
   joints:
       - xarmjoint1
@@ -10,17 +10,17 @@ xarm_joint_position_controller:
   constraints:
       goal_time: 0.5
       stopped_velocity_tolerance: 0.05
-      joint1: {trajectory: 1, goal: 0.01}
-      joint2: {trajectory: 1, goal: 0.01}
-      joint3: {trajectory: 1, goal: 0.01}
-      joint4: {trajectory: 1, goal: 0.01}
-      joint5: {trajectory: 1, goal: 0.01}
-      joint6: {trajectory: 1, goal: 0.01}
+      xarmjoint1: {trajectory: 1, goal: 0.01}
+      xarmjoint2: {trajectory: 1, goal: 0.01}
+      xarmjoint3: {trajectory: 1, goal: 0.01}
+      xarmjoint4: {trajectory: 1, goal: 0.01}
+      xarmjoint5: {trajectory: 1, goal: 0.01}
+      xarmjoint6: {trajectory: 1, goal: 0.01}
   stop_trajectory_duration: 0.2
   state_publish_rate:  25
   action_monitor_rate: 10
 
-xarm_joint_velocity_controller:
+xarm_velocity_trajectory_controller:
   type: velocity_controllers/JointTrajectoryController
   joints:
       - xarmjoint1
@@ -30,21 +30,32 @@ xarm_joint_velocity_controller:
       - xarmjoint5
       - xarmjoint6
   gains:
-    joint1: {p: 10, i: 0.1, d: 0.1, i_clamp: 0}
-    joint2: {p: 10, i: 0.1, d: 0.1, i_clamp: 0}
-    joint3: {p: 10, i: 0.1, d: 0.1, i_clamp: 0}
-    joint4: {p: 10, i: 0.1, d: 0.1, i_clamp: 0}
-    joint5: {p: 10, i: 0.1, d: 0.1, i_clamp: 0}
-    joint6: {p: 10, i: 0.1, d: 0.1, i_clamp: 0}
+    xarmjoint1: {p: 10, i: 0.1, d: 0.1, i_clamp: 0}
+    xarmjoint2: {p: 10, i: 0.1, d: 0.1, i_clamp: 0}
+    xarmjoint3: {p: 10, i: 0.1, d: 0.1, i_clamp: 0}
+    xarmjoint4: {p: 10, i: 0.1, d: 0.1, i_clamp: 0}
+    xarmjoint5: {p: 10, i: 0.1, d: 0.1, i_clamp: 0}
+    xarmjoint6: {p: 10, i: 0.1, d: 0.1, i_clamp: 0}
   constraints:
       goal_time: 0.5
       stopped_velocity_tolerance: 0.05
-      joint1: {trajectory: 1, goal: 0.01}
-      joint2: {trajectory: 1, goal: 0.01}
-      joint3: {trajectory: 1, goal: 0.01}
-      joint4: {trajectory: 1, goal: 0.01}
-      joint5: {trajectory: 1, goal: 0.01}
-      joint6: {trajectory: 1, goal: 0.01}
+      xarmjoint1: {trajectory: 1, goal: 0.01}
+      xarmjoint2: {trajectory: 1, goal: 0.01}
+      xarmjoint3: {trajectory: 1, goal: 0.01}
+      xarmjoint4: {trajectory: 1, goal: 0.01}
+      xarmjoint5: {trajectory: 1, goal: 0.01}
+      xarmjoint6: {trajectory: 1, goal: 0.01}
   stop_trajectory_duration: 0.2
   state_publish_rate:  25
   action_monitor_rate: 10
+
+
+xarm_joint_velocity_controller:
+    type: velocity_controllers/JointGroupVelocityController
+    joints: 
+      - xarmjoint1
+      - xarmjoint2
+      - xarmjoint3
+      - xarmjoint4
+      - xarmjoint5
+      - xarmjoint6
