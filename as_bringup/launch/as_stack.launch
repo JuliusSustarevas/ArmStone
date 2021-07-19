@@ -3,15 +3,14 @@
     <arg name="sim" default="false" doc="Switch between gazebo/hw stacks" />
     <arg name="rviz" default="false" doc="Turn off rviz, but optionally allow for sim modes" />
     <arg name="xarm_on" default="false" doc="Turn on/off xarm" />
-    <arg name="base_on" default="true" doc="Turn on/off base" />
-    <arg name="xarm_velocity_control" default="false" doc="Switch between velocity and trajectory controllers" />
+    <arg name="base_on" default="true" doc="Turn on/off base" />    
     <!-- select controllers -->    
     <arg name="base_controller" default="as_base_holonomic_controller" doc="as_base_differential_controller  or  as_base_holonomic_controller" />
     <arg name="xarm_controller" default="xarm_joint_position_controller" doc="xarm_joint_position_controller or xarm_joint_velocity_controller" />
-
-
-    <!-- Top level infrastructure -->
-    <param if="$(arg xarm_on)" name="robot_description" command="xacro '$(find as_description)/robots/as.xacro' velocity_control:=$(eval arg('xarm_controller')=='xarm_joint_velocity_controller' )" />
+    <arg name="xarm_vel_ctrl_on" default="$(eval str(arg('xarm_controller')=='xarm_joint_velocity_controller') )"  />
+    
+    <!-- Top level infrastructure -->    
+    <param if="$(arg xarm_on)" name="robot_description" command="xacro '$(find as_description)/robots/as.xacro' velocity_control:=$(arg xarm_vel_ctrl_on)" />
     <param unless="$(arg xarm_on)" name="robot_description" command="xacro '$(find as_description)/robots/as_base.xacro'" />
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
@@ -27,7 +26,6 @@
         <arg name="xarm_on" value="$(arg xarm_on)" />        
         <arg name="base_controller" value="$(arg base_controller)" />
         <arg name="xarm_controller" value="$(arg xarm_controller)" />
-
     </include>
 
     <!-- UI -->

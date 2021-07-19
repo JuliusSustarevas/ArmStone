@@ -1,13 +1,15 @@
 <launch>
-  <arg name="world_name" default="empty.world" doc="gazebo world to load. Options:'barrels.world' 'empty.world' 'inspection.world' 'construction.world'"/>
+  <arg name="world_name" default="empty.world" doc="gazebo world to load. Options:'barrels.world' 'empty.world' 'inspection.world' 'construction.world'"/>  
+  <arg name="paused" default="true" />
+  <arg name="use_sim_time" default="true" />
 
   <!-- <env name="GAZEBO_RESOURCE_PATH" value="$(find as_gazebo)" /> -->
   <env name="GAZEBO_MODEL_PATH" value="$(find as_gazebo)/models" />
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">    
     <arg name="world_name" value="$(find as_gazebo)/worlds/$(arg world_name)" />
-    <arg name="paused" value="true" />
-    <arg name="use_sim_time" value="true" />
+    <arg name="paused" value="$(arg paused)" />
+    <arg name="use_sim_time" value="$(arg use_sim_time)" />
     <arg name="gui" value="true" />
     <arg name="recording" value="false" />
     <arg name="debug" value="false" />
