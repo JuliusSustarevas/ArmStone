@@ -7,6 +7,3 @@
 [submodule "as_control/vesc"]
 	path = as_control/vesc
 	url = https://github.com/JuliusSustarevas/vesc.git
-[submodule "as_control/voxblox"]
-	path = as_control/voxblox
-	url = https://github.com/julius-forks/voxblox.git
