@@ -10,3 +10,6 @@
 [submodule "as_control/pmpc"]
 	path = as_control/pmpc
 	url = https://github.com/julius-forks/_fork-pmpc.git
+[submodule "as_control/voxblox"]
+	path = as_control/voxblox
+	url = https://github.com/julius-forks/voxblox.git
