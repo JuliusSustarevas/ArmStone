@@ -1,0 +1,12 @@
+fr_xarmlink1_X_fr_base_link(q_xarmjoint1) := Rhz(-q_xarmjoint1) . Th([0,0,-0.214]) . Th([-0.175,0,0]);
+fr_base_link_X_fr_xarmlink1(q_xarmjoint1) := Th([0.175,0,0]) . Th([0,0,0.214]) . Rhz(q_xarmjoint1);
+fr_xarmlink2_X_fr_xarmlink1(q_xarmjoint2) := Rhz(-q_xarmjoint2) . Rhx(1.5708);
+fr_xarmlink1_X_fr_xarmlink2(q_xarmjoint2) := Rhx(-1.5708) . Rhz(q_xarmjoint2);
+fr_xarmlink3_X_fr_xarmlink2(q_xarmjoint3) := Rhz(-q_xarmjoint3) . Th([0,0.2845,0]) . Th([-0.0535,0,0]);
+fr_xarmlink2_X_fr_xarmlink3(q_xarmjoint3) := Th([0.0535,0,0]) . Th([0,-0.2845,0]) . Rhz(q_xarmjoint3);
+fr_xarmlink4_X_fr_xarmlink3(q_xarmjoint4) := Rhz(-q_xarmjoint4) . Rhx(1.5708) . Th([0,-0.3425,0]) . Th([-0.0775,0,0]);
+fr_xarmlink3_X_fr_xarmlink4(q_xarmjoint4) := Th([0.0775,0,0]) . Th([0,0.3425,0]) . Rhx(-1.5708) . Rhz(q_xarmjoint4);
+fr_xarmlink5_X_fr_xarmlink4(q_xarmjoint5) := Rhz(-q_xarmjoint5) . Rhx(-1.5708);
+fr_xarmlink4_X_fr_xarmlink5(q_xarmjoint5) := Rhx(1.5708) . Rhz(q_xarmjoint5);
+fr_xarmlink6_X_fr_xarmlink5(q_xarmjoint6) := Rhz(-q_xarmjoint6) . Rhx(1.5708) . Th([0,-0.097,0]) . Th([-0.076,0,0]);
+fr_xarmlink5_X_fr_xarmlink6(q_xarmjoint6) := Th([0.076,0,0]) . Th([0,0.097,0]) . Rhx(-1.5708) . Rhz(q_xarmjoint6);

@@ -1,0 +1,14 @@
+ /* this file contains the specification for position offsets and min/max
+    position values (min and max AFTER offset was subtracted. Additionally,
+    the file allows to set a default posture for the robot.
+    Note: the file is parsed according to keywords, after the keyword,
+          the values need to come in the correct sequence */
+ /* format: keyword, min , max, default, rest, weight, offset  */
+ /* Please edit this file according to your needs */
+
+xarmjoint1 -2.0  2.0  0.0  0.0  0.1  0.0
+xarmjoint2 -2.0  2.0  0.0  0.0  0.1  0.0
+xarmjoint3 -2.0  2.0  0.0  0.0  0.1  0.0
+xarmjoint4 -2.0  2.0  0.0  0.0  0.1  0.0
+xarmjoint5 -2.0  2.0  0.0  0.0  0.1  0.0
+xarmjoint6 -2.0  2.0  0.0  0.0  0.1  0.0

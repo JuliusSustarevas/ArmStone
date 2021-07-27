@@ -1,0 +1,12 @@
+fr_xarmlink1_X_fr_base_link(q_xarmjoint1) := Rz6d_f(-q_xarmjoint1) . T6d_f([0,0,-0.214]) . T6d_f([-0.175,0,0]);
+fr_base_link_X_fr_xarmlink1(q_xarmjoint1) := T6d_f([0.175,0,0]) . T6d_f([0,0,0.214]) . Rz6d_f(q_xarmjoint1);
+fr_xarmlink2_X_fr_xarmlink1(q_xarmjoint2) := Rz6d_f(-q_xarmjoint2) . Rx6d_f(1.5708);
+fr_xarmlink1_X_fr_xarmlink2(q_xarmjoint2) := Rx6d_f(-1.5708) . Rz6d_f(q_xarmjoint2);
+fr_xarmlink3_X_fr_xarmlink2(q_xarmjoint3) := Rz6d_f(-q_xarmjoint3) . T6d_f([0,0.2845,0]) . T6d_f([-0.0535,0,0]);
+fr_xarmlink2_X_fr_xarmlink3(q_xarmjoint3) := T6d_f([0.0535,0,0]) . T6d_f([0,-0.2845,0]) . Rz6d_f(q_xarmjoint3);
+fr_xarmlink4_X_fr_xarmlink3(q_xarmjoint4) := Rz6d_f(-q_xarmjoint4) . Rx6d_f(1.5708) . T6d_f([0,-0.3425,0]) . T6d_f([-0.0775,0,0]);
+fr_xarmlink3_X_fr_xarmlink4(q_xarmjoint4) := T6d_f([0.0775,0,0]) . T6d_f([0,0.3425,0]) . Rx6d_f(-1.5708) . Rz6d_f(q_xarmjoint4);
+fr_xarmlink5_X_fr_xarmlink4(q_xarmjoint5) := Rz6d_f(-q_xarmjoint5) . Rx6d_f(-1.5708);
+fr_xarmlink4_X_fr_xarmlink5(q_xarmjoint5) := Rx6d_f(1.5708) . Rz6d_f(q_xarmjoint5);
+fr_xarmlink6_X_fr_xarmlink5(q_xarmjoint6) := Rz6d_f(-q_xarmjoint6) . Rx6d_f(1.5708) . T6d_f([0,-0.097,0]) . T6d_f([-0.076,0,0]);
+fr_xarmlink5_X_fr_xarmlink6(q_xarmjoint6) := T6d_f([0.076,0,0]) . T6d_f([0,0.097,0]) . Rx6d_f(-1.5708) . Rz6d_f(q_xarmjoint6);

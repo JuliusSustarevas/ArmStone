@@ -1,0 +1,55 @@
+/* this file contains a list of DOFs that are computed by each processor
+   Note: the file is parsed according to keywords, after the keyword,
+   the values need to come in the correct sequence */
+
+   /* format: keyword, <list of joint names for a processor> */
+
+task_servo
+    xarmjoint1
+    xarmjoint2
+    xarmjoint3
+    xarmjoint4
+    xarmjoint5
+    xarmjoint6
+
+task_sim_servo
+    xarmjoint1
+    xarmjoint2
+    xarmjoint3
+    xarmjoint4
+    xarmjoint5
+    xarmjoint6
+
+motor_servo
+    xarmjoint1
+    xarmjoint2
+    xarmjoint3
+    xarmjoint4
+    xarmjoint5
+    xarmjoint6
+
+motor_sim_servo
+    xarmjoint1
+    xarmjoint2
+    xarmjoint3
+    xarmjoint4
+    xarmjoint5
+    xarmjoint6
+
+vision_servo
+vision_sim_servo
+invdyn_servo
+    xarmjoint1
+    xarmjoint2
+    xarmjoint3
+    xarmjoint4
+    xarmjoint5
+    xarmjoint6
+
+invdyn_sim_servo
+    xarmjoint1
+    xarmjoint2
+    xarmjoint3
+    xarmjoint4
+    xarmjoint5
+    xarmjoint6

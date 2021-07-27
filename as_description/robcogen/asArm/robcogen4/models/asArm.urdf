@@ -1,0 +1,98 @@
+<robot name="asArm">
+    <link name="world" />
+    <link name="base_link">
+        <inertial>
+            <origin xyz="0.17500 0.00000 0.03803"/>
+            <mass value="2.70000"/>
+            <inertia ixx="0.00495" iyy="0.00494" izz="0.00222" ixy="-0.00000" ixz="0.00001" iyz="0.00000"/>
+        </inertial>
+    </link>
+    <link name="xarmlink1">
+        <inertial>
+            <origin xyz="-0.00200 0.02692 -0.01332"/>
+            <mass value="2.16000"/>
+            <inertia ixx="0.00539" iyy="0.00490" izz="0.00312" ixy="0.00001" ixz="0.00000" iyz="0.00079"/>
+        </inertial>
+    </link>
+    <link name="xarmlink2">
+        <inertial>
+            <origin xyz="0.03531 -0.21398 0.03386"/>
+            <mass value="1.71000"/>
+            <inertia ixx="0.02487" iyy="0.00486" izz="0.02388" ixy="-0.00431" ixz="-0.00068" iyz="0.00457"/>
+        </inertial>
+    </link>
+    <link name="xarmlink3">
+        <inertial>
+            <origin xyz="0.06781 0.10749 0.01457"/>
+            <mass value="1.38400"/>
+            <inertia ixx="0.00537" iyy="0.00324" izz="0.00502" ixy="0.00142" ixz="-0.00092" iyz="-0.00169"/>
+        </inertial>
+    </link>
+    <link name="xarmlink4">
+        <inertial>
+            <origin xyz="-0.00021 0.02578 -0.02538"/>
+            <mass value="1.11500"/>
+            <inertia ixx="0.00439" iyy="0.00401" izz="0.00110" ixy="0.00005" ixz="0.00001" iyz="0.00045"/>
+        </inertial>
+    </link>
+    <link name="xarmlink5">
+        <inertial>
+            <origin xyz="0.05428 0.01781 0.00543"/>
+            <mass value="1.27500"/>
+            <inertia ixx="0.00120" iyy="0.00229" izz="0.00269" ixy="0.00049" ixz="-0.00039" iyz="-0.00012"/>
+        </inertial>
+    </link>
+    <link name="xarmlink6">
+        <inertial>
+            <origin xyz="0.00000 0.00006 0.07607"/>
+            <mass value="1.15960"/>
+            <inertia ixx="0.00412" iyy="0.00412" izz="0.00139" ixy="-0.00000" ixz="-0.00000" iyz="0.00001"/>
+        </inertial>
+    </link>
+    <joint name="fbj" type="floating">
+        <parent link="world"/>
+        <child  link="base_link"/>
+    </joint>
+    <joint name="xarmjoint1" type="revolute">
+        <origin xyz="0.17500 0.00000 0.21400" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child  link="xarmlink1"/>
+        <limit effort="30" velocity="1.0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <joint name="xarmjoint2" type="revolute">
+        <origin xyz="0.00000 0.00000 0.00000" rpy="-1.5707999467849731 0.0 -0.0"/>
+        <parent link="xarmlink1"/>
+        <child  link="xarmlink2"/>
+        <limit effort="30" velocity="1.0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <joint name="xarmjoint3" type="revolute">
+        <origin xyz="0.05350 -0.28450 0.00000" rpy="0.0 0.0 0.0"/>
+        <parent link="xarmlink2"/>
+        <child  link="xarmlink3"/>
+        <limit effort="30" velocity="1.0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <joint name="xarmjoint4" type="revolute">
+        <origin xyz="0.07750 0.34250 -0.00000" rpy="-1.5708004236221313 0.0 -0.0"/>
+        <parent link="xarmlink3"/>
+        <child  link="xarmlink4"/>
+        <limit effort="30" velocity="1.0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <joint name="xarmjoint5" type="revolute">
+        <origin xyz="0.00000 0.00000 0.00000" rpy="1.5707995891571045 -0.0 0.0"/>
+        <parent link="xarmlink4"/>
+        <child  link="xarmlink5"/>
+        <limit effort="30" velocity="1.0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <joint name="xarmjoint6" type="revolute">
+        <origin xyz="0.07600 0.09700 -0.00000" rpy="-1.5708004236221313 0.0 -0.0"/>
+        <parent link="xarmlink5"/>
+        <child  link="xarmlink6"/>
+        <limit effort="30" velocity="1.0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+</robot>
