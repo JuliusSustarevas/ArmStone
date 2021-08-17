@@ -21,15 +21,15 @@
 
 
       <!-- formation-->
-      <xacro:as_base load_gazebo_plugin="$(arg load_gazebo_plugin)" />
+      <!-- <xacro:as_base load_gazebo_plugin="$(arg load_gazebo_plugin)" /> -->
       <!-- explicit xarm_mount for easier robcogen -->
       <link name="xarm_mount">   
       </link>
-      <joint name="xarm_mount_joint" type="fixed">
+      <!-- <joint name="xarm_mount_joint" type="fixed">
             <parent link="base_link"/>
             <child link="xarm_mount"/>
             <origin xyz= "${arm_xyz}" rpy = "${arm_rpy}" />
-      </joint>  
+      </joint>   -->
       <xacro:xarm6_robot prefix="$(arg prefix)" namespace="$(arg ros_namespace)" limited="$(arg limited)" effort_control="$(arg effort_control)" velocity_control="$(arg velocity_control)" attach_to="xarm_mount" xyz="0 0 0" rpy="0 0 0" load_gazebo_plugin="$(arg load_gazebo_plugin)" />
       <xacro:extruder parent="xarmlink_eef" xyz="${extruder_xyz}" rpy="${extruder_rpy}" />
 
