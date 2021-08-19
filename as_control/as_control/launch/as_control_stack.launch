@@ -17,6 +17,7 @@
         <!-- xarm drivers required -->
         <group if="$(arg xarm_on)" ns="xarm">
             <param name="xarm_robot_ip" type="str" value="$(arg robot_ip)" />
+            <param name="velocity_control" value="$(eval (arg('xarm_controller')=='xarm_joint_velocity_controller' )  or (arg('xarm_controller')=='xarm_velocity_trajectory_controller') )" />
             <param name="xarm_report_type" type="str" value="$(arg report_type)" />
             <rosparam file="$(find as_control)/config/joint_limits.yaml" command="load" />
             <node name="xarm_driver" pkg="xarm_api" type="xarm_driver_node" output="screen" />
