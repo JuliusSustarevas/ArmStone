@@ -59,3 +59,13 @@ xarm_joint_velocity_controller:
       - xarmjoint4
       - xarmjoint5
       - xarmjoint6
+
+xarm_joint_position_controller:
+    type: position_controllers/JointGroupPositionController
+    joints:
+      - xarmjoint1
+      - xarmjoint2
+      - xarmjoint3
+      - xarmjoint4
+      - xarmjoint5
+      - xarmjoint6

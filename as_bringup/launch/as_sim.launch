@@ -5,7 +5,7 @@
     <arg name="paused" default="true" doc="gazebo paused. Note that velocity controllers can't handle it. " />
     <arg name="use_sim_time" default="false" />
     <arg name="base_controller" default="as_base_holonomic_controller" doc="as_base_differential_controller  or  as_base_holonomic_controller" />
-    <arg name="xarm_controller" default="xarm_velocity_trajectory_controller" doc="xarm_position_trajectory_controller or xarm_velocity_trajectory_controller or xarm_joint_velocity_controller. Note gazebo should be not paused for velocity controller" />
+    <arg name="xarm_controller" default="xarm_joint_position_controller" doc="xarm_joint_position_controller or xarm_position_trajectory_controller or xarm_velocity_trajectory_controller or xarm_joint_velocity_controller. Note gazebo should be not paused for velocity controller" />
 
     <!-- Stack as sim -->
     <include file="$(find as_bringup)/launch/as_stack.launch">
