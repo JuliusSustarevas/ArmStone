@@ -79,7 +79,7 @@ as_base_holonomic_controller:
 
   # Misc
   cmd_vel_timeout: 0.1 #Velocity commands will be considered old if they are older than 
-  base_frame_id: base_link 
+  base_frame_id: base_link_footprint
   publish_cmd: true # Publish limited cmd 
 
   # Limits:
