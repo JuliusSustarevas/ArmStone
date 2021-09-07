@@ -48,31 +48,8 @@
   <!--   <test_depend>gtest</test_depend> -->
   <!-- Use doc_depend for packages you need only for building documentation: -->
   <!--   <doc_depend>doxygen</doc_depend> -->
-  <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>as_bringup</build_depend>
-  <build_depend>as_control</build_depend>
-  <build_depend>as_description</build_depend>
-  <build_depend>as_ee_localisation</build_depend>
-  <build_depend>as_extruder_control</build_depend>
-  <build_depend>as_gazebo</build_depend>
-  <build_depend>as_ui</build_depend>
-  <build_depend>mecanum_drive_controller</build_depend>
-  <build_depend>roscpp</build_depend>
-  <build_depend>rospy</build_depend>
-  <build_depend>vesc</build_depend>
-  <build_depend>xarm_ros</build_depend>
-  <build_export_depend>as_bringup</build_export_depend>
-  <build_export_depend>as_control</build_export_depend>
-  <build_export_depend>as_description</build_export_depend>
-  <build_export_depend>as_ee_localisation</build_export_depend>
-  <build_export_depend>as_extruder_control</build_export_depend>
-  <build_export_depend>as_gazebo</build_export_depend>
-  <build_export_depend>as_ui</build_export_depend>
-  <build_export_depend>mecanum_drive_controller</build_export_depend>
-  <build_export_depend>roscpp</build_export_depend>
-  <build_export_depend>rospy</build_export_depend>
-  <build_export_depend>vesc</build_export_depend>
-  <build_export_depend>xarm_ros</build_export_depend>
+  <buildtool_depend>catkin</buildtool_depend> 
+
   <exec_depend>as_bringup</exec_depend>
   <exec_depend>as_control</exec_depend>
   <exec_depend>as_description</exec_depend>
@@ -82,14 +59,18 @@
   <exec_depend>as_ui</exec_depend>
   <exec_depend>mecanum_drive_controller</exec_depend>
   <exec_depend>roscpp</exec_depend>
-  <exec_depend>rospy</exec_depend>
-  <exec_depend>vesc</exec_depend>
-  <exec_depend>xarm_ros</exec_depend>
+  <exec_depend>rospy</exec_depend>  
+  <exec_depend>xarm_ros</exec_depend>  
+  <!-- <exec_depend>vesc_driver</exec_depend>
+  <exec_depend>vesc_msgs</exec_depend>
+  <exec_depend>vesc_hw_interface</exec_depend> -->
+
+  <exec_depend>vesc</exec_depend> 
+
 
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
-    <!-- Other tools can request additional information be placed here -->
-
+    <metapackage/>
   </export>
 </package>
