@@ -19,7 +19,6 @@
       <xacro:property name="extruder_xyz" value="0 0 ${extruder_h/2}" />
       <xacro:property name="extruder_rpy" value="0 0 ${-M_PI/2}" />
 
-
       <!-- formation-->
       <xacro:as_base load_gazebo_plugin="$(arg load_gazebo_plugin)" />
       <!-- explicit xarm_mount for easier robcogen -->
