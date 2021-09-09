@@ -2,6 +2,7 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
 	<xacro:include filename="$(find as_description)/urdf/common/generic_links.xacro"/>
+	<xacro:include filename="$(find sensor_imu)/urdf/sensor_imu.xacro"/>
 
 	<!-- battery_link -->
 	<xacro:property name="battery_link_dx" value="0.40"/>
@@ -45,6 +46,11 @@
     <!--Without material m 1.05 (including bolts)  -->
 	<!--with tube maybe more-->
     <xacro:property name="extruder_m" value="1.05"/>
+
+	<xacro:property name="ee_imu_xyz" value="0 -${(0.035 +(0.0525/2))} 0"/>
+	<xacro:property name="ee_imu_rpy" value="0 3.14159265359 0"/>
+
+	
 
 	<xacro:macro name="battery48" params="parent xyz rpy">
 		<xacro:generic_box name="battery48" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${battery_link_dx}" dy="${battery_link_dy}" dz="${battery_link_dz}" m="${battery_link_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="battery.dae" mxyz="0.035 0 ${-battery_link_dz/2}" mrpy="0 0 ${M_PI}" />
@@ -103,7 +109,9 @@
 			  <parent link="extruder_link"/>
 			  <child link="extruder_ee"/>
 			  <origin xyz= "0 0 ${extruder_h/2}" rpy = "0 0 0" />
-		</joint>
+		</joint>		
+		<xacro:imu prefix="ee" parent="${parent}" xyz="${ee_imu_xyz}" rpy="${ee_imu_rpy}" />
+		
 	</xacro:macro>
 
 </robot>

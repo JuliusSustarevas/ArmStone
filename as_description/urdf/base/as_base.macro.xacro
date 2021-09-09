@@ -7,7 +7,7 @@
 	<!-- Import macros -->
 	<xacro:include filename="$(find as_description)/urdf/base/chasis.macro.xacro" />
 	<xacro:include filename="$(find as_description)/urdf/base/components.macro.xacro" />
-
+	<xacro:include filename="$(find sensor_imu)/urdf/sensor_imu.xacro" />
 
 	<!-- Componenet positions-->
 	<xacro:property name="dc_box_xyz" value=" ${-base_link_dx/2 + 0.02 +dc_box_dy/2} 0 ${base_link_dz/2 - dc_box_dz/2}" />
@@ -25,6 +25,9 @@
 	<xacro:property name="battery_xyz" value="${-base_link_dx/2 + battery_link_dx/2 -0.08} 0  ${-base_link_dz/2 +0.02 + battery_link_dz/2 }" />
 	<xacro:property name="battery_rpy" value="0 0 0" />
 
+	<xacro:property name="base_imu_xyz" value="${0.245 +(0.205/2)-(base_link_dx/2)} 0  ${-0.02+base_link_dz/2}" />
+	<xacro:property name="base_imu_rpy" value="0 0 0" />
+
 
 	<xacro:macro name="as_base" params="load_gazebo_plugin='true'">
 
@@ -33,6 +36,7 @@
 		<xacro:battery48 parent="base_link" xyz="${battery_xyz}" rpy="${battery_rpy}" />
 		<xacro:dc_box parent="base_link" xyz="${dc_box_xyz}" rpy="${dc_box_rpy}" />
 		<xacro:mount_plate parent="base_link" xyz="${mount_plate_xyz}" rpy="${mount_plate_rpy}" />
+		<xacro:imu prefix="base" parent="base_link" xyz="${base_imu_xyz}" rpy="${base_imu_rpy}" />		
 		<!-- <xacro:compressor parent="base_link" xyz="${compressor_xyz}" rpy="${compressor_rpy}" /> -->
 		<!-- <xacro:material3 parent="base_link" xyz="${material3_xyz}" rpy="${material3_rpy}" /> -->
 
@@ -44,6 +48,8 @@
 				</plugin>
 			</gazebo>
 		</xacro:if>
+
+		
 
 	</xacro:macro>
 
