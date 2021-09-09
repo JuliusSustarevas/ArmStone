@@ -18,8 +18,16 @@ KERNEL=="ttyACM*", KERNELS=="*.2", ATTRS{product}=="ChibiOS/RT Virtual COM Port"
 KERNEL=="ttyACM*", KERNELS=="*.3", ATTRS{product}=="ChibiOS/RT Virtual COM Port" , SYMLINK+="BL_MOTOR", MODE:="0666"
 KERNEL=="ttyACM*", KERNELS=="*.4", ATTRS{product}=="ChibiOS/RT Virtual COM Port" , SYMLINK+="BR_MOTOR", MODE:="0666"
 
+#SENSORS
+KERNEL=="ttyACM*", KERNELS=="3-2", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE:="0666", GROUP:="dialout",  SYMLINK+="hades_left_imu"
+KERNEL=="ttyACM*", KERNELS=="1-1", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE:="0666", GROUP:="dialout",  SYMLINK+="hades_right_imu"
+
 #RPlidar
 KERNEL=="ttyUSB*", ATTRS{interface}=="CP2102 USB to UART Bridge Controller", SYMLINK+="RP_LiDAR", MODE:="0666"
 
 #Realsense t265
 #TODO
+
+#service udev reload
+#sleep 1
+#service udev restart

@@ -63,7 +63,7 @@
   <exec_depend>xarm_ros</exec_depend>  
   <exec_depend>vesc</exec_depend> 
   <exec_depend>xarm_ros_meta</exec_depend>
-  
+  <exec_depend>sensor_imu</exec_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

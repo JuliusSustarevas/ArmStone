@@ -7,3 +7,6 @@
 [submodule "as_control/vesc"]
 	path = as_control/vesc
 	url = https://github.com/JuliusSustarevas/vesc.git
+[submodule "as_sensors/sensor_imu"]
+	path = as_sensors/sensor_imu
+	url = https://github.com/julius-forks/sensor_imu.git
