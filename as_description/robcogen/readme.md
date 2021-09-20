@@ -1,1 +1,0 @@
-These files are an alternative robot description generated using  https://github.com/leggedrobotics/urdf2robcogen/tree/v1.0
