@@ -35,11 +35,6 @@
 	<!-- About 3.5 kg aluminium plate. -->
 	<xacro:property name="mount_plate_m" value="${2700*mount_plate_dx*mount_plate_dy*mount_plate_dz}"/>
 
-	<!-- Compressor -->
-	<xacro:property name="compressor_r" value="0.05"/>
-	<xacro:property name="compressor_h" value="0.13"/>
-	<xacro:property name="compressor_m" value="1.4"/>
-
 	<!-- Extruder -->
 	<xacro:property name="extruder_r" value="0.05"/>
     <xacro:property name="extruder_h" value="0.17"/>
@@ -69,11 +64,19 @@
 	</xacro:macro>
 
 	<xacro:macro name="compressor" params="parent xyz rpy">
-		<xacro:generic_cylinder name="compressor" parent="${parent}" xyz="${xyz}" rpy="${rpy}" r="${compressor_r}" h="${compressor_h}" m="${compressor_m}" material="Grey" gmaterial="Gazebo/Grey" meshfile="" mxyz="" mrpy="" />
+		<xacro:generic_box name="compressor" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${compressor_box_dx}" dy="${compressor_box_dy}" dz="${compressor_box_dz}" m="${compressor_m}" material="Grey" gmaterial="Gazebo/Grey" meshfile="compressor_assembly.dae" mxyz="0 0 ${-compressor_box_dz/2}" mrpy="0 0 0" />
 	</xacro:macro>
 
 	<xacro:macro name="material3" params="parent xyz rpy">
-		<xacro:generic_cylinder name="material3" parent="${parent}" xyz="${xyz}" rpy="${rpy}" r="${material3_r}" h="${material3_h}" m="${material3_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="" mxyz="" mrpy=""/>
+		<xacro:generic_cylinder name="material3" parent="${parent}" xyz="${xyz}" rpy="${rpy}" r="${material3_r}" h="${material3_h}" m="${material3_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="clay_assembly.dae" mxyz="${material3_r+0.02}  0  ${material3_h/5}" mrpy="0 ${-M_PI/2} 0"/>
+	</xacro:macro>
+
+	<xacro:macro name="cover_plate" params="parent xyz rpy">
+		<xacro:generic_box name="cover_plate" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${cover_box_dx}" dy="${cover_box_dy}" dz="${cover_box_dz}" m="${cover_plate_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="cover_assembly_.dae" mxyz="0 0 0" mrpy="0 0 0"/>
+	</xacro:macro>
+
+	<xacro:macro name="ic" params="parent xyz rpy">
+		<xacro:generic_box name="ic" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${ic_box_dx}" dy="${ic_box_dy}" dz="${ic_box_dz}" m="${ic_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="intermediate_assembly.dae" mxyz="${ic_box_dx/2 - 0.03} 0 ${-ic_box_dz/2}" mrpy="0 0 0"/>
 	</xacro:macro>
 
 	<xacro:macro name="extruder" params="parent xyz rpy">	
@@ -112,6 +115,23 @@
 		</joint>		
 		<xacro:imu prefix="ee" parent="${parent}" xyz="${ee_imu_xyz}" rpy="${ee_imu_rpy}" />
 		
+	</xacro:macro>
+
+	<xacro:macro name="backpack" params="parent xyz rpy">	
+		
+		<joint name="backpack_joint" type="fixed">
+            <parent link="${parent}"/>
+            <child link="backpack_link"/>
+            <origin xyz= "${xyz}" rpy = "${rpy}" />
+        </joint>
+
+        <link name="backpack_link"> 
+			<collision>
+                <geometry>
+                    <box size="${backpack_dx} ${backpack_dy} ${backpack_dz}" />
+                </geometry>
+            </collision>		
+        </link>  
 	</xacro:macro>
 
 </robot>
