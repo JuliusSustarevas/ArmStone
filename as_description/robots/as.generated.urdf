@@ -59,6 +59,14 @@
   <material name="LightGreyClear">
     <color rgba="0.82 0.82 0.82 .5"/>
   </material>
+  
+      iption)/urdf/base/as_base.macro.xacro&quot; /&gt;
+      
+      
+  
+      iption)/urdf/base/as_base.macro.xacro&quot; /&gt;
+      
+      
   <!-- Projection of base_link origin to xy plane -->
   <link name="base_link_footprint"/>
   <joint name="joint0" type="fixed">
@@ -87,8 +95,27 @@
       </geometry>
     </visual>
     <collision>
+      <origin rpy="0 0 0" xyz="-0.125 0 0"/>
       <geometry>
-        <box size="0.72 0.455 0.172"/>
+        <box size="0.47 0.455 0.172"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.071"/>
+      <geometry>
+        <box size="0.72 0.455 0.03"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 -1.0471975512 0" xyz="0.235 0.2175 0.015"/>
+      <geometry>
+        <box size=" 0.025 0.025 0.29"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 -1.0471975512 0" xyz="0.235 -0.2175 0.015"/>
+      <geometry>
+        <box size=" 0.025 0.025 0.29"/>
       </geometry>
     </collision>
     <gazebo reference="base_link">
@@ -468,8 +495,154 @@
   <gazebo reference="mount_plate_link">
     <material>Gazebo/LightGrey</material>
   </gazebo>
-  <!-- <xacro:compressor parent="base_link" xyz="${compressor_xyz}" rpy="${compressor_rpy}" /> -->
-  <!-- <xacro:material3 parent="base_link" xyz="${material3_xyz}" rpy="${material3_rpy}" /> -->
+  <joint name="base_imu_module_joint1" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_imu_module"/>
+    <origin rpy="0 0 0" xyz="-0.0125 0  0.066"/>
+  </joint>
+  <link name="base_imu_module">
+    <visual>
+      <geometry>
+        <box size="0.025 0.025 0.0075"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="base_imu_module_joint2" type="fixed">
+    <parent link="base_imu_module"/>
+    <child link="base_imu_frame"/>
+    <origin rpy="0 0 0" xyz=" 0.007 0 0"/>
+  </joint>
+  <link name="base_imu_frame"/>
+  <gazebo>
+    <plugin filename="libgazebo_ros_imu.so" name="base_imu_plugin">
+      <alwaysOn>true</alwaysOn>
+      <bodyName>base_imu_frame</bodyName>
+      <topicName>as_sensors/base_imu</topicName>
+      <serviceName>as_sensors/base_imu_service</serviceName>
+      <gaussianNoise>0.32</gaussianNoise>
+      <updateRate>100.0</updateRate>
+    </plugin>
+  </gazebo>
+  <joint name="compressor_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="compressor_link"/>
+    <origin rpy="0 0 0" xyz="-0.239 0.1287 0.146"/>
+  </joint>
+  <link name="compressor_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="1.1"/>
+      <inertia ixx="0.00159729166667" ixy="0" ixz="0" iyy="0.00668836666667" iyz="0" izz="0.00564565833333"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.06"/>
+      <geometry>
+        <mesh filename="package://as_description/meshes/compressor_assembly.dae"/>
+      </geometry>
+      <material name="Grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.242 0.055 0.12"/>
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="compressor_link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <joint name="material3_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="material3_link"/>
+    <origin rpy="0 1.57079632679 0" xyz="-0.209 0 0.1585"/>
+  </joint>
+  <link name="material3_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="5.28"/>
+      <inertia ixx="0.08125425" ixy="0" ixz="0" iyy="0.08125425" iyz="0" izz="0.0072765"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 -1.57079632679 0" xyz="0.0725  0  0.084"/>
+      <geometry>
+        <mesh filename="package://as_description/meshes/clay_assembly.dae"/>
+      </geometry>
+      <material name="LightGrey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.42" radius="0.0525"/>
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="material3_link">
+    <material>Gazebo/LightGrey</material>
+  </gazebo>
+  <joint name="cover_plate_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="cover_plate_link"/>
+    <origin rpy="0 0 0" xyz="-0.125 0 0.086"/>
+  </joint>
+  <link name="cover_plate_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.2"/>
+      <inertia ixx="0.0033756" ixy="0" ixz="0" iyy="0.00368226666667" iyz="0" izz="0.00705666666667"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://as_description/meshes/cover_assembly_.dae"/>
+      </geometry>
+      <material name="LightGrey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.47 0.45 0.006"/>
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="cover_plate_link">
+    <material>Gazebo/LightGrey</material>
+  </gazebo>
+  <joint name="ic_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="ic_link"/>
+    <origin rpy="0 0 0" xyz="-0.235 -0.1505  0.1585"/>
+  </joint>
+  <link name="ic_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.4"/>
+      <inertia ixx="0.000883366666667" ixy="0" ixz="0" iyy="0.00331416666667" iyz="0" izz="0.00279586666667"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.11 0 -0.0725"/>
+      <geometry>
+        <mesh filename="package://as_description/meshes/intermediate_assembly.dae"/>
+      </geometry>
+      <material name="LightGrey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.28 0.074 0.145"/>
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="ic_link">
+    <material>Gazebo/LightGrey</material>
+  </gazebo>
+  <joint name="backpack_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="backpack_link"/>
+    <origin rpy="0 0 0" xyz="-0.16 0  0.176"/>
+  </joint>
+  <link name="backpack_link">
+    <collision>
+      <geometry>
+        <box size="0.4 0.4 0.18"/>
+      </geometry>
+    </collision>
+  </link>
   <!-- explicit xarm_mount for easier robcogen -->
   <link name="xarm_mount">   
       </link>
@@ -804,6 +977,34 @@
     <child link="extruder_ee"/>
     <origin rpy="0 0 0" xyz="0 0 0.085"/>
   </joint>
+  <joint name="ee_imu_module_joint1" type="fixed">
+    <parent link="xarmlink_eef"/>
+    <child link="ee_imu_module"/>
+    <origin rpy="0 3.14159265359 0" xyz="0 -0.06125 0"/>
+  </joint>
+  <link name="ee_imu_module">
+    <visual>
+      <geometry>
+        <box size="0.025 0.025 0.0075"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="ee_imu_module_joint2" type="fixed">
+    <parent link="ee_imu_module"/>
+    <child link="ee_imu_frame"/>
+    <origin rpy="0 0 0" xyz=" 0.007 0 0"/>
+  </joint>
+  <link name="ee_imu_frame"/>
+  <gazebo>
+    <plugin filename="libgazebo_ros_imu.so" name="ee_imu_plugin">
+      <alwaysOn>true</alwaysOn>
+      <bodyName>ee_imu_frame</bodyName>
+      <topicName>as_sensors/ee_imu</topicName>
+      <serviceName>as_sensors/ee_imu_service</serviceName>
+      <gaussianNoise>0.32</gaussianNoise>
+      <updateRate>100.0</updateRate>
+    </plugin>
+  </gazebo>
   <!-- Gazebo: My current understanding is that libgazebo_ros_control is a per-model-plugin
       and most recent spawn will override the last one. So there is no nice way to namespace this.
       Therefore the approach here disables individual base/arm plugins and launches a common one -->

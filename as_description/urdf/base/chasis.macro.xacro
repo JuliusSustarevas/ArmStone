@@ -122,8 +122,29 @@
 				</geometry>				
 			</visual>
 			<collision>
+				<origin xyz= "-0.125 0 0" rpy = "0 0 0" />
 				<geometry>
-					<box size="${base_link_dx} ${base_link_dy} ${base_link_dz}" />
+					<box size="${base_link_dx-0.25} ${base_link_dy} ${base_link_dz}" />					
+				</geometry>
+			</collision>
+			<collision>		
+				<origin xyz= "0 0 ${-(base_link_dz-0.03)/2}" rpy = "0 0 0" />		
+				<geometry>					
+					<box size="${base_link_dx} ${base_link_dy} 0.035" />
+				</geometry>
+			</collision>
+
+			<collision>		
+				<origin xyz= "${base_link_dx/2 -0.125} ${base_link_dy/2 -0.01} 0.015" rpy = "0 ${-60*M_PI/180} 0" />		
+				<geometry>					
+					<box size=" 0.025 0.025 0.29" />
+				</geometry>
+			</collision>
+
+			<collision>		
+				<origin xyz= "${base_link_dx/2 -0.125} ${-base_link_dy/2 +0.01} 0.015" rpy = "0 ${-60*M_PI/180} 0" />		
+				<geometry>					
+					<box size=" 0.025 0.025 0.29" />
 				</geometry>
 			</collision>
 
