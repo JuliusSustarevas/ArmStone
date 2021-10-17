@@ -1,0 +1,13 @@
+controller_list:
+  - name: fake_xarm_group_controller
+    type: $(arg execution_type)
+    joints:
+      - xarmjoint1
+      - xarmjoint2
+      - xarmjoint3
+      - xarmjoint4
+      - xarmjoint5
+      - xarmjoint6
+initial:  # Define initial robot poses.
+  - group: xarm_group
+    pose: neutral

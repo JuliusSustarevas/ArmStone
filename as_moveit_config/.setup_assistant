@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: as_description
+    relative_path: robots/as.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/armstone.srdf
+  CONFIG:
+    author_name: Julius Sustarevas
+    author_email: julius.sustarevas.16@ucl.ac.uk
+    generated_timestamp: 1634487964

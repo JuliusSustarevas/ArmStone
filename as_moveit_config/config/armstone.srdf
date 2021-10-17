@@ -1,0 +1,247 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="armstone">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="xarm_group">
+        <chain base_link="xarm_mount" tip_link="extruder_ee" />
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="neutral" group="xarm_group">
+        <joint name="xarmjoint1" value="0" />
+        <joint name="xarmjoint2" value="-0.5904" />
+        <joint name="xarmjoint3" value="-0.7203" />
+        <joint name="xarmjoint4" value="0" />
+        <joint name="xarmjoint5" value="1.3057" />
+        <joint name="xarmjoint6" value="-1.5636" />
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="extruder_ee" parent_link="extruder_ee" group="xarm_group" parent_group="xarm_group" />
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="backpack_link" link2="base_imu_module" reason="Never" />
+    <disable_collisions link1="backpack_link" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="backpack_link" link2="battery48_link" reason="Never" />
+    <disable_collisions link1="backpack_link" link2="compressor_link" reason="Default" />
+    <disable_collisions link1="backpack_link" link2="cover_plate_link" reason="Default" />
+    <disable_collisions link1="backpack_link" link2="dc_box_link" reason="Default" />
+    <disable_collisions link1="backpack_link" link2="ic_link" reason="Default" />
+    <disable_collisions link1="backpack_link" link2="material3_link" reason="Default" />
+    <disable_collisions link1="backpack_link" link2="motor_gearbox_bl" reason="Never" />
+    <disable_collisions link1="backpack_link" link2="motor_gearbox_br" reason="Never" />
+    <disable_collisions link1="backpack_link" link2="motor_gearbox_fl" reason="Never" />
+    <disable_collisions link1="backpack_link" link2="motor_gearbox_fr" reason="Never" />
+    <disable_collisions link1="backpack_link" link2="mount_plate_link" reason="Never" />
+    <disable_collisions link1="backpack_link" link2="omniwheel_bl" reason="Never" />
+    <disable_collisions link1="backpack_link" link2="omniwheel_br" reason="Never" />
+    <disable_collisions link1="backpack_link" link2="omniwheel_fl" reason="Never" />
+    <disable_collisions link1="backpack_link" link2="omniwheel_fr" reason="Never" />
+    <disable_collisions link1="backpack_link" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="backpack_link" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="base_imu_module" link2="battery48_link" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="compressor_link" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="cover_plate_link" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="dc_box_link" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="ic_link" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="material3_link" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="motor_gearbox_bl" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="motor_gearbox_br" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="motor_gearbox_fl" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="motor_gearbox_fr" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="mount_plate_link" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="omniwheel_bl" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="omniwheel_br" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="omniwheel_fl" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="omniwheel_fr" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="base_imu_module" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="base_link" link2="battery48_link" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="compressor_link" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="cover_plate_link" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="dc_box_link" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="ic_link" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="material3_link" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="motor_gearbox_bl" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="motor_gearbox_br" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="motor_gearbox_fl" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="motor_gearbox_fr" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="mount_plate_link" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="omniwheel_bl" reason="Default" />
+    <disable_collisions link1="base_link" link2="omniwheel_br" reason="Default" />
+    <disable_collisions link1="base_link" link2="omniwheel_fl" reason="Default" />
+    <disable_collisions link1="base_link" link2="omniwheel_fr" reason="Default" />
+    <disable_collisions link1="base_link" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="base_link" link2="xarmlink_base" reason="Adjacent" />
+    <disable_collisions link1="battery48_link" link2="compressor_link" reason="Never" />
+    <disable_collisions link1="battery48_link" link2="cover_plate_link" reason="Never" />
+    <disable_collisions link1="battery48_link" link2="dc_box_link" reason="Default" />
+    <disable_collisions link1="battery48_link" link2="ic_link" reason="Never" />
+    <disable_collisions link1="battery48_link" link2="material3_link" reason="Never" />
+    <disable_collisions link1="battery48_link" link2="motor_gearbox_bl" reason="Never" />
+    <disable_collisions link1="battery48_link" link2="motor_gearbox_br" reason="Never" />
+    <disable_collisions link1="battery48_link" link2="motor_gearbox_fl" reason="Never" />
+    <disable_collisions link1="battery48_link" link2="motor_gearbox_fr" reason="Never" />
+    <disable_collisions link1="battery48_link" link2="mount_plate_link" reason="Never" />
+    <disable_collisions link1="battery48_link" link2="omniwheel_bl" reason="Never" />
+    <disable_collisions link1="battery48_link" link2="omniwheel_br" reason="Never" />
+    <disable_collisions link1="battery48_link" link2="omniwheel_fl" reason="Never" />
+    <disable_collisions link1="battery48_link" link2="omniwheel_fr" reason="Never" />
+    <disable_collisions link1="battery48_link" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="battery48_link" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="compressor_link" link2="cover_plate_link" reason="Default" />
+    <disable_collisions link1="compressor_link" link2="dc_box_link" reason="Never" />
+    <disable_collisions link1="compressor_link" link2="ic_link" reason="Never" />
+    <disable_collisions link1="compressor_link" link2="material3_link" reason="Never" />
+    <disable_collisions link1="compressor_link" link2="motor_gearbox_bl" reason="Never" />
+    <disable_collisions link1="compressor_link" link2="motor_gearbox_br" reason="Never" />
+    <disable_collisions link1="compressor_link" link2="motor_gearbox_fl" reason="Never" />
+    <disable_collisions link1="compressor_link" link2="motor_gearbox_fr" reason="Never" />
+    <disable_collisions link1="compressor_link" link2="mount_plate_link" reason="Never" />
+    <disable_collisions link1="compressor_link" link2="omniwheel_bl" reason="Never" />
+    <disable_collisions link1="compressor_link" link2="omniwheel_br" reason="Never" />
+    <disable_collisions link1="compressor_link" link2="omniwheel_fl" reason="Never" />
+    <disable_collisions link1="compressor_link" link2="omniwheel_fr" reason="Never" />
+    <disable_collisions link1="compressor_link" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="compressor_link" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="cover_plate_link" link2="dc_box_link" reason="Default" />
+    <disable_collisions link1="cover_plate_link" link2="ic_link" reason="Default" />
+    <disable_collisions link1="cover_plate_link" link2="material3_link" reason="Never" />
+    <disable_collisions link1="cover_plate_link" link2="motor_gearbox_bl" reason="Never" />
+    <disable_collisions link1="cover_plate_link" link2="motor_gearbox_br" reason="Never" />
+    <disable_collisions link1="cover_plate_link" link2="motor_gearbox_fl" reason="Never" />
+    <disable_collisions link1="cover_plate_link" link2="motor_gearbox_fr" reason="Never" />
+    <disable_collisions link1="cover_plate_link" link2="mount_plate_link" reason="Never" />
+    <disable_collisions link1="cover_plate_link" link2="omniwheel_bl" reason="Never" />
+    <disable_collisions link1="cover_plate_link" link2="omniwheel_br" reason="Never" />
+    <disable_collisions link1="cover_plate_link" link2="omniwheel_fl" reason="Never" />
+    <disable_collisions link1="cover_plate_link" link2="omniwheel_fr" reason="Never" />
+    <disable_collisions link1="cover_plate_link" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="cover_plate_link" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="dc_box_link" link2="ic_link" reason="Never" />
+    <disable_collisions link1="dc_box_link" link2="material3_link" reason="Never" />
+    <disable_collisions link1="dc_box_link" link2="motor_gearbox_bl" reason="Never" />
+    <disable_collisions link1="dc_box_link" link2="motor_gearbox_br" reason="Never" />
+    <disable_collisions link1="dc_box_link" link2="motor_gearbox_fl" reason="Never" />
+    <disable_collisions link1="dc_box_link" link2="motor_gearbox_fr" reason="Never" />
+    <disable_collisions link1="dc_box_link" link2="mount_plate_link" reason="Never" />
+    <disable_collisions link1="dc_box_link" link2="omniwheel_bl" reason="Never" />
+    <disable_collisions link1="dc_box_link" link2="omniwheel_br" reason="Never" />
+    <disable_collisions link1="dc_box_link" link2="omniwheel_fl" reason="Never" />
+    <disable_collisions link1="dc_box_link" link2="omniwheel_fr" reason="Never" />
+    <disable_collisions link1="dc_box_link" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="dc_box_link" link2="xarmlink2" reason="Never" />
+    <disable_collisions link1="dc_box_link" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="ee_imu_module" link2="extruder_link" reason="Adjacent" />
+    <disable_collisions link1="ee_imu_module" link2="xarmlink3" reason="Never" />
+    <disable_collisions link1="ee_imu_module" link2="xarmlink5" reason="Never" />
+    <disable_collisions link1="ee_imu_module" link2="xarmlink6" reason="Adjacent" />
+    <disable_collisions link1="extruder_link" link2="xarmlink5" reason="Never" />
+    <disable_collisions link1="extruder_link" link2="xarmlink6" reason="Adjacent" />
+    <disable_collisions link1="ic_link" link2="material3_link" reason="Never" />
+    <disable_collisions link1="ic_link" link2="motor_gearbox_bl" reason="Never" />
+    <disable_collisions link1="ic_link" link2="motor_gearbox_br" reason="Never" />
+    <disable_collisions link1="ic_link" link2="motor_gearbox_fl" reason="Never" />
+    <disable_collisions link1="ic_link" link2="motor_gearbox_fr" reason="Never" />
+    <disable_collisions link1="ic_link" link2="mount_plate_link" reason="Never" />
+    <disable_collisions link1="ic_link" link2="omniwheel_bl" reason="Never" />
+    <disable_collisions link1="ic_link" link2="omniwheel_br" reason="Never" />
+    <disable_collisions link1="ic_link" link2="omniwheel_fl" reason="Never" />
+    <disable_collisions link1="ic_link" link2="omniwheel_fr" reason="Never" />
+    <disable_collisions link1="ic_link" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="ic_link" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="material3_link" link2="motor_gearbox_bl" reason="Never" />
+    <disable_collisions link1="material3_link" link2="motor_gearbox_br" reason="Never" />
+    <disable_collisions link1="material3_link" link2="motor_gearbox_fl" reason="Never" />
+    <disable_collisions link1="material3_link" link2="motor_gearbox_fr" reason="Never" />
+    <disable_collisions link1="material3_link" link2="mount_plate_link" reason="Never" />
+    <disable_collisions link1="material3_link" link2="omniwheel_bl" reason="Never" />
+    <disable_collisions link1="material3_link" link2="omniwheel_br" reason="Never" />
+    <disable_collisions link1="material3_link" link2="omniwheel_fl" reason="Never" />
+    <disable_collisions link1="material3_link" link2="omniwheel_fr" reason="Never" />
+    <disable_collisions link1="material3_link" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="material3_link" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="motor_gearbox_bl" link2="motor_gearbox_br" reason="Never" />
+    <disable_collisions link1="motor_gearbox_bl" link2="motor_gearbox_fl" reason="Never" />
+    <disable_collisions link1="motor_gearbox_bl" link2="motor_gearbox_fr" reason="Never" />
+    <disable_collisions link1="motor_gearbox_bl" link2="mount_plate_link" reason="Never" />
+    <disable_collisions link1="motor_gearbox_bl" link2="omniwheel_bl" reason="Adjacent" />
+    <disable_collisions link1="motor_gearbox_bl" link2="omniwheel_br" reason="Never" />
+    <disable_collisions link1="motor_gearbox_bl" link2="omniwheel_fl" reason="Never" />
+    <disable_collisions link1="motor_gearbox_bl" link2="omniwheel_fr" reason="Never" />
+    <disable_collisions link1="motor_gearbox_bl" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="motor_gearbox_bl" link2="xarmlink2" reason="Never" />
+    <disable_collisions link1="motor_gearbox_bl" link2="xarmlink3" reason="Never" />
+    <disable_collisions link1="motor_gearbox_bl" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="motor_gearbox_br" link2="motor_gearbox_fl" reason="Never" />
+    <disable_collisions link1="motor_gearbox_br" link2="motor_gearbox_fr" reason="Never" />
+    <disable_collisions link1="motor_gearbox_br" link2="mount_plate_link" reason="Never" />
+    <disable_collisions link1="motor_gearbox_br" link2="omniwheel_bl" reason="Never" />
+    <disable_collisions link1="motor_gearbox_br" link2="omniwheel_br" reason="Adjacent" />
+    <disable_collisions link1="motor_gearbox_br" link2="omniwheel_fl" reason="Never" />
+    <disable_collisions link1="motor_gearbox_br" link2="omniwheel_fr" reason="Never" />
+    <disable_collisions link1="motor_gearbox_br" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="motor_gearbox_br" link2="xarmlink2" reason="Never" />
+    <disable_collisions link1="motor_gearbox_br" link2="xarmlink3" reason="Never" />
+    <disable_collisions link1="motor_gearbox_br" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="motor_gearbox_fl" link2="motor_gearbox_fr" reason="Never" />
+    <disable_collisions link1="motor_gearbox_fl" link2="mount_plate_link" reason="Never" />
+    <disable_collisions link1="motor_gearbox_fl" link2="omniwheel_bl" reason="Never" />
+    <disable_collisions link1="motor_gearbox_fl" link2="omniwheel_br" reason="Never" />
+    <disable_collisions link1="motor_gearbox_fl" link2="omniwheel_fl" reason="Adjacent" />
+    <disable_collisions link1="motor_gearbox_fl" link2="omniwheel_fr" reason="Never" />
+    <disable_collisions link1="motor_gearbox_fl" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="motor_gearbox_fl" link2="xarmlink2" reason="Never" />
+    <disable_collisions link1="motor_gearbox_fl" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="motor_gearbox_fr" link2="mount_plate_link" reason="Never" />
+    <disable_collisions link1="motor_gearbox_fr" link2="omniwheel_bl" reason="Never" />
+    <disable_collisions link1="motor_gearbox_fr" link2="omniwheel_br" reason="Never" />
+    <disable_collisions link1="motor_gearbox_fr" link2="omniwheel_fl" reason="Never" />
+    <disable_collisions link1="motor_gearbox_fr" link2="omniwheel_fr" reason="Adjacent" />
+    <disable_collisions link1="motor_gearbox_fr" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="motor_gearbox_fr" link2="xarmlink2" reason="Never" />
+    <disable_collisions link1="motor_gearbox_fr" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="mount_plate_link" link2="omniwheel_bl" reason="Never" />
+    <disable_collisions link1="mount_plate_link" link2="omniwheel_br" reason="Never" />
+    <disable_collisions link1="mount_plate_link" link2="omniwheel_fl" reason="Default" />
+    <disable_collisions link1="mount_plate_link" link2="omniwheel_fr" reason="Default" />
+    <disable_collisions link1="mount_plate_link" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="mount_plate_link" link2="xarmlink2" reason="Never" />
+    <disable_collisions link1="mount_plate_link" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="omniwheel_bl" link2="omniwheel_br" reason="Never" />
+    <disable_collisions link1="omniwheel_bl" link2="omniwheel_fl" reason="Never" />
+    <disable_collisions link1="omniwheel_bl" link2="omniwheel_fr" reason="Never" />
+    <disable_collisions link1="omniwheel_bl" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="omniwheel_bl" link2="xarmlink2" reason="Never" />
+    <disable_collisions link1="omniwheel_bl" link2="xarmlink3" reason="Never" />
+    <disable_collisions link1="omniwheel_bl" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="omniwheel_br" link2="omniwheel_fl" reason="Never" />
+    <disable_collisions link1="omniwheel_br" link2="omniwheel_fr" reason="Never" />
+    <disable_collisions link1="omniwheel_br" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="omniwheel_br" link2="xarmlink2" reason="Never" />
+    <disable_collisions link1="omniwheel_br" link2="xarmlink3" reason="Never" />
+    <disable_collisions link1="omniwheel_br" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="omniwheel_fl" link2="omniwheel_fr" reason="Never" />
+    <disable_collisions link1="omniwheel_fl" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="omniwheel_fl" link2="xarmlink2" reason="Never" />
+    <disable_collisions link1="omniwheel_fl" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="omniwheel_fr" link2="xarmlink1" reason="Never" />
+    <disable_collisions link1="omniwheel_fr" link2="xarmlink2" reason="Never" />
+    <disable_collisions link1="omniwheel_fr" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="xarmlink1" link2="xarmlink2" reason="Adjacent" />
+    <disable_collisions link1="xarmlink1" link2="xarmlink3" reason="Never" />
+    <disable_collisions link1="xarmlink1" link2="xarmlink_base" reason="Adjacent" />
+    <disable_collisions link1="xarmlink2" link2="xarmlink3" reason="Adjacent" />
+    <disable_collisions link1="xarmlink2" link2="xarmlink_base" reason="Never" />
+    <disable_collisions link1="xarmlink3" link2="xarmlink4" reason="Adjacent" />
+    <disable_collisions link1="xarmlink3" link2="xarmlink5" reason="Never" />
+    <disable_collisions link1="xarmlink3" link2="xarmlink6" reason="Never" />
+    <disable_collisions link1="xarmlink4" link2="xarmlink5" reason="Adjacent" />
+    <disable_collisions link1="xarmlink4" link2="xarmlink6" reason="Never" />
+    <disable_collisions link1="xarmlink5" link2="xarmlink6" reason="Adjacent" />
+</robot>
