@@ -4,6 +4,9 @@
 	<xacro:include filename="$(find as_description)/urdf/common/generic_links.xacro"/>
 	<xacro:include filename="$(find sensor_imu)/urdf/sensor_imu.xacro"/>
 
+	<xacro:property name="mesh_filetype" value=".dae" />
+	<!-- <xacro:property name="mesh_filetype" value=".stl" /> -->
+
 	<!-- battery_link -->
 	<xacro:property name="battery_link_dx" value="0.40"/>
 	<xacro:property name="battery_link_dy" value="0.150"/>
@@ -48,7 +51,7 @@
 	
 
 	<xacro:macro name="battery48" params="parent xyz rpy">
-		<xacro:generic_box name="battery48" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${battery_link_dx}" dy="${battery_link_dy}" dz="${battery_link_dz}" m="${battery_link_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="battery.dae" mxyz="0.035 0 ${-battery_link_dz/2}" mrpy="0 0 ${M_PI}" />
+		<xacro:generic_box name="battery48" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${battery_link_dx}" dy="${battery_link_dy}" dz="${battery_link_dz}" m="${battery_link_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="battery${mesh_filetype}" mxyz="0.035 0 ${-battery_link_dz/2}" mrpy="0 0 ${M_PI}" />
 	</xacro:macro>
 
 	<xacro:macro name="nuc" params="parent xyz rpy suffix">
@@ -56,7 +59,7 @@
 	</xacro:macro>
 
 	<xacro:macro name="dc_box" params="parent xyz rpy">
-		<xacro:generic_box name="dc_box" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${dc_box_dx}" dy="${dc_box_dy}" dz="${dc_box_dz}" m="${dc_box_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="dcbox.dae" mxyz="0 0 ${dc_box_dz/2}" mrpy="0 0 ${M_PI/2} " />
+		<xacro:generic_box name="dc_box" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${dc_box_dx}" dy="${dc_box_dy}" dz="${dc_box_dz}" m="${dc_box_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="dcbox${mesh_filetype}" mxyz="0 0 ${dc_box_dz/2}" mrpy="0 0 ${M_PI/2} " />
 	</xacro:macro>
 
 	<xacro:macro name="mount_plate" params="parent xyz rpy">
@@ -64,19 +67,19 @@
 	</xacro:macro>
 
 	<xacro:macro name="compressor" params="parent xyz rpy">
-		<xacro:generic_box name="compressor" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${compressor_box_dx}" dy="${compressor_box_dy}" dz="${compressor_box_dz}" m="${compressor_m}" material="Grey" gmaterial="Gazebo/Grey" meshfile="compressor_assembly.dae" mxyz="0 0 ${-compressor_box_dz/2}" mrpy="0 0 0" />
+		<xacro:generic_box name="compressor" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${compressor_box_dx}" dy="${compressor_box_dy}" dz="${compressor_box_dz}" m="${compressor_m}" material="Grey" gmaterial="Gazebo/Grey" meshfile="compressor_assembly${mesh_filetype}" mxyz="0 0 ${-compressor_box_dz/2}" mrpy="0 0 0" />
 	</xacro:macro>
 
 	<xacro:macro name="material3" params="parent xyz rpy">
-		<xacro:generic_cylinder name="material3" parent="${parent}" xyz="${xyz}" rpy="${rpy}" r="${material3_r}" h="${material3_h}" m="${material3_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="clay_assembly.dae" mxyz="${material3_r+0.02}  0  ${material3_h/5}" mrpy="0 ${-M_PI/2} 0"/>
+		<xacro:generic_cylinder name="material3" parent="${parent}" xyz="${xyz}" rpy="${rpy}" r="${material3_r}" h="${material3_h}" m="${material3_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="clay_assembly${mesh_filetype}" mxyz="${material3_r+0.02}  0  ${material3_h/5}" mrpy="0 ${-M_PI/2} 0"/>
 	</xacro:macro>
 
 	<xacro:macro name="cover_plate" params="parent xyz rpy">
-		<xacro:generic_box name="cover_plate" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${cover_box_dx}" dy="${cover_box_dy}" dz="${cover_box_dz}" m="${cover_plate_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="cover_assembly_.dae" mxyz="0 0 0" mrpy="0 0 0"/>
+		<xacro:generic_box name="cover_plate" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${cover_box_dx}" dy="${cover_box_dy}" dz="${cover_box_dz}" m="${cover_plate_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="cover_assembly_${mesh_filetype}" mxyz="0 0 0" mrpy="0 0 0"/>
 	</xacro:macro>
 
 	<xacro:macro name="ic" params="parent xyz rpy">
-		<xacro:generic_box name="ic" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${ic_box_dx}" dy="${ic_box_dy}" dz="${ic_box_dz}" m="${ic_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="intermediate_assembly.dae" mxyz="${ic_box_dx/2 - 0.03} 0 ${-ic_box_dz/2}" mrpy="0 0 0"/>
+		<xacro:generic_box name="ic" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${ic_box_dx}" dy="${ic_box_dy}" dz="${ic_box_dz}" m="${ic_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="intermediate_assembly${mesh_filetype}" mxyz="${ic_box_dx/2 - 0.03} 0 ${-ic_box_dz/2}" mrpy="0 0 0"/>
 	</xacro:macro>
 
 	<xacro:macro name="extruder" params="parent xyz rpy">	
@@ -96,13 +99,13 @@
             <visual>               
 				<origin xyz= "0 0 ${-extruder_h/2}" rpy = "0 0 0" />
 				<geometry>                        
-					<mesh filename="package://as_description/meshes/extruder.dae" />
+					<mesh filename="package://as_description/meshes/extruder${mesh_filetype}" />
 				</geometry>                              
             </visual>
             <collision>				
                 <origin xyz= "0 0 ${-extruder_h/2}" rpy = "0 0 0" />
 				<geometry>                        
-					<mesh filename="package://as_description/meshes/extruder_collision.dae" />
+					<mesh filename="package://as_description/meshes/extruder_collision${mesh_filetype}" />
 				</geometry>              
             </collision>		
         </link>  

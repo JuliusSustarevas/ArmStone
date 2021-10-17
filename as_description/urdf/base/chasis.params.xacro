@@ -4,6 +4,9 @@
 	xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
 	xmlns:xacro="http://ros.org/wiki/xacro">
 
+	<xacro:property name="mesh_filetype" value=".dae" />
+	<!-- <xacro:property name="mesh_filetype" value=".stl" /> -->
+
 	<!-- Link Dimensions -->
 	<!-- base_link -->
 	<xacro:property name="base_link_dx" value="0.72" />
@@ -11,7 +14,7 @@
 	<xacro:property name="base_link_dz" value="0.172" />
 	<!-- 2.8kg raw frame. 3.5 estimate  full -->
 	<xacro:property name="base_link_m" value="3.5" />
-	<xacro:property name="base_meshfile" value="chasis.dae" />
+	<xacro:property name="base_meshfile" value="chasis${mesh_filetype}" />
 	<xacro:property name="base_mxyz" value="${(base_link_dx/2 - 0.01)} 0 ${(0.02 - 0.006 -base_link_dz/2)}" />
 	<xacro:property name="base_mrpy" value="0 0 0" />
 	<!-- alluminium frame only -->
@@ -28,7 +31,7 @@
 	<xacro:property name="motor_pad_l" value="0.0931" />
 	<xacro:property name="motor_mrpy" value="${M_PI/2} ${- M_PI/2} 0" />
 	<xacro:property name="motor_mxyz" value="0 ${motor_link_r/2 +0.012} 0.025" />
-	<xacro:property name="motor_meshfile" value="motor.dae" />
+	<xacro:property name="motor_meshfile" value="motor${mesh_filetype}" />
 
 	<!-- with gearbox -->
 	<!-- True is 1460mNm  pre gearbox-->

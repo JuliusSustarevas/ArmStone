@@ -1,43 +1,39 @@
 <?xml version="1.0"?>
-<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
-	xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
-	xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
-	xmlns:xacro="http://ros.org/wiki/xacro">
-
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor" xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" xmlns:xacro="http://ros.org/wiki/xacro">
 
 
 	<!-- Common -->
-	<xacro:include filename="$(find as_description)/urdf/common/inertia.xacro"/>
-	<xacro:include filename="$(find as_description)/urdf/common/materials.xacro"/>
+	<xacro:include filename="$(find as_description)/urdf/common/inertia.xacro" />
+	<xacro:include filename="$(find as_description)/urdf/common/materials.xacro" />
 
-	<xacro:macro name="as_motor_wheel_assembly" params="suffix wheel_angle axis " >
+	<xacro:macro name="as_motor_wheel_assembly" params="suffix wheel_angle axis ">
 
 		<link name="motor_gearbox${suffix}">
 			<inertial>
-				<origin xyz="0 0 0" rpy="0 0 0"/>
-				<mass value="${motor_link_m}"/>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<mass value="${motor_link_m}" />
 				<xacro:cylinder_inertia_tensor m="${motor_link_m}" r="${motor_link_r}" h="${motor_link_h}" />
 			</inertial>
 			<visual>
-				<origin xyz= "${motor_mxyz}" rpy = "${motor_mrpy}" />
-				<geometry>										
+				<origin xyz="${motor_mxyz}" rpy="${motor_mrpy}" />
+				<geometry>
 					<mesh filename="package://as_description/meshes/${motor_meshfile}" />
-				</geometry>				
+				</geometry>
 			</visual>
 			<collision>
 				<geometry>
-					<cylinder length="${motor_link_h}" radius="${motor_link_r}"/>
+					<cylinder length="${motor_link_h}" radius="${motor_link_r}" />
 				</geometry>
 			</collision>
 		</link>
 
 		<joint name="motor_wheel_joint${suffix}" type="continuous">
-			<parent link="motor_gearbox${suffix}"/>
-			<child link="omniwheel${suffix}"/>
-			<origin xyz= "0 0 ${motor_link_h/2}" rpy = "0 ${wheel_angle} 0" />
-			<axis xyz="${axis}"/>
-			<limit effort = "${motor_effort_limit}" velocity = "${motor_velocity_limit}" />
-			<dynamics damping="1.5" friction="1.0"/>
+			<parent link="motor_gearbox${suffix}" />
+			<child link="omniwheel${suffix}" />
+			<origin xyz="0 0 ${motor_link_h/2}" rpy="0 ${wheel_angle} 0" />
+			<axis xyz="${axis}" />
+			<limit effort="${motor_effort_limit}" velocity="${motor_velocity_limit}" />
+			<dynamics damping="1.5" friction="1.0" />
 		</joint>
 
 		<transmission name="motor_wheel_joint_transmission${suffix}">
@@ -54,21 +50,21 @@
 
 		<link name="omniwheel${suffix}">
 			<inertial>
-				<origin xyz="0 0 0" rpy="0 0 0"/>
-				<mass value="${wheel_link_m}"/>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<mass value="${wheel_link_m}" />
 				<xacro:sphere_inertia_tensor m="${wheel_link_m}" r="${wheel_link_r/2}" />
 			</inertial>
 			<!-- No visual. -->
 			<collision>
 				<geometry>
-					<sphere radius="${wheel_link_r}"/>
+					<sphere radius="${wheel_link_r}" />
 				</geometry>
 			</collision>
 
 			<visual>
 				<!-- dummy visual so gazebo doesnt freakout -->
 				<geometry>
-					<sphere radius="${wheel_link_r/3}"/>
+					<sphere radius="${wheel_link_r/3}" />
 				</geometry>
 			</visual>
 
@@ -79,12 +75,12 @@
 		</link>
 
 		<gazebo reference="omniwheel${suffix}">
-			<!-- not sure if mu or mu1 is used -->			
-			<mu1 value="0.15"/>
-			<mu2 value="1.5"/>
+			<!-- not sure if mu or mu1 is used -->
+			<mu1 value="0.15" />
+			<mu2 value="1.5" />
 			<kp value="10000000.0" />
 			<kd value="10000.0" />
-			<fdir1 value="1 0 0"/>
+			<fdir1 value="1 0 0" />
 			<!-- <maxContacts value= "1"/> -->
 			<material>Gazebo/White</material>
 		</gazebo>
@@ -95,97 +91,92 @@
 	<xacro:macro name="as_base_chasis">
 
 		<!-- Projection of base_link origin to xy plane -->
-		<link name="base_link_footprint"/>
+		<link name="base_link_footprint" />
 		<joint name="joint0" type="fixed">
-			<parent link="base_link_footprint"/>
-			<child link="base_link_base"/>
-			<origin xyz= "0 0 ${ground_clearance}" rpy = "0 0 0" />
+			<parent link="base_link_footprint" />
+			<child link="base_link_base" />
+			<origin xyz="0 0 ${ground_clearance}" rpy="0 0 0" />
 		</joint>
 		<!-- Projection of base_link origin to bottom of baselink collision box (i.e. raised only by wheels) -->
-		<link name="base_link_base"/>
+		<link name="base_link_base" />
 		<joint name="joint1" type="fixed">
-			<parent link="base_link_base"/>
-			<child link="base_link"/>
-			<origin xyz= "0 0 ${base_link_dz/2}" rpy = "0 0 0" />
+			<parent link="base_link_base" />
+			<child link="base_link" />
+			<origin xyz="0 0 ${base_link_dz/2}" rpy="0 0 0" />
 		</joint>
 		<!-- baselink -->
 		<link name="base_link">
 			<inertial>
-				<origin xyz="0 0 0" rpy="0 0 0"/>
-				<mass value="${base_link_m}"/>
-				<xacro:box_inertia_tensor m="${base_link_m}" dx="${base_link_dx}" dy="${base_link_dy}" dz="${base_link_dz}"/>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<mass value="${base_link_m}" />
+				<xacro:box_inertia_tensor m="${base_link_m}" dx="${base_link_dx}" dy="${base_link_dy}" dz="${base_link_dz}" />
 			</inertial>
-			<visual>				
-				<origin xyz= "${base_mxyz}" rpy = "${base_mrpy}" />
-				<geometry>										
+			<visual>
+				<origin xyz="${base_mxyz}" rpy="${base_mrpy}" />
+				<geometry>
 					<mesh filename="package://as_description/meshes/${base_meshfile}" />
-				</geometry>				
+				</geometry>
 			</visual>
 			<collision>
-				<origin xyz= "-0.125 0 0" rpy = "0 0 0" />
+				<origin xyz="-0.125 0 0" rpy="0 0 0" />
 				<geometry>
-					<box size="${base_link_dx-0.25} ${base_link_dy} ${base_link_dz}" />					
+					<box size="${base_link_dx-0.25} ${base_link_dy} ${base_link_dz}" />
 				</geometry>
 			</collision>
-			<collision>		
-				<origin xyz= "0 0 ${-(base_link_dz-0.03)/2}" rpy = "0 0 0" />		
-				<geometry>					
+			<collision>
+				<origin xyz="0 0 ${-(base_link_dz-0.03)/2}" rpy="0 0 0" />
+				<geometry>
 					<box size="${base_link_dx} ${base_link_dy} 0.035" />
 				</geometry>
 			</collision>
-
-			<collision>		
-				<origin xyz= "${base_link_dx/2 -0.125} ${base_link_dy/2 -0.01} 0.015" rpy = "0 ${-60*M_PI/180} 0" />		
-				<geometry>					
+			<collision>
+				<origin xyz="${base_link_dx/2 -0.125} ${base_link_dy/2 -0.01} 0.015" rpy="0 ${-60*M_PI/180} 0" />
+				<geometry>
 					<box size=" 0.025 0.025 0.29" />
 				</geometry>
 			</collision>
-
-			<collision>		
-				<origin xyz= "${base_link_dx/2 -0.125} ${-base_link_dy/2 +0.01} 0.015" rpy = "0 ${-60*M_PI/180} 0" />		
-				<geometry>					
+			<collision>
+				<origin xyz="${base_link_dx/2 -0.125} ${-base_link_dy/2 +0.01} 0.015" rpy="0 ${-60*M_PI/180} 0" />
+				<geometry>
 					<box size=" 0.025 0.025 0.29" />
 				</geometry>
 			</collision>
-
 			<gazebo reference="base_link">
 				<material>Gazebo/DarkGrey</material>
 			</gazebo>
 		</link>
 
-		<xacro:as_motor_wheel_assembly suffix="_fl"  wheel_angle="${wheel_roller_angle}" axis="-1 0 0"/>
-		<xacro:as_motor_wheel_assembly suffix="_fr"  wheel_angle="${-wheel_roller_angle}" axis="-1 0 0"/>
-		<xacro:as_motor_wheel_assembly suffix="_bl"  wheel_angle="${-wheel_roller_angle}" axis="1 0 0"/>
-		<xacro:as_motor_wheel_assembly suffix="_br"  wheel_angle="${wheel_roller_angle}" axis="1 0 0"/>
+		<xacro:as_motor_wheel_assembly suffix="_fl" wheel_angle="${wheel_roller_angle}" axis="-1 0 0" />
+		<xacro:as_motor_wheel_assembly suffix="_fr" wheel_angle="${-wheel_roller_angle}" axis="-1 0 0" />
+		<xacro:as_motor_wheel_assembly suffix="_bl" wheel_angle="${-wheel_roller_angle}" axis="1 0 0" />
+		<xacro:as_motor_wheel_assembly suffix="_br" wheel_angle="${wheel_roller_angle}" axis="1 0 0" />
 
 		<joint name="motor_wheel_assembly_joint_fl" type="fixed">
-			<parent link="base_link"/>
-			<child link="motor_gearbox_fl"/>
-			<origin xyz= "${motor_wheel_assembly_xyz_fl}" rpy = "${motor_wheel_assembly_rpy_fl}" />
+			<parent link="base_link" />
+			<child link="motor_gearbox_fl" />
+			<origin xyz="${motor_wheel_assembly_xyz_fl}" rpy="${motor_wheel_assembly_rpy_fl}" />
 		</joint>
 
 		<joint name="motor_wheel_assembly_joint_fr" type="fixed">
-			<parent link="base_link"/>
-			<child link="motor_gearbox_fr"/>
-			<origin xyz= "${motor_wheel_assembly_xyz_fr}" rpy = "${motor_wheel_assembly_rpy_fr}" />
+			<parent link="base_link" />
+			<child link="motor_gearbox_fr" />
+			<origin xyz="${motor_wheel_assembly_xyz_fr}" rpy="${motor_wheel_assembly_rpy_fr}" />
 		</joint>
 
 		<joint name="motor_wheel_assembly_joint_bl" type="fixed">
-			<parent link="base_link"/>
-			<child link="motor_gearbox_bl"/>
-			<origin xyz= "${motor_wheel_assembly_xyz_bl}" rpy = "${motor_wheel_assembly_rpy_bl}" />
+			<parent link="base_link" />
+			<child link="motor_gearbox_bl" />
+			<origin xyz="${motor_wheel_assembly_xyz_bl}" rpy="${motor_wheel_assembly_rpy_bl}" />
 		</joint>
 
 		<joint name="motor_wheel_assembly_joint_br" type="fixed">
-			<parent link="base_link"/>
-			<child link="motor_gearbox_br"/>
-			<origin xyz= "${motor_wheel_assembly_xyz_br}" rpy = "${motor_wheel_assembly_rpy_br}" />
+			<parent link="base_link" />
+			<child link="motor_gearbox_br" />
+			<origin xyz="${motor_wheel_assembly_xyz_br}" rpy="${motor_wheel_assembly_rpy_br}" />
 		</joint>
 
-		
+
 	</xacro:macro>
-
-
 
 
 </robot>
