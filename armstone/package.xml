@@ -57,6 +57,7 @@
   <exec_depend>as_extruder_control</exec_depend>
   <exec_depend>as_gazebo</exec_depend>
   <exec_depend>as_ui</exec_depend>
+  <exec_depend>as_moveit_config</exec_depend>
   <exec_depend>mecanum_drive_controller</exec_depend>
   <exec_depend>roscpp</exec_depend>
   <exec_depend>rospy</exec_depend>  
