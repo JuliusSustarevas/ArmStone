@@ -25,11 +25,6 @@
 	<xacro:property name="dc_box_dz" value="0.068"/>
 	<xacro:property name="dc_box_m" value="1.8"/>
 
-	<!-- Material Cylinder 3 -->
-	<xacro:property name="material3_r" value="0.0525"/>
-	<xacro:property name="material3_h" value="0.42"/>
-	<xacro:property name="material3_m" value="${3*1760/1000}"/>
-
 	<!-- Aluminium plate -->
 	<xacro:property name="mount_plate_dx" value="${0.27}"/>
 	<xacro:property name="mount_plate_dy" value="${0.455}"/>

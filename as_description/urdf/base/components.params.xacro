@@ -38,19 +38,19 @@
 	<!-- Material Cylinder 3 -->
 	<xacro:property name="material3_r" value="${0.2/2}"/>
 	<xacro:property name="material3_h" value="0.5"/>
-	<xacro:property name="material3_m" value="${3*1760/1000}"/>
+	<xacro:property name="material3_m" value="${1.75 + 3*1760/1000}"/>
 
 	<!-- Compressor -->
 	<xacro:property name="cover_box_dx" value="0.47"/>
 	<xacro:property name="cover_box_dy" value="0.45"/>
 	<xacro:property name="cover_box_dz" value="0.006"/>
-	<xacro:property name="cover_plate_m" value="0.2"/>
+	<xacro:property name="cover_plate_m" value="1.45"/>
 
 	<!-- Compressor -->
 	<xacro:property name="ic_box_dx" value="0.28"/>
 	<xacro:property name="ic_box_dy" value="0.074"/>
 	<xacro:property name="ic_box_dz" value="0.145"/>
-	<xacro:property name="ic_m" value="0.4"/>
+	<xacro:property name="ic_m" value="0.83"/>
 
 	<!-- backpack -->
 	<xacro:property name="backpack_dx" value="0.4"/>
