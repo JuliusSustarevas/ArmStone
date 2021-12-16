@@ -30,9 +30,7 @@
 
     <!-- UI -->
     <group ns="ui">
-        <include file="$(find as_ui)/launch/load_joy_stack.launch">
-            <arg name="base_controller" default="$(arg base_controller)"/>
-        </include>
+        <include file="$(find as_ui)/launch/load_joy_stack.launch"/>                   
         <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find as_description)/rviz/as.rviz" />
     </group>
 

@@ -17,7 +17,7 @@
       <xacro:property name="arm_xyz" value="${-0.185+base_link_dx/2} 0 ${0.005+0.028-base_link_dz/2}" />
       <xacro:property name="arm_rpy" value="0 0 0" />
       <xacro:property name="extruder_xyz" value="0 0 ${extruder_h/2}" />
-      <xacro:property name="extruder_rpy" value="0 0 ${-M_PI/2}" />
+      <xacro:property name="extruder_rpy" value="0 0 ${-M_PI/2}" />      
 
       <!-- formation-->
       <xacro:as_base load_gazebo_plugin="$(arg load_gazebo_plugin)" />

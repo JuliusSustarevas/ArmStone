@@ -1,0 +1,12 @@
+<launch>
+    <!-- Localiztion -->
+    <!-- <node pkg="slam_toolbox" type="localization_slam_toolbox_node" name="slam_toolbox" output="screen">
+      <rosparam command="load" file="$(find as_base_localisation)/config/localisation.yaml" />
+    </node> -->
+
+    <!-- Mapping -->
+    <node pkg="slam_toolbox" type="async_slam_toolbox_node" name="slam_toolbox" output="screen">
+        <rosparam command="load" file="$(find as_base_localisation)/config/async_mapping.yaml" />
+    </node>
+  
+</launch>

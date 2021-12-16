@@ -19,11 +19,14 @@
 
     <!-- Gazebo -->
     <include file="$(find as_gazebo)/launch/as_gazebo_empty.launch">
-        <arg name="paused" value="$(eval arg('paused') and not ((arg('xarm_controller')=='xarm_joint_velocity_controller') or (arg('xarm_controller')=='xarm_velocity_trajectory_controller')))" />
-        <arg name="world_name" value="empty.world" />
+        <arg name="paused" value="$(eval arg('paused') and not ((arg('xarm_controller')=='xarm_joint_velocity_controller') or (arg('xarm_controller')=='xarm_velocity_trajectory_controller')))" />                
         <arg name="use_sim_time" value="$(arg use_sim_time)" />
+        <!-- <arg name="world_name" value="empty.world" /> -->
+        <!-- <arg name="spawn_coordinates" value="-x 0 -y 0 -z 0" />  -->
         <!-- <arg name="world_name" value="inspection.world" /> -->
-        <!-- <arg name="world_name" value="construction.world" />  -->
+        <arg name="world_name" value="construction.world" /> 
+        <arg name="spawn_coordinates" value="-x 0 -y 0 -z 0.02" /> 
+        
     </include>
 
 </launch>

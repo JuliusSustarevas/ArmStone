@@ -3,6 +3,7 @@
 
 	<xacro:include filename="$(find as_description)/urdf/common/generic_links.xacro"/>
 	<xacro:include filename="$(find sensor_imu)/urdf/sensor_imu.xacro"/>
+	<xacro:include filename="$(find realsense2_description)/urdf/_l515.urdf.xacro" />
 
 	<xacro:property name="mesh_filetype" value=".dae" />
 	<!-- <xacro:property name="mesh_filetype" value=".stl" /> -->
@@ -77,7 +78,7 @@
 		<xacro:generic_box name="ic" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${ic_box_dx}" dy="${ic_box_dy}" dz="${ic_box_dz}" m="${ic_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="intermediate_assembly${mesh_filetype}" mxyz="${ic_box_dx/2 - 0.03} 0 ${-ic_box_dz/2}" mrpy="0 0 0"/>
 	</xacro:macro>
 
-	<xacro:macro name="extruder" params="parent xyz rpy">	
+	<xacro:macro name="extruder" params="parent xyz rpy l515l_on:=true">	
 		
 		<joint name="extruder_joint" type="fixed">
             <parent link="${parent}"/>
@@ -112,6 +113,43 @@
 			  <origin xyz= "0 0 ${extruder_h/2}" rpy = "0 0 0" />
 		</joint>		
 		<xacro:imu prefix="ee" parent="${parent}" xyz="${ee_imu_xyz}" rpy="${ee_imu_rpy}" />
+
+		<xacro:if value="${l515l_on}">
+
+			<joint name="cam_holder_joint" type="fixed">
+				<parent link="extruder_ee"/>
+				<child link="cam_holder_link"/>
+				<origin xyz= "-0.056217 0 -0.170" rpy = "0 0 ${M_PI}" />
+			</joint>	
+
+			<link name="cam_holder_link">				
+				<visual>               
+					<origin xyz= "0 0 0" rpy = "0 0 0" />
+					<geometry>                        
+						<mesh filename="package://as_description/meshes/cam_holder${mesh_filetype}" />
+					</geometry>                              
+				</visual>
+				<collision>				
+					<origin xyz= "0 0 0" rpy = "0 0 0" />
+					<geometry>                        
+						<mesh filename="package://as_description/meshes/cam_holder${mesh_filetype}" />
+					</geometry>              
+				</collision>		
+			</link>  
+
+			<joint name="cam_holder_offest_joint" type="fixed">
+				<parent link="cam_holder_link"/>
+				<child link="cam_holder_end_link"/>
+				<origin xyz= "0.1264 0 -0.1244" rpy = "${-25*M_PI/180} 0  ${M_PI/2}" />
+			</joint>	
+
+			<link name="cam_holder_end_link"/>  
+
+			<xacro:sensor_l515 name="l515" topics_ns="/as_sensors/depth_cam" parent="cam_holder_end_link" use_nominal_extrinsics="true" publish_pointcloud="true" add_plug="false" use_mesh="true">
+				<origin xyz="0.0305 0  0.011057" rpy="0 ${-90*M_PI/180} 0" />
+			</xacro:sensor_l515>  
+		</xacro:if>
+		
 		
 	</xacro:macro>
 
@@ -187,7 +225,7 @@
 				</ray>
 				<!-- <plugin name="${prefix}_hokuyo_gazebo_driver" filename="libgazebo_ros_gpu_laser.so"> -->
 				<plugin name="${prefix}_hokuyo_gazebo_driver" filename="libgazebo_ros_laser.so">
-					<topicName>/as_localisation/scan</topicName>
+					<topicName>/as_sensors/scan</topicName>
 					<frameName>${prefix}_hokuyo_link</frameName>
 				</plugin>
 			</sensor>

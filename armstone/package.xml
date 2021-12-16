@@ -65,6 +65,7 @@
   <exec_depend>vesc</exec_depend> 
   <exec_depend>xarm_ros_meta</exec_depend>
   <exec_depend>sensor_imu</exec_depend>
+  <exec_depend>slam_toolbox</exec_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
