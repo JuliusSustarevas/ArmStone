@@ -10,3 +10,6 @@
 [submodule "as_sensors/sensor_imu"]
 	path = as_sensors/sensor_imu
 	url = https://github.com/julius-forks/sensor_imu.git
+[submodule "as_sensors/rs_l515_gazebo"]
+	path = as_sensors/rs_l515_gazebo
+	url = https://github.com/julius-forks/gazebo_ros_l515.git
