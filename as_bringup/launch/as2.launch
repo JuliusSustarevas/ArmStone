@@ -4,11 +4,11 @@
     
     <!-- ###Sensors### -->
     <!-- IMU Ext -->
-    <include file="$(find sensor_imu)/launch/sensor_imu.launch" >
+    <!-- <include file="$(find sensor_imu)/launch/sensor_imu.launch" >
       <arg name="sensor_name" default="ext_imu"/>   
       <arg name="port" default="EXT_IMU"/>
       <arg name="device_frame"       default="ext_imu" />
-    </include>
+    </include> -->
     <!-- IMU Base -->
     <include file="$(find sensor_imu)/launch/sensor_imu.launch" >
       <arg name="sensor_name" default="base_imu"/>   
@@ -16,12 +16,12 @@
       <arg name="device_frame"       default="base_imu" />
     </include>     
     <!-- Realsense -->    
-    <include file="$(find realsense2_camera)/launch/rs_camera.launch" >
+    <!-- <include file="$(find realsense2_camera)/launch/rs_camera.launch" >
       <arg name="device_type"         default="l515"/>
       <arg name="json_file_path"      default="$(find as_sensors)/config/l515_short_distance.json"/>
       <arg name="initial_reset"             default="true"/>
       <arg name="align_depth"             default="true"/>
       <arg name="filters"             default="pointcloud"/>
-    </include>
+    </include> -->
 
 </launch>
