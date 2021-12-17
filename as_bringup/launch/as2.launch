@@ -1,0 +1,13 @@
+<launch>
+    <!-- ###Launch args### -->       
+  
+    
+    <!-- ###Sensors### -->
+    <!-- IMU Ext -->
+    <!-- IMU Base -->
+    <!-- Realsense -->
+    <arg name="device_type"         default=""/>
+  <arg name="json_file_path"      default=""/>
+  <arg name="initial_reset"             default="true"/>
+
+</launch>
