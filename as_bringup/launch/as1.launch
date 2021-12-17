@@ -5,10 +5,10 @@
 
     <!-- ###Stack and Control### -->
     <include file="$(find as_bringup)/launch/as_stack.launch">
-        <arg name="sim" value="true" />
+        <arg name="sim" value="false" />
         <arg name="base_on" value="true" />
         <arg name="xarm_on" value="false" />
-        <arg name="rviz" value="$(arg rviz)" />
+        <arg name="rviz" value="false" />
         <arg name="base_controller" value="$(arg base_controller)" />
         <arg name="xarm_controller" value="$(arg xarm_controller)" />
     </include>
