@@ -69,6 +69,7 @@
   <exec_depend>as_sensors</exec_depend>
   <exec_depend>realsense2_description</exec_depend>
   <exec_depend>realsense_gazebo_plugin</exec_depend>  
+  <exec_depend>as_base_localisation</exec_depend>    
   
   <!-- The export tag contains other, unspecified, tags -->
   <export>
