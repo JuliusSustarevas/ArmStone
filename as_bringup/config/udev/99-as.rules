@@ -14,7 +14,8 @@
 
 # joystick
 KERNEL=="js*", ATTRS{name}=="Google LLC Stadia Controller rev. A" ,   ATTRS{uniq}=="9B120YCAC6G6L8", SYMLINK+="STADIA_GREEN", MODE:="0666"
-#KERNEL=="js*", ATTRS{name}=="Google LLC Stadia Controller rev. A" ,   ATTRS{uniq}=="9B120YCAC6G6L8", SYMLINK+="STADIA_GREEN", MODE:="0666"
+KERNEL=="js*", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c21f", SYMLINK+="LOGITECH_AS", MODE:="0666"
+
 
 #MOTORS
 KERNEL=="ttyACM*", KERNELS=="*.1", ATTRS{product}=="ChibiOS/RT Virtual COM Port" , SYMLINK+="FL_MOTOR", MODE:="0666"
