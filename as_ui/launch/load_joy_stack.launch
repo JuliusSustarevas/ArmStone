@@ -1,6 +1,6 @@
 <launch>        
-    <arg name="joy_type" default="STADIA_GREEN" />
-    <!-- <arg name="joy_type" default="LOGITECH_AS" /> -->
+    <!-- <arg name="joy_type" default="STADIA_GREEN" /> -->
+    <arg name="joy_type" default="LOGITECH_AS" />
     <!-- <arg name="joy_type" default="LOGITECH_NUC" /> -->
 
     <!-- <arg name="joy_dev" default="/dev/input/js1" /> -->

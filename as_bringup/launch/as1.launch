@@ -3,7 +3,8 @@
     <arg name="base_controller" default="as_base_holonomic_controller" doc="as_base_differential_controller  or  as_base_holonomic_controller" />
     <arg name="xarm_controller" default="xarm_joint_velocity_controller" doc="xarm_joint_position_controller or xarm_position_trajectory_controller or xarm_velocity_trajectory_controller or xarm_joint_velocity_controller. Note gazebo should be not paused for velocity controller" />
     <arg name="xarm_on" default="false" doc="Turn on/off xarm" />
-    <arg name="base_on" default="true" doc="Turn on/off base" />   
+    <arg name="base_on" default="true" doc="Turn on/off base" />
+    
     <!-- ###Stack and Control### -->
     <include file="$(find as_bringup)/launch/as_stack.launch">
         <arg name="sim" value="false" />
@@ -13,7 +14,6 @@
         <arg name="base_controller" value="$(arg base_controller)" />
         <arg name="xarm_controller" value="$(arg xarm_controller)" />
         <arg name="joy_type" value="LOGITECH_AS" />
-        
     </include>
     
     <!-- ###Sensors### -->

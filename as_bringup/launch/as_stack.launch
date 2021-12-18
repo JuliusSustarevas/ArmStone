@@ -4,13 +4,13 @@
     <arg name="rviz" default="false" doc="Turn off rviz, but optionally allow for sim modes" />
     <arg name="xarm_on" default="true" doc="Turn on/off xarm" />
     <arg name="base_on" default="true" doc="Turn on/off base" />
-    <arg name="joy_type" default="LOGITECH_AS" doc="Joystick STADIA_GREEN or LOGITECH_AS" />    
-    <!-- select controllers -->    
+    <arg name="joy_type" default="LOGITECH_AS" doc="STADIA_GREEN LOGITECH_AS" />
+    <!-- select controllers -->
     <arg name="base_controller" default="as_base_holonomic_controller" doc="as_base_differential_controller  or  as_base_holonomic_controller" />
     <arg name="xarm_controller" default="xarm_joint_velocity_controller" doc="xarm_position_trajectory_controller or xarm_joint_velocity_controller or xarm_joint_position_controller or xarm_velocity_trajectory_controller" />
-    <arg name="xarm_vel_ctrl_on" default="$(eval str(arg('xarm_controller')=='xarm_velocity_trajectory_controller' or arg('xarm_controller')=='xarm_joint_velocity_controller' ) )"  />
-    
-    <!-- Top level infrastructure -->    
+    <arg name="xarm_vel_ctrl_on" default="$(eval str(arg('xarm_controller')=='xarm_velocity_trajectory_controller' or arg('xarm_controller')=='xarm_joint_velocity_controller' ) )" />
+
+    <!-- Top level infrastructure -->
     <param if="$(arg xarm_on)" name="robot_description" command="xacro '$(find as_description)/robots/as.xacro' velocity_control:=$(arg xarm_vel_ctrl_on)" />
     <param unless="$(arg xarm_on)" name="robot_description" command="xacro '$(find as_description)/robots/as_base.xacro'" />
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
@@ -22,19 +22,18 @@
 
     <!-- Control stack -->
     <include ns="as_control" file="$(find as_control)/launch/as_control_stack.launch">
-        <arg name="sim" value="$(arg sim)" />        
+        <arg name="sim" value="$(arg sim)" />
         <arg name="base_on" value="$(arg base_on)" />
-        <arg name="xarm_on" value="$(arg xarm_on)" />        
+        <arg name="xarm_on" value="$(arg xarm_on)" />
         <arg name="base_controller" value="$(arg base_controller)" />
         <arg name="xarm_controller" value="$(arg xarm_controller)" />
     </include>
 
     <!-- UI -->
     <group ns="ui">
-        <include file="$(find as_ui)/launch/load_joy_stack.launch"> 
-            <arg name="joy_type" value="$(arg joy_type)" />                       
+        <include file="$(find as_ui)/launch/load_joy_stack.launch">
+            <arg name="joy_type" value="$(arg joy_type)" />
         </include>
-        
         <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find as_description)/rviz/as.rviz" />
     </group>
 
