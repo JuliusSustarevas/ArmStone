@@ -7,11 +7,11 @@
     
     <!-- ###Sensors### -->
     <!-- IMU Ext -->
-    <include file="$(find sensor_imu)/launch/sensor_imu.launch" >
+    <!-- <include file="$(find sensor_imu)/launch/sensor_imu.launch" >
       <arg name="sensor_name" default="ext_imu"/>   
       <arg name="port" default="EXT_IMU"/>
       <arg name="device_frame"       default="ext_imu" />
-    </include>
+    </include> -->
     <!-- IMU Base -->
     <include file="$(find sensor_imu)/launch/sensor_imu.launch" >
       <arg name="sensor_name" default="base_imu"/>   
@@ -26,6 +26,6 @@
       <arg name="initial_reset"             default="true"/>
       <arg name="align_depth"             default="true"/>
       <arg name="filters"             default="pointcloud"/>
-    </include>
+    </include> -->
 
 </launch>
