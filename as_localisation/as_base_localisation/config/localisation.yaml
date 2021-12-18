@@ -11,7 +11,7 @@ odom_frame: odom
 map_frame: map
 base_frame: base_link_footprint
 scan_topic: /as_sensors/scan
-mode: mapping #localization
+mode: localization #localization
 
 # if you'd like to start localizing on bringup in a map and pose
 #map_file_name: test_steve

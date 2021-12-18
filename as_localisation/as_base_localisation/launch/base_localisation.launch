@@ -1,11 +1,13 @@
 <launch>
+  <arg name="mode" default="true" doc="localisation mapping" />
+  <arg name="map" default="_" doc="existing map when in localisation mode" />
     <!-- Localiztion -->
-    <!-- <node pkg="slam_toolbox" type="localization_slam_toolbox_node" name="slam_toolbox" output="screen">
+    <node if="$(arg mode)" pkg="slam_toolbox" type="localization_slam_toolbox_node" name="slam_toolbox" output="screen">
       <rosparam command="load" file="$(find as_base_localisation)/config/localisation.yaml" />
-    </node> -->
+    </node>
 
     <!-- Mapping -->
-    <node pkg="slam_toolbox" type="async_slam_toolbox_node" name="slam_toolbox" output="screen">
+    <node unless="$(arg mode)" pkg="slam_toolbox" type="async_slam_toolbox_node" name="slam_toolbox" output="screen">
         <rosparam command="load" file="$(find as_base_localisation)/config/async_mapping.yaml" />
     </node>
   

@@ -1,6 +1,9 @@
 <launch>
     <!-- ###Launch args### -->       
   
+
+    <!-- ###Correction Control### -->
+    <!-- TODO -->
     
     <!-- ###Sensors### -->
     <!-- IMU Ext -->
@@ -16,7 +19,8 @@
       <arg name="device_frame"       default="base_imu" />
     </include>     
     <!-- Realsense -->    
-    <!-- <include file="$(find realsense2_camera)/launch/rs_camera.launch" >
+    <!-- https://github.com/IntelRealSense/realsense-ros/issues/2194 -->
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch" >
       <arg name="device_type"         default="l515"/>
       <arg name="json_file_path"      default="$(find as_sensors)/config/l515_short_distance.json"/>
       <arg name="initial_reset"             default="true"/>
