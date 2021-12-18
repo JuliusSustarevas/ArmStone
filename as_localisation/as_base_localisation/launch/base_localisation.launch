@@ -1,5 +1,5 @@
 <launch>
-  <arg name="mode" default="true" doc="mapping  or  localisation" />
+  <arg name="mode" default="true" doc="localisation mapping" />
   <arg name="map" default="_" doc="existing map when in localisation mode" />
     <!-- Localiztion -->
     <node if="$(arg mode)" pkg="slam_toolbox" type="localization_slam_toolbox_node" name="slam_toolbox" output="screen">

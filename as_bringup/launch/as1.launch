@@ -45,6 +45,13 @@
       </node>
 
     <!-- ###Slam_toolbox### -->
+    <include file="$(find as_base_localisation)/launch/base_localisation.launch">
+      <!-- #localisation -->
+      <arg name="mode" value="true" />      
+      <!-- #mapping -->
+      <!-- <arg name="mode" value="false" />       -->
+      <!-- <arg name="sim" value="$(arg sim)" />       -->
+  </include>
 
 
 
