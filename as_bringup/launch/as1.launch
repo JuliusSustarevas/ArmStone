@@ -1,60 +1,67 @@
 <launch>
-    <!-- ###Launch args### -->       
-    <arg name="base_controller" default="as_base_holonomic_controller" doc="as_base_differential_controller  or  as_base_holonomic_controller" />
-    <arg name="xarm_controller" default="xarm_joint_velocity_controller" doc="xarm_joint_position_controller or xarm_position_trajectory_controller or xarm_velocity_trajectory_controller or xarm_joint_velocity_controller. Note gazebo should be not paused for velocity controller" />
-    <arg name="xarm_on" default="false" doc="Turn on/off xarm" />
-    <arg name="base_on" default="true" doc="Turn on/off base" />
-    
-    <!-- ###Stack and Control### -->
-    <include file="$(find as_bringup)/launch/as_stack.launch">
-        <arg name="sim" value="false" />
-        <arg name="base_on" value="$(arg base_on)" />
-        <arg name="xarm_on" value="$(arg xarm_on)" />
-        <arg name="rviz" value="false" />
-        <arg name="base_controller" value="$(arg base_controller)" />
-        <arg name="xarm_controller" value="$(arg xarm_controller)" />
-        <arg name="joy_type" value="LOGITECH_AS" />
-    </include>
-    
-    <!-- ###Sensors### -->
-    <!-- HokuyoL -->
-    <node name="hokuo_L" pkg="urg_node" type="urg_node" output="screen">
-        <param name="ip_address" value=""/>
-        <param name="serial_port" value="/dev/L_HOKUYO"/>
-        <param name="serial_baud" value="115200"/>
-        <param name="frame_id" value="left_hokuyo_link"/>
-        <param name="calibrate_time" value="true"/>
-        <param name="publish_intensity" value="false"/>
-        <param name="publish_multiecho" value="false"/>
-        <!-- Setting to 120 deg cuz robot self -->
-        <param name="angle_min" value="-1.0471975512"/>
-        <param name="angle_max" value="1.0471975512"/>
-      </node>
-    <!-- HokuyoR -->
-    <node name="hokuo_R" pkg="urg_node" type="urg_node" output="screen">
-        <param name="ip_address" value=""/>
-        <param name="serial_port" value="/dev/R_HOKUYO"/>
-        <param name="serial_baud" value="115200"/>
-        <param name="frame_id" value="right_hokuyo_link"/>
-        <param name="calibrate_time" value="true"/>
-        <param name="publish_intensity" value="false"/>
-        <param name="publish_multiecho" value="false"/>
-        <!-- Setting to 120 deg cuz robot self -->
-        <param name="angle_min" value="-1.0471975512"/>
-        <param name="angle_max" value="1.0471975512"/>
-      </node>
+  <!-- ###Launch args### -->
+  <arg name="base_controller" default="as_base_holonomic_controller" doc="as_base_differential_controller  or  as_base_holonomic_controller" />
+  <arg name="xarm_controller" default="xarm_joint_velocity_controller" doc="xarm_joint_position_controller or xarm_position_trajectory_controller or xarm_velocity_trajectory_controller or xarm_joint_velocity_controller. Note gazebo should be not paused for velocity controller" />
+  <arg name="xarm_on" default="false" doc="Turn on/off xarm" />
+  <arg name="base_on" default="true" doc="Turn on/off base" />
 
-    <!-- ###Slam_toolbox### -->
-    <include file="$(find as_base_localisation)/launch/base_localisation.launch">
-      <!-- #localisation -->
-      <arg name="mode" value="true" />      
-      <!-- #mapping -->
-      <!-- <arg name="mode" value="false" />       -->
-      <!-- <arg name="sim" value="$(arg sim)" />       -->
+  <!-- ###Stack and Control### -->
+  <include file="$(find as_bringup)/launch/as_stack.launch">
+    <arg name="sim" value="false" />
+    <arg name="base_on" value="$(arg base_on)" />
+    <arg name="xarm_on" value="$(arg xarm_on)" />
+    <arg name="rviz" value="false" />
+    <arg name="base_controller" value="$(arg base_controller)" />
+    <arg name="xarm_controller" value="$(arg xarm_controller)" />
+    <arg name="joy_type" value="input/js0" />
   </include>
 
+  <!-- ###Sensors### -->
+  <!-- HokuyoL -->
+  <node name="hokuo_L" pkg="urg_node" type="urg_node" output="screen">
+    <param name="ip_address" value="" />
+    <param name="serial_port" value="/dev/L_HOKUYO" />
+    <param name="serial_baud" value="115200" />
+    <param name="frame_id" value="left_hokuyo_link" />
+    <param name="calibrate_time" value="true" />
+    <param name="publish_intensity" value="false" />
+    <param name="publish_multiecho" value="false" />
+    <!-- Setting to 120 deg cuz robot self -->
+    <param name="angle_min" value="-1.0471975512"/>
+    <param name="angle_max" value="1.0471975512"/>
+    <!-- <param name="angle_min" value="-1.91986" />
+    <param name="angle_max" value="1.91986" /> -->
+    <!-- Remap -->
+    <remap from="/scan" to="/as_sensors/scan" />
+  </node>
+
+  <!-- HokuyoR -->
+  <node name="hokuo_R" pkg="urg_node" type="urg_node" output="screen">
+    <param name="ip_address" value="" />
+    <param name="serial_port" value="/dev/R_HOKUYO" />
+    <param name="serial_baud" value="115200" />
+    <param name="frame_id" value="right_hokuyo_link" />
+    <param name="calibrate_time" value="true" />
+    <param name="publish_intensity" value="false" />
+    <param name="publish_multiecho" value="false" />
+    <!-- Setting to 120 deg cuz robot self -->
+    <param name="angle_min" value="-1.0471975512"/>
+      <param name="angle_max" value="1.0471975512"/>
+    <!-- <param name="angle_min" value="-1.91986" />
+    <param name="angle_max" value="1.91986" /> -->
+    <!-- Remap -->
+    <remap from="/scan" to="/as_sensors/scan" />
+  </node>
 
 
+  <!-- ###Slam_toolbox### -->
+  <include file="$(find as_base_localisation)/launch/base_localisation.launch">
+    <!-- #localisation -->
+    <arg name="mode" value="false" />
+    <!-- #mapping -->
+    <!-- <arg name="mode" value="false" />       -->
+    <!-- <arg name="sim" value="$(arg sim)" />       -->
+  </include>
 
 
 </launch>

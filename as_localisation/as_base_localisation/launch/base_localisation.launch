@@ -8,7 +8,7 @@
 
     <!-- Mapping -->
     <node unless="$(arg mode)" pkg="slam_toolbox" type="async_slam_toolbox_node" name="slam_toolbox" output="screen">
-        <rosparam command="load" file="$(find as_base_localisation)/config/async_mapping.yaml" />
+        <rosparam command="load" file="$(find as_base_localisation)/config/async_mapping.yaml" />        
     </node>
   
 </launch>

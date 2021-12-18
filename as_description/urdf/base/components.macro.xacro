@@ -192,8 +192,17 @@
 				</geometry>
 			</visual>
         </link>
+
+
+		<joint name="${prefix}_hokuyo_joint2" type="fixed">
+            <parent link="${prefix}_hokuyo_link"/>
+            <child link="${prefix}_hokuyo_laser"/>
+            <origin xyz= "0.02 0 0.04" rpy = "0 0 0" />
+        </joint>
+
+		<link name="${prefix}_hokuyo_laser"/>
 		  
-		<gazebo reference="${prefix}_hokuyo_link">
+		<gazebo reference="${prefix}_hokuyo_laser">
 			<!-- <sensor type="gpu_ray" name="${prefix}_hokuyo_sensor"> -->
 			<sensor type="ray" name="${prefix}_hokuyo_sensor">
 				<pose>0 0 0 0 0 0</pose>
