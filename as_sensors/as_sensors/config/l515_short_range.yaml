@@ -1,0 +1,55 @@
+!!python/object/new:dynamic_reconfigure.encoding.Config
+dictitems:
+  alternate_ir: false
+  confidence_threshold: 1
+  digital_gain: 1
+  enable_ir_reflectivity: false
+  enable_max_usable_range: false
+  error_polling_enabled: true
+  frames_queue_size: 16
+  freefall_detection_enabled: true
+  global_time_enabled: false
+  groups: !!python/object/new:dynamic_reconfigure.encoding.Config
+    dictitems:
+      alternate_ir: false
+      confidence_threshold: 1
+      digital_gain: 1
+      enable_ir_reflectivity: false
+      enable_max_usable_range: false
+      error_polling_enabled: true
+      frames_queue_size: 16
+      freefall_detection_enabled: true
+      global_time_enabled: false
+      groups: !!python/object/new:dynamic_reconfigure.encoding.Config
+        state: []
+      host_performance: 0
+      id: 0
+      inter_cam_sync_mode: false
+      invalidation_bypass: false
+      laser_power: 100
+      min_distance: 490
+      name: Default
+      noise_filtering: 4
+      parameters: !!python/object/new:dynamic_reconfigure.encoding.Config
+        state: []
+      parent: 0
+      post_processing_sharpening: 1
+      pre_processing_sharpening: 0
+      receiver_gain: 9
+      sensor_mode: 0
+      state: true
+      type: ''
+      visual_preset: 5
+    state: []
+  host_performance: 0
+  inter_cam_sync_mode: false
+  invalidation_bypass: false
+  laser_power: 100
+  min_distance: 490
+  noise_filtering: 4
+  post_processing_sharpening: 1
+  pre_processing_sharpening: 0
+  receiver_gain: 9
+  sensor_mode: 0
+  visual_preset: 5
+state: []
