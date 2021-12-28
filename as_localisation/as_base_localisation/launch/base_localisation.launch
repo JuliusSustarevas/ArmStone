@@ -1,14 +1,23 @@
 <launch>
   <arg name="mode" default="true" doc="localisation mapping" />
   <arg name="map" default="_" doc="existing map when in localisation mode" />
-    <!-- Localiztion -->
-    <node if="$(arg mode)" pkg="slam_toolbox" type="localization_slam_toolbox_node" name="slam_toolbox" output="screen">
-      <rosparam command="load" file="$(find as_base_localisation)/config/localisation.yaml" />
-    </node>
+  <!-- Localiztion -->
+  <node if="$(arg mode)" pkg="slam_toolbox" type="localization_slam_toolbox_node" name="slam_toolbox" output="screen">
+    <rosparam command="load" file="$(find as_base_localisation)/config/localisation.yaml" />
+  </node>
 
-    <!-- Mapping -->
-    <node unless="$(arg mode)" pkg="slam_toolbox" type="async_slam_toolbox_node" name="slam_toolbox" output="screen">
-        <rosparam command="load" file="$(find as_base_localisation)/config/async_mapping.yaml" />        
-    </node>
-  
+  <!-- Mapping -->
+  <node unless="$(arg mode)" pkg="slam_toolbox" type="async_slam_toolbox_node" name="slam_toolbox" output="screen">
+    <rosparam command="load" file="$(find as_base_localisation)/config/async_mapping.yaml" />
+  </node>
+
+  <!-- TODO  -->
+  <!-- Add laser scan matcher
+  Tune real Wheel radius odom -->
+  <!-- EKF -->
+  <node pkg="robot_localization" name="ekf_se" type="ekf_localization_node" clear_params="true" output="screen">
+    <rosparam command="load" file="$(find as_base_localisation)/config/ekf.yaml" />
+    <remap from="cmd_vel" to="/as_control/as_base_holonomic_controller/cmd_vel_out"/>
+  </node>
+
 </launch>
