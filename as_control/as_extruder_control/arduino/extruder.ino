@@ -21,7 +21,15 @@ void volumeMessageCb( const std_msgs::Float32& msg){
 }
 
 void pulseMessageCb( const std_msgs::Int32& msg){
-  pulse_per_second=min(max(msg.data,min_pulse),max_pulse);
+  if (msg.data>0){
+    pulse_per_second=min(max(abs(msg.data),min_pulse),max_pulse);
+  }else if (msg.data<0)
+  {
+    pulse_per_second=-min(max(abs(msg.data),min_pulse),max_pulse);
+  }else{
+    pulse_per_second=0;
+  } 
+  
 }
 
 ros::Subscriber<std_msgs::Float32> sub_volume_rate("set_volume_rate", &volumeMessageCb );

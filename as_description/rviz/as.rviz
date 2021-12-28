@@ -28,7 +28,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: LaserScan
   - Class: slam_toolbox::SlamToolboxPlugin
     Name: SlamToolboxPlugin
 Preferences:
@@ -66,6 +66,253 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        backpack_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_imu_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        base_imu_module:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_link_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        base_link_footprint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        battery48_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        cam_holder_end_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        cam_holder_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        compressor_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        cover_plate_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dc_box_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        ee_imu_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        ee_imu_module:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        extruder_ee:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        extruder_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        ic_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        l515_accel_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_accel_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_bottom_screw_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_color_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_color_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_depth_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_depth_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_gyro_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_gyro_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_infra_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_infra_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        l515_lower_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_upper_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_hokuyo_laser:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_hokuyo_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        material3_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        motor_gearbox_bl:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        motor_gearbox_br:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        motor_gearbox_fl:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        motor_gearbox_fr:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        mount_plate_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        omniwheel_bl:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        omniwheel_br:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        omniwheel_fl:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        omniwheel_fr:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_hokuyo_laser:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_hokuyo_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarm_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        xarmlink1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink6:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink_eef:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
@@ -77,29 +324,115 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        base_imu/base_imu:
+        backpack_link:
           Value: true
-        base_imu/imu_frame:
+        base_imu_frame:
           Value: true
-        base_imu/mag_frame:
+        base_imu_module:
           Value: true
-        camera_aligned_depth_to_color_frame:
+        base_link:
           Value: true
-        camera_color_frame:
+        base_link_base:
           Value: true
-        camera_color_optical_frame:
+        base_link_footprint:
           Value: true
-        camera_depth_frame:
+        battery48_link:
           Value: true
-        camera_depth_optical_frame:
+        cam_holder_end_link:
           Value: true
-        camera_link:
+        cam_holder_link:
           Value: true
-        ext_imu/ext_imu:
+        compressor_link:
           Value: true
-        ext_imu/imu_frame:
+        cover_plate_link:
           Value: true
-        ext_imu/mag_frame:
+        dc_box_link:
+          Value: true
+        ee_imu_frame:
+          Value: true
+        ee_imu_module:
+          Value: true
+        extruder_ee:
+          Value: true
+        extruder_link:
+          Value: true
+        ic_link:
+          Value: true
+        l515_accel_frame:
+          Value: true
+        l515_accel_optical_frame:
+          Value: true
+        l515_bottom_screw_frame:
+          Value: true
+        l515_color_frame:
+          Value: true
+        l515_color_optical_frame:
+          Value: true
+        l515_depth_frame:
+          Value: true
+        l515_depth_optical_frame:
+          Value: true
+        l515_gyro_frame:
+          Value: true
+        l515_gyro_optical_frame:
+          Value: true
+        l515_infra_frame:
+          Value: true
+        l515_infra_optical_frame:
+          Value: true
+        l515_link:
+          Value: true
+        l515_lower_mount:
+          Value: true
+        l515_upper_mount:
+          Value: true
+        left_hokuyo_laser:
+          Value: true
+        left_hokuyo_link:
+          Value: true
+        material3_link:
+          Value: true
+        motor_gearbox_bl:
+          Value: true
+        motor_gearbox_br:
+          Value: true
+        motor_gearbox_fl:
+          Value: true
+        motor_gearbox_fr:
+          Value: true
+        mount_plate_link:
+          Value: true
+        odom:
+          Value: true
+        omniwheel_bl:
+          Value: true
+        omniwheel_br:
+          Value: true
+        omniwheel_fl:
+          Value: true
+        omniwheel_fr:
+          Value: true
+        right_hokuyo_laser:
+          Value: true
+        right_hokuyo_link:
+          Value: true
+        xarm_mount:
+          Value: true
+        xarmlink1:
+          Value: true
+        xarmlink2:
+          Value: true
+        xarmlink3:
+          Value: true
+        xarmlink4:
+          Value: true
+        xarmlink5:
+          Value: true
+        xarmlink6:
+          Value: true
+        xarmlink_base:
+          Value: true
+        xarmlink_eef:
           Value: true
       Marker Scale: 0.15000000596046448
       Name: TF
@@ -107,15 +440,84 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        camera_link:
-          camera_aligned_depth_to_color_frame:
-            camera_color_optical_frame:
-              {}
-          camera_color_frame:
-            {}
-          camera_depth_frame:
-            camera_depth_optical_frame:
-              {}
+        odom:
+          base_link_footprint:
+            base_link_base:
+              base_link:
+                backpack_link:
+                  {}
+                base_imu_module:
+                  base_imu_frame:
+                    {}
+                battery48_link:
+                  {}
+                compressor_link:
+                  {}
+                cover_plate_link:
+                  {}
+                dc_box_link:
+                  {}
+                ic_link:
+                  {}
+                left_hokuyo_link:
+                  left_hokuyo_laser:
+                    {}
+                material3_link:
+                  {}
+                motor_gearbox_bl:
+                  omniwheel_bl:
+                    {}
+                motor_gearbox_br:
+                  omniwheel_br:
+                    {}
+                motor_gearbox_fl:
+                  omniwheel_fl:
+                    {}
+                motor_gearbox_fr:
+                  omniwheel_fr:
+                    {}
+                mount_plate_link:
+                  {}
+                right_hokuyo_link:
+                  right_hokuyo_laser:
+                    {}
+                xarm_mount:
+                  xarmlink_base:
+                    xarmlink1:
+                      xarmlink2:
+                        xarmlink3:
+                          xarmlink4:
+                            xarmlink5:
+                              xarmlink6:
+                                xarmlink_eef:
+                                  ee_imu_module:
+                                    ee_imu_frame:
+                                      {}
+                                  extruder_link:
+                                    extruder_ee:
+                                      cam_holder_link:
+                                        cam_holder_end_link:
+                                          l515_bottom_screw_frame:
+                                            l515_link:
+                                              l515_color_frame:
+                                                l515_accel_frame:
+                                                  l515_accel_optical_frame:
+                                                    {}
+                                                l515_color_optical_frame:
+                                                  {}
+                                                l515_gyro_frame:
+                                                  l515_gyro_optical_frame:
+                                                    {}
+                                              l515_depth_frame:
+                                                l515_depth_optical_frame:
+                                                  {}
+                                              l515_infra_frame:
+                                                l515_infra_optical_frame:
+                                                  {}
+                                            l515_lower_mount:
+                                              {}
+                                            l515_upper_mount:
+                                              {}
       Update Interval: 0
       Value: true
     - Class: rviz/Marker
@@ -171,12 +573,12 @@ Visualization Manager:
       Class: rviz/Map
       Color Scheme: map
       Draw Behind: false
-      Enabled: true
+      Enabled: false
       Name: Map
       Topic: /map
       Unreliable: false
       Use Timestamp: false
-      Value: true
+      Value: false
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -189,7 +591,7 @@ Visualization Manager:
       Color: 255; 255; 255
       Color Transformer: ""
       Decay Time: 0
-      Enabled: true
+      Enabled: false
       Invert Rainbow: false
       Max Color: 255; 255; 255
       Min Color: 0; 0; 0
@@ -204,7 +606,7 @@ Visualization Manager:
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
-      Value: true
+      Value: false
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -217,7 +619,7 @@ Visualization Manager:
       Color: 255; 255; 255
       Color Transformer: Intensity
       Decay Time: 0
-      Enabled: true
+      Enabled: false
       Invert Rainbow: false
       Max Color: 255; 255; 255
       Min Color: 0; 0; 0
@@ -232,7 +634,7 @@ Visualization Manager:
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
-      Value: true
+      Value: false
     - Alpha: 1
       Auto Size:
         Auto Size Factor: 1
@@ -252,7 +654,7 @@ Visualization Manager:
       Decay Time: 0
       Depth Map Topic: /camera/aligned_depth_to_color/image_raw
       Depth Map Transport Hint: compressedDepth
-      Enabled: true
+      Enabled: false
       Invert Rainbow: false
       Max Color: 255; 255; 255
       Min Color: 0; 0; 0
@@ -268,12 +670,12 @@ Visualization Manager:
       Topic Filter: true
       Use Fixed Frame: true
       Use rainbow: true
-      Value: true
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: camera_link
+    Fixed Frame: odom
     Frame Rate: 30
   Name: root
   Tools:
@@ -304,9 +706,9 @@ Visualization Manager:
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.003239425364881754
-        Y: -0.14064663648605347
-        Z: -0.2216942012310028
+        X: -0.15725812315940857
+        Y: -0.21521596610546112
+        Z: -0.24911147356033325
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
