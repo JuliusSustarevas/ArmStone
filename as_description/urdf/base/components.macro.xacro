@@ -211,10 +211,12 @@
 				<ray>
 					<scan>
 						<horizontal>
-							<samples>683</samples>
-							<resolution>1</resolution>
-							<min_angle>-2.09439510239</min_angle>
-							<max_angle>2.09439510239</max_angle>
+							<samples>455</samples>
+							<resolution>1</resolution>							
+							<min_angle>-1.39626</min_angle>
+							<max_angle>1.39626</max_angle>
+							<!-- <min_angle>-2.09439510239</min_angle>
+							<max_angle>2.09439510239</max_angle> -->
 						</horizontal>
 					</scan>
 					<range>
@@ -234,7 +236,7 @@
 				</ray>
 				<!-- <plugin name="${prefix}_hokuyo_gazebo_driver" filename="libgazebo_ros_gpu_laser.so"> -->
 				<plugin name="${prefix}_hokuyo_gazebo_driver" filename="libgazebo_ros_laser.so">
-					<topicName>/as_sensors/scan</topicName>
+					<topicName>/as_sensors/${prefix}_hokuyo/scan</topicName>
 					<frameName>${prefix}_hokuyo_link</frameName>
 				</plugin>
 			</sensor>
