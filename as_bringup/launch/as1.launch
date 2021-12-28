@@ -4,57 +4,69 @@
   <arg name="xarm_controller" default="xarm_joint_velocity_controller" doc="xarm_joint_position_controller or xarm_position_trajectory_controller or xarm_velocity_trajectory_controller or xarm_joint_velocity_controller. Note gazebo should be not paused for velocity controller" />
   <arg name="xarm_on" default="false" doc="Turn on/off xarm" />
   <arg name="base_on" default="true" doc="Turn on/off base" />
+  <arg name="sim" default="false" doc="true/false" />
+  <arg name="joy_type" default="input/js0" />
 
   <!-- ###Stack and Control### -->
-  <include file="$(find as_bringup)/launch/as_stack.launch">
-    <arg name="sim" value="false" />
+  <include file="$(find as_bringup)/launch/_as_stack.launch">
+    <arg name="sim" value="$(arg sim)" />
     <arg name="base_on" value="$(arg base_on)" />
-    <arg name="xarm_on" value="$(arg xarm_on)" />
-    <arg name="rviz" value="false" />
+    <arg name="xarm_on" value="$(arg xarm_on)" />    
     <arg name="base_controller" value="$(arg base_controller)" />
     <arg name="xarm_controller" value="$(arg xarm_controller)" />
-    <arg name="joy_type" value="input/js0" />
+    <arg name="joy_type" value="$(arg joy_type)" />
   </include>
 
   <!-- ###Sensors### -->
-  <!-- HokuyoL -->
-  <node name="hokuo_L" pkg="urg_node" type="urg_node" output="screen">
-    <param name="ip_address" value="" />
-    <param name="serial_port" value="/dev/L_HOKUYO" />
-    <param name="serial_baud" value="115200" />
-    <param name="frame_id" value="left_hokuyo_link" />
-    <param name="calibrate_time" value="true" />
-    <param name="publish_intensity" value="false" />
-    <param name="publish_multiecho" value="false" />
-    <!-- Setting to 120 deg cuz robot self -->
-    <param name="angle_min" value="-1.0471975512"/>
-    <param name="angle_max" value="1.0471975512"/>
-    <!-- <param name="angle_min" value="-1.91986" />
-    <param name="angle_max" value="1.91986" /> -->
-    <!-- Remap -->
-    <remap from="/scan" to="/as_sensors/scan" />
-  </node>
+  <group ns="/as_sensors">
+    <!-- HokuyoL -->
+    <node unless="$(arg sim)" name="hokuyo_L" pkg="urg_node" type="urg_node" output="screen">
+      <param name="ip_address" value="" />
+      <param name="serial_port" value="/dev/L_HOKUYO" />
+      <param name="serial_baud" value="115200" />
+      <param name="frame_id" value="left_hokuyo_link" />
+      <param name="calibrate_time" value="true" />
+      <param name="publish_intensity" value="false" />
+      <param name="publish_multiecho" value="false" />
+      <!-- Setting to 160 deg cuz robot self -->
+      <param name="angle_min" value="-1.39626" />
+      <param name="angle_max" value="1.39626" />
+      <!-- Remap -->
+      <remap from="/scan" to="/as_sensors/left_hokuyo/scan" />
+    </node>
 
-  <!-- HokuyoR -->
-  <node name="hokuo_R" pkg="urg_node" type="urg_node" output="screen">
-    <param name="ip_address" value="" />
-    <param name="serial_port" value="/dev/R_HOKUYO" />
-    <param name="serial_baud" value="115200" />
-    <param name="frame_id" value="right_hokuyo_link" />
-    <param name="calibrate_time" value="true" />
-    <param name="publish_intensity" value="false" />
-    <param name="publish_multiecho" value="false" />
-    <!-- Setting to 120 deg cuz robot self -->
-    <param name="angle_min" value="-1.0471975512"/>
-      <param name="angle_max" value="1.0471975512"/>
-    <!-- <param name="angle_min" value="-1.91986" />
-    <param name="angle_max" value="1.91986" /> -->
-    <!-- Remap -->
-    <remap from="/scan" to="/as_sensors/scan" />
-  </node>
+    <!-- HokuyoR -->
+    <node unless="$(arg sim)" name="hokuyo_R" pkg="urg_node" type="urg_node" output="screen">
+      <param name="ip_address" value="" />
+      <param name="serial_port" value="/dev/R_HOKUYO" />
+      <param name="serial_baud" value="115200" />
+      <param name="frame_id" value="right_hokuyo_link" />
+      <param name="calibrate_time" value="true" />
+      <param name="publish_intensity" value="false" />
+      <param name="publish_multiecho" value="false" />
+      <!-- Setting to 160 deg cuz robot self -->
+      <param name="angle_min" value="-1.39626" />
+      <param name="angle_max" value="1.39626" />
+      <!-- Remap -->
+      <remap from="/scan" to="/as_sensors/right_hokuyo/scan" />
+    </node>
 
+    <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
+      <param name="destination_frame" value="base_link_footprint" />
+      <param name="cloud_destination_topic" value="/merged_cloud" />
+      <param name="scan_destination_topic" value="/as_sensors/scan" />
+      <param name="laserscan_topics" value="/as_sensors/left_hokuyo/scan /as_sensors/right_hokuyo/scan" /> <!-- LIST OF THE LASER SCAN TOPICS TO SUBSCRIBE -->
+      <param name="angle_min" value="-3.13852469201" />
+      <param name="angle_max" value="3.13852469201" />
+      <param name="angle_increment" value="0.0061359" />
+      <param name="scan_time" value="0.105" />
+      <param name="range_min" value="0.30" />
+      <param name="range_max" value="4.5" />
+    </node>
+  </group>
 
-  <!-- ###Slam_toolbox### -->
+  <!-- ###Slam_toolbox### -->  
+  <!-- Note can't handle being in a ns -->
   <include file="$(find as_base_localisation)/launch/base_localisation.launch">
     <!-- #localisation -->
     <arg name="mode" value="false" />
@@ -62,6 +74,4 @@
     <!-- <arg name="mode" value="false" />       -->
     <!-- <arg name="sim" value="$(arg sim)" />       -->
   </include>
-
-
 </launch>

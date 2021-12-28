@@ -4,29 +4,33 @@
     <arg name="rviz" default="true" doc="rviz switch" />
     <arg name="paused" default="true" doc="gazebo paused. Note that velocity controllers can't handle it. " />
     <arg name="use_sim_time" default="true" />
-    <arg name="base_controller" default="as_base_holonomic_controller" doc="as_base_differential_controller  or  as_base_holonomic_controller" />
-    <arg name="xarm_controller" default="xarm_joint_velocity_controller" doc="xarm_joint_position_controller or xarm_position_trajectory_controller or xarm_velocity_trajectory_controller or xarm_joint_velocity_controller. Note gazebo should be not paused for velocity controller" />
 
-    <!-- Stack as sim -->
-    <include file="$(find as_bringup)/launch/as_stack.launch">
+    <!-- as1 -->
+    <include file="$(find as_bringup)/launch/as1.launch">
         <arg name="sim" value="true" />
+        <arg name="xarm_on" value="false" />
         <arg name="base_on" value="true" />
-        <arg name="xarm_on" value="true" />
-        <arg name="rviz" value="$(arg rviz)" />
-        <arg name="base_controller" value="$(arg base_controller)" />
-        <arg name="xarm_controller" value="$(arg xarm_controller)" />
+        <arg name="joy_type" value="STADIA_GREEN" />
+    </include>
+
+    <include file="$(find as_bringup)/launch/as2.launch">
+        <arg name="sim" value="true" />
     </include>
 
     <!-- Gazebo -->
     <include file="$(find as_gazebo)/launch/as_gazebo_empty.launch">
-        <arg name="paused" value="$(eval arg('paused') and not ((arg('xarm_controller')=='xarm_joint_velocity_controller') or (arg('xarm_controller')=='xarm_velocity_trajectory_controller')))" />                
+        <!-- <arg name="paused" value="$(eval arg('paused') and not ((arg('xarm_controller')=='xarm_joint_velocity_controller') or (arg('xarm_controller')=='xarm_velocity_trajectory_controller')))" /> -->
+        <arg name="paused" value="false" />
         <arg name="use_sim_time" value="$(arg use_sim_time)" />
-        <arg name="world_name" value="empty.world" />
-        <arg name="spawn_coordinates" value="-x 0 -y 0 -z 0" /> 
+        <arg name="spawn_coordinates" value="-x 0 -y 0 -z 0" />
+        <!-- <arg name="world_name" value="empty.world" /> -->
         <!-- <arg name="world_name" value="inspection.world" /> -->
-        <!-- <arg name="world_name" value="construction.world" /> 
+        <!-- <arg name="world_name" value="construction.world" />         
         <arg name="spawn_coordinates" value="-x 0 -y 0 -z 0.02" />  -->
-        
+        <arg name="world_name" value="slam_test.world" />
     </include>
+
+    <!-- rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find as_description)/rviz/as.rviz" />
 
 </launch>
