@@ -9,6 +9,10 @@
     <include>
       <uri>model://ground_plane</uri>
     </include>
+
+    <include>
+      <uri>model://slam_test_world/model.sdf</uri>
+    </include>
+    
   </world>
 </sdf>
-
