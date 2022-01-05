@@ -276,7 +276,7 @@
 					</noise>
 				</ray>
 
-				<plugin name="${prefix}_hokuyo_gazebo_driver" filename="libgazebo_ros_laser.so">
+				<plugin name="perfect_hokuyo_gazebo_driver" filename="libgazebo_ros_laser.so">
 					<topicName>/as_sensors/scan</topicName>
 					<frameName>perfect_lidar_link</frameName>
 				</plugin>
