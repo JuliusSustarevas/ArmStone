@@ -1,50 +1,49 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-	<xacro:include filename="$(find as_description)/urdf/common/generic_links.xacro"/>
-	<xacro:include filename="$(find sensor_imu)/urdf/sensor_imu.xacro"/>
+	<xacro:include filename="$(find as_description)/urdf/common/generic_links.xacro" />
+	<xacro:include filename="$(find sensor_imu)/urdf/sensor_imu.xacro" />
 	<xacro:include filename="$(find realsense2_description)/urdf/_l515.urdf.xacro" />
 
 	<xacro:property name="mesh_filetype" value=".dae" />
 	<!-- <xacro:property name="mesh_filetype" value=".stl" /> -->
 
 	<!-- battery_link -->
-	<xacro:property name="battery_link_dx" value="0.40"/>
-	<xacro:property name="battery_link_dy" value="0.150"/>
-	<xacro:property name="battery_link_dz" value="0.085"/>
-	<xacro:property name="battery_link_m" value="6.7"/>
+	<xacro:property name="battery_link_dx" value="0.40" />
+	<xacro:property name="battery_link_dy" value="0.150" />
+	<xacro:property name="battery_link_dz" value="0.085" />
+	<xacro:property name="battery_link_m" value="6.7" />
 
 	<!-- nuc_link -->
-	<xacro:property name="nuc_link_dx" value="0.12"/>
-	<xacro:property name="nuc_link_dy" value="0.12"/>
-	<xacro:property name="nuc_link_dz" value="0.06"/>
-	<xacro:property name="nuc_link_m" value="0.3"/>
+	<xacro:property name="nuc_link_dx" value="0.12" />
+	<xacro:property name="nuc_link_dy" value="0.12" />
+	<xacro:property name="nuc_link_dz" value="0.06" />
+	<xacro:property name="nuc_link_m" value="0.3" />
 
 	<!-- DC Control box -->
-	<xacro:property name="dc_box_dx" value="0.18"/>
-	<xacro:property name="dc_box_dy" value="0.145"/>
-	<xacro:property name="dc_box_dz" value="0.068"/>
-	<xacro:property name="dc_box_m" value="1.8"/>
+	<xacro:property name="dc_box_dx" value="0.18" />
+	<xacro:property name="dc_box_dy" value="0.145" />
+	<xacro:property name="dc_box_dz" value="0.068" />
+	<xacro:property name="dc_box_m" value="1.8" />
 
 	<!-- Aluminium plate -->
-	<xacro:property name="mount_plate_dx" value="${0.27}"/>
-	<xacro:property name="mount_plate_dy" value="${0.455}"/>
-	<xacro:property name="mount_plate_dz" value="0.008"/>
+	<xacro:property name="mount_plate_dx" value="${0.27}" />
+	<xacro:property name="mount_plate_dy" value="${0.455}" />
+	<xacro:property name="mount_plate_dz" value="0.008" />
 	<!-- Aluminium density 2.7/cm3  or 2700 kgm3-->
 	<!-- About 3.5 kg aluminium plate. -->
-	<xacro:property name="mount_plate_m" value="${2700*mount_plate_dx*mount_plate_dy*mount_plate_dz}"/>
+	<xacro:property name="mount_plate_m" value="${2700*mount_plate_dx*mount_plate_dy*mount_plate_dz}" />
 
 	<!-- Extruder -->
-	<xacro:property name="extruder_r" value="0.05"/>
-    <xacro:property name="extruder_h" value="0.17"/>
-    <!--Without material m 1.05 (including bolts)  -->
+	<xacro:property name="extruder_r" value="0.05" />
+	<xacro:property name="extruder_h" value="0.17" />
+	<!--Without material m 1.05 (including bolts)  -->
 	<!--with tube maybe more-->
-    <xacro:property name="extruder_m" value="1.05"/>
+	<xacro:property name="extruder_m" value="1.05" />
 
-	<xacro:property name="ee_imu_xyz" value="0 -${(0.035 +(0.0525/2))} 0"/>
-	<xacro:property name="ee_imu_rpy" value="0 3.14159265359 0"/>
+	<xacro:property name="ee_imu_xyz" value="0 -${(0.035 +(0.0525/2))} 0" />
+	<xacro:property name="ee_imu_rpy" value="0 3.14159265359 0" />
 
-	
 
 	<xacro:macro name="battery48" params="parent xyz rpy">
 		<xacro:generic_box name="battery48" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${battery_link_dx}" dy="${battery_link_dy}" dz="${battery_link_dz}" m="${battery_link_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="battery${mesh_filetype}" mxyz="0.035 0 ${-battery_link_dz/2}" mrpy="0 0 ${M_PI}" />
@@ -67,143 +66,142 @@
 	</xacro:macro>
 
 	<xacro:macro name="material3" params="parent xyz rpy">
-		<xacro:generic_cylinder name="material3" parent="${parent}" xyz="${xyz}" rpy="${rpy}" r="${material3_r}" h="${material3_h}" m="${material3_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="clay_assembly${mesh_filetype}" mxyz="${material3_r+0.02}  0  ${material3_h/5}" mrpy="0 ${-M_PI/2} 0"/>
+		<xacro:generic_cylinder name="material3" parent="${parent}" xyz="${xyz}" rpy="${rpy}" r="${material3_r}" h="${material3_h}" m="${material3_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="clay_assembly${mesh_filetype}" mxyz="${material3_r+0.02}  0  ${material3_h/5}" mrpy="0 ${-M_PI/2} 0" />
 	</xacro:macro>
 
 	<xacro:macro name="cover_plate" params="parent xyz rpy">
-		<xacro:generic_box name="cover_plate" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${cover_box_dx}" dy="${cover_box_dy}" dz="${cover_box_dz}" m="${cover_plate_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="cover_assembly_${mesh_filetype}" mxyz="0 0 0" mrpy="0 0 0"/>
+		<xacro:generic_box name="cover_plate" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${cover_box_dx}" dy="${cover_box_dy}" dz="${cover_box_dz}" m="${cover_plate_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="cover_assembly_${mesh_filetype}" mxyz="0 0 0" mrpy="0 0 0" />
 	</xacro:macro>
 
 	<xacro:macro name="ic" params="parent xyz rpy">
-		<xacro:generic_box name="ic" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${ic_box_dx}" dy="${ic_box_dy}" dz="${ic_box_dz}" m="${ic_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="intermediate_assembly${mesh_filetype}" mxyz="${ic_box_dx/2 - 0.03} 0 ${-ic_box_dz/2}" mrpy="0 0 0"/>
+		<xacro:generic_box name="ic" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${ic_box_dx}" dy="${ic_box_dy}" dz="${ic_box_dz}" m="${ic_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="intermediate_assembly${mesh_filetype}" mxyz="${ic_box_dx/2 - 0.03} 0 ${-ic_box_dz/2}" mrpy="0 0 0" />
 	</xacro:macro>
 
-	<xacro:macro name="extruder" params="parent xyz rpy l515l_on:=true">	
-		
+	<xacro:macro name="extruder" params="parent xyz rpy l515l_on:=true">
+
 		<joint name="extruder_joint" type="fixed">
-            <parent link="${parent}"/>
-            <child link="extruder_link"/>
-            <origin xyz= "${xyz}" rpy = "${rpy}" />
-        </joint>
+			<parent link="${parent}" />
+			<child link="extruder_link" />
+			<origin xyz="${xyz}" rpy="${rpy}" />
+		</joint>
 
-        <link name="extruder_link">
-            <inertial>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
-                <mass value="${extruder_m}"/>
-                <xacro:cylinder_inertia_tensor m="${extruder_m}" r="${extruder_r}" h="${extruder_h}"/>
-            </inertial>
-            <visual>               
-				<origin xyz= "0 0 ${-extruder_h/2}" rpy = "0 0 0" />
-				<geometry>                        
+		<link name="extruder_link">
+			<inertial>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<mass value="${extruder_m}" />
+				<xacro:cylinder_inertia_tensor m="${extruder_m}" r="${extruder_r}" h="${extruder_h}" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 ${-extruder_h/2}" rpy="0 0 0" />
+				<geometry>
 					<mesh filename="package://as_description/meshes/extruder${mesh_filetype}" />
-				</geometry>                              
-            </visual>
-            <collision>				
-                <origin xyz= "0 0 ${-extruder_h/2}" rpy = "0 0 0" />
-				<geometry>                        
+				</geometry>
+			</visual>
+			<collision>
+				<origin xyz="0 0 ${-extruder_h/2}" rpy="0 0 0" />
+				<geometry>
 					<mesh filename="package://as_description/meshes/extruder_collision${mesh_filetype}" />
-				</geometry>              
-            </collision>		
-        </link>  
+				</geometry>
+			</collision>
+		</link>
 
-		<link name="extruder_ee"/>
+		<link name="extruder_ee" />
 		<joint name="extruder_ee_joint" type="fixed">
-			  <parent link="extruder_link"/>
-			  <child link="extruder_ee"/>
-			  <origin xyz= "0 0 ${extruder_h/2}" rpy = "0 0 0" />
-		</joint>		
+			<parent link="extruder_link" />
+			<child link="extruder_ee" />
+			<origin xyz="0 0 ${extruder_h/2}" rpy="0 0 0" />
+		</joint>
 		<xacro:imu prefix="ee" parent="${parent}" xyz="${ee_imu_xyz}" rpy="${ee_imu_rpy}" />
 
 		<xacro:if value="${l515l_on}">
 
 			<joint name="cam_holder_joint" type="fixed">
-				<parent link="extruder_ee"/>
-				<child link="cam_holder_link"/>
-				<origin xyz= "-0.056217 0 -0.170" rpy = "0 0 ${M_PI}" />
-			</joint>	
+				<parent link="extruder_ee" />
+				<child link="cam_holder_link" />
+				<origin xyz="-0.056217 0 -0.170" rpy="0 0 ${M_PI}" />
+			</joint>
 
-			<link name="cam_holder_link">				
-				<visual>               
-					<origin xyz= "0 0 0" rpy = "0 0 0" />
-					<geometry>                        
+			<link name="cam_holder_link">
+				<visual>
+					<origin xyz="0 0 0" rpy="0 0 0" />
+					<geometry>
 						<mesh filename="package://as_description/meshes/cam_holder${mesh_filetype}" />
-					</geometry>                              
+					</geometry>
 				</visual>
-				<collision>				
-					<origin xyz= "0 0 0" rpy = "0 0 0" />
-					<geometry>                        
+				<collision>
+					<origin xyz="0 0 0" rpy="0 0 0" />
+					<geometry>
 						<mesh filename="package://as_description/meshes/cam_holder${mesh_filetype}" />
-					</geometry>              
-				</collision>		
-			</link>  
+					</geometry>
+				</collision>
+			</link>
 
 			<joint name="cam_holder_offest_joint" type="fixed">
-				<parent link="cam_holder_link"/>
-				<child link="cam_holder_end_link"/>
-				<origin xyz= "0.1264 0 -0.1244" rpy = "${-25*M_PI/180} 0  ${M_PI/2}" />
-			</joint>	
+				<parent link="cam_holder_link" />
+				<child link="cam_holder_end_link" />
+				<origin xyz="0.1264 0 -0.1244" rpy="${-25*M_PI/180} 0  ${M_PI/2}" />
+			</joint>
 
-			<link name="cam_holder_end_link"/>  
+			<link name="cam_holder_end_link" />
 
 			<xacro:sensor_l515 name="l515" topics_ns="/as_sensors/depth_cam" parent="cam_holder_end_link" use_nominal_extrinsics="true" publish_pointcloud="true" add_plug="false" use_mesh="true">
 				<origin xyz="0.0305 0  0.011057" rpy="0 ${-90*M_PI/180} 0" />
-			</xacro:sensor_l515>  
+			</xacro:sensor_l515>
 		</xacro:if>
-		
-		
+
+
 	</xacro:macro>
 
-	<xacro:macro name="backpack" params="parent xyz rpy">	
-		
+	<xacro:macro name="backpack" params="parent xyz rpy">
+
 		<joint name="backpack_joint" type="fixed">
-            <parent link="${parent}"/>
-            <child link="backpack_link"/>
-            <origin xyz= "${xyz}" rpy = "${rpy}" />
-        </joint>
+			<parent link="${parent}" />
+			<child link="backpack_link" />
+			<origin xyz="${xyz}" rpy="${rpy}" />
+		</joint>
 
-        <link name="backpack_link"> 
+		<link name="backpack_link">
 			<collision>
-                <geometry>
-                    <box size="${backpack_dx} ${backpack_dy} ${backpack_dz}" />
-                </geometry>
-            </collision>		
-        </link>  
+				<geometry>
+					<box size="${backpack_dx} ${backpack_dy} ${backpack_dz}" />
+				</geometry>
+			</collision>
+		</link>
 	</xacro:macro>
 
-	<xacro:macro name="hokuyo" params="parent xyz rpy prefix">	
-		
-		<joint name="${prefix}_hokuyo_joint" type="fixed">
-            <parent link="${parent}"/>
-            <child link="${prefix}_hokuyo_link"/>
-            <origin xyz= "${xyz}" rpy = "${rpy}" />
-        </joint>
+	<xacro:macro name="hokuyo" params="parent xyz rpy prefix">
 
-        <link name="${prefix}_hokuyo_link"> 
+		<joint name="${prefix}_hokuyo_joint" type="fixed">
+			<parent link="${parent}" />
+			<child link="${prefix}_hokuyo_link" />
+			<origin xyz="${xyz}" rpy="${rpy}" />
+		</joint>
+
+		<link name="${prefix}_hokuyo_link">
 			<inertial>
 				<mass value="1e-5" />
-				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<origin xyz="0 0 0" rpy="0 0 0" />
 				<inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
 			</inertial>
-			
+
 			<visual>
-				<origin xyz="0.0484 0 0" rpy="0 0 ${M_PI/2}"/>
+				<origin xyz="0.0484 0 0" rpy="0 0 ${M_PI/2}" />
 				<geometry>
-					<mesh filename="package://as_description/meshes/hokuyo${mesh_filetype}"/>
+					<mesh filename="package://as_description/meshes/hokuyo${mesh_filetype}" />
 				</geometry>
 			</visual>
-        </link>
+		</link>
 
 
 		<joint name="${prefix}_hokuyo_joint2" type="fixed">
-            <parent link="${prefix}_hokuyo_link"/>
-            <child link="${prefix}_hokuyo_laser"/>
-            <origin xyz= "0.02 0 0.04" rpy = "0 0 0" />
-        </joint>
+			<parent link="${prefix}_hokuyo_link" />
+			<child link="${prefix}_hokuyo_laser" />
+			<origin xyz="0.02 0 0.04" rpy="0 0 0" />
+		</joint>
 
-		<link name="${prefix}_hokuyo_laser"/>
-		  
+		<link name="${prefix}_hokuyo_laser" />
+
 		<gazebo reference="${prefix}_hokuyo_laser">
-			<!-- <sensor type="gpu_ray" name="${prefix}_hokuyo_sensor"> -->
 			<sensor type="ray" name="${prefix}_hokuyo_sensor">
 				<pose>0 0 0 0 0 0</pose>
 				<visualize>true</visualize>
@@ -212,11 +210,9 @@
 					<scan>
 						<horizontal>
 							<samples>455</samples>
-							<resolution>1</resolution>							
+							<resolution>1</resolution>
 							<min_angle>-1.39626</min_angle>
 							<max_angle>1.39626</max_angle>
-							<!-- <min_angle>-2.09439510239</min_angle>
-							<max_angle>2.09439510239</max_angle> -->
 						</horizontal>
 					</scan>
 					<range>
@@ -240,6 +236,52 @@
 					<frameName>${prefix}_hokuyo_link</frameName>
 				</plugin>
 			</sensor>
+
+		</gazebo>
+	</xacro:macro>
+
+	<xacro:macro name="perfect_lidar" params="parent">
+
+		<joint name="perfect_lidar_joint" type="fixed">
+			<parent link="${parent}" />
+			<child link="perfect_lidar_link" />
+			<origin xyz="0 0 0.5" rpy="0 0 0" />
+		</joint>
+
+		<link name="perfect_lidar_link" />
+
+		<gazebo reference="perfect_lidar_link">
+			<sensor type="ray" name="perfect_lidar_sensor">
+				<pose>0 0 0 0 0 0</pose>
+				<visualize>true</visualize>
+				<update_rate>10</update_rate>
+				<ray>
+					<scan>
+						<horizontal>
+							<samples>2048</samples>
+							<resolution>1</resolution>
+							<min_angle>-3.13852468611</min_angle>
+							<max_angle>3.14159264768</max_angle>
+						</horizontal>
+					</scan>
+					<range>
+						<min>0.10</min>
+						<max>10.0</max>
+						<resolution>0.001</resolution>
+					</range>
+					<noise>
+						<type>gaussian</type>
+						<mean>0.0</mean>
+						<stddev>0.0015</stddev>
+					</noise>
+				</ray>
+
+				<plugin name="${prefix}_hokuyo_gazebo_driver" filename="libgazebo_ros_laser.so">
+					<topicName>/as_sensors/scan</topicName>
+					<frameName>perfect_lidar_link</frameName>
+				</plugin>
+			</sensor>
+
 		</gazebo>
 	</xacro:macro>
 

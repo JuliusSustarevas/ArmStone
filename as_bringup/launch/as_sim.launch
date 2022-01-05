@@ -11,6 +11,7 @@
         <arg name="xarm_on" value="false" />
         <arg name="base_on" value="true" />
         <arg name="joy_type" value="STADIA_GREEN" />
+        <!-- <arg name="joy_type" value="input/js1" /> -->
     </include>
 
     <include file="$(find as_bringup)/launch/as2.launch">

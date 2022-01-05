@@ -13,13 +13,9 @@
     <!-- Top level infrastructure -->
     <param if="$(arg xarm_on)" name="robot_description" command="xacro '$(find as_description)/robots/as.xacro' velocity_control:=$(arg xarm_vel_ctrl_on)" />
     <param unless="$(arg xarm_on)" name="robot_description" command="xacro '$(find as_description)/robots/as_base.xacro'" />
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
-    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-        <param name="use_gui" value="false" />
-        <param name="rate" value="50" />
-        <rosparam param="source_list">[as_control/joint_states]</rosparam>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
+        <remap from="joint_states" to="as_control/joint_states"/>
     </node>
-
     <!-- Control stack -->
     <include ns="as_control" file="$(find as_control)/launch/as_control_stack.launch">
         <arg name="sim" value="$(arg sim)" />
