@@ -4,24 +4,18 @@
   <arg name="xarm_controller" default="xarm_joint_velocity_controller" doc="xarm_joint_position_controller or xarm_position_trajectory_controller or xarm_velocity_trajectory_controller or xarm_joint_velocity_controller. Note gazebo should be not paused for velocity controller" />
   <arg name="xarm_on" default="false" doc="Turn on/off xarm" />
   <arg name="base_on" default="true" doc="Turn on/off base" />
-  <arg name="sim" default="true" doc="true/false" />
+  <arg name="sim" default="false" doc="true/false" />
   <arg name="joy_type" default="input/js0" />
 
   <!-- ###Stack and Control### -->
-  <include file="$(find as_bringup)/launch/_as_stack.launch">
-    <arg name="sim" value="$(arg sim)" />
+  <include file="$(find as_bringup)/launch/as_stack.launch">
+    <arg name="sim" value="false" />
     <arg name="base_on" value="$(arg base_on)" />
-    <arg name="xarm_on" value="$(arg xarm_on)" />    
+    <arg name="xarm_on" value="$(arg xarm_on)" />
+    <arg name="rviz" value="false" />
     <arg name="base_controller" value="$(arg base_controller)" />
     <arg name="xarm_controller" value="$(arg xarm_controller)" />
-    <arg name="joy_type" value="$(arg joy_type)" />
-  </include>
-
-  <!-- PMPC -->
-  <include if="$(arg xarm_on)" ns="/as_control/pmpc" file="$(find perceptive_mpc)/launch/as_pmpc.launch">
-    <arg name="KINEMATIC_SIMULATION" default="false" />
-    <arg name="COLLISION_AVOIDANCE" default="false" />
-    <arg name="INTERACTIVE" default="true" />
+    <arg name="joy_type" value="input/js0" />
   </include>
 
   <!-- ###Sensors### -->
@@ -39,7 +33,7 @@
       <param name="angle_min" value="-1.39626" />
       <param name="angle_max" value="1.39626" />
       <!-- Remap -->
-      <remap from="/scan" to="/as_sensors/left_hokuyo/scan" />
+      <remap from="/as_sensors/scan" to="/as_sensors/left_hokuyo/scan" />
     </node>
 
     <!-- HokuyoR -->
@@ -55,7 +49,7 @@
       <param name="angle_min" value="-1.39626" />
       <param name="angle_max" value="1.39626" />
       <!-- Remap -->
-      <remap from="/scan" to="/as_sensors/right_hokuyo/scan" />
+      <remap from="/as_sensors/scan" to="/as_sensors/right_hokuyo/scan" />
     </node>
 
     <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
@@ -68,7 +62,7 @@
       <param name="angle_increment" value="0.0061359" />
       <param name="scan_time" value="0.105" />
       <param name="range_min" value="0.30" />
-      <param name="range_max" value="4.5" />
+      <param name="range_max" value="6" />
     </node>
   </group>
 

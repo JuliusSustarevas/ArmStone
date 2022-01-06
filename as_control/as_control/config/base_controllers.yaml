@@ -68,8 +68,8 @@ as_base_holonomic_controller:
       name: motor_wheel_joint_fr
       x: 0.317
       y: -0.2705
-    r: 0.107 #Simulation Rad:
-    # r: 0.0762 #Real rad needs tuning
+    # r: 0.107 #Simulation Rad:
+    r: 0.0762 #Real seems good enough
 
   # Odometry
   odom_frame_id: odom
