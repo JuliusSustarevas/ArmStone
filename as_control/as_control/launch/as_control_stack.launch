@@ -4,6 +4,7 @@
     <arg name="xarm_on" default="false" />
     <arg name="base_on" default="true" />
     <arg name="sim" default="false" />
+    <arg name="publish_odom_tf" default="true" />    
 
     <!-- Controller options -->
     <arg name="xarm_controller" default="xarm_position_trajectory_controller" doc="xarm_position_trajectory_controller or xarm_velocity_trajectory_controller xarm_joint_position_controller or xarm_joint_velocity_controller" />
@@ -39,6 +40,14 @@
     <!-- Spawn Controllers -->
     <rosparam file="$(find as_control)/config/xarm_controllers.yaml" command="load" />
     <rosparam file="$(find as_control)/config/base_controllers.yaml" command="load" />
+
+    <rosparam subst_value="true">
+        as_base_holonomic_controller:
+            enable_odom_tf: $(arg publish_odom_tf)                    
+            wheels:
+                r: $(eval 0.107 if arg('sim') else 0.0762)       
+    </rosparam>
+
     <node name="controller_spawner" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" args="spawn $(arg controllers)"/>    
 
     <!-- Base input mux -->
