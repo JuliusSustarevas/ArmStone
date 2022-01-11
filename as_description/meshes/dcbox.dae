@@ -16,7 +16,7 @@
         <technique sid="common">
           <lambert>
             <emission>
-              <color sid="emission">0 0 0 1</color>
+              <color sid="emission">0.35 0.35 0.35 1</color>
             </emission>
             <diffuse>
               <color sid="diffuse">0.8 0.8 0.8 1</color>
@@ -36,7 +36,7 @@
         <technique sid="common">
           <lambert>
             <emission>
-              <color sid="emission">0 0 0 1</color>
+              <color sid="emission">0.35 0.35 0.35 1</color>
             </emission>
             <diffuse>
               <color sid="diffuse">0 0.06301003 0.02518687 1</color>

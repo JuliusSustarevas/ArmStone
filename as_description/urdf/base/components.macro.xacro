@@ -3,7 +3,8 @@
 
 	<xacro:include filename="$(find as_description)/urdf/common/generic_links.xacro" />
 	<xacro:include filename="$(find sensor_imu)/urdf/sensor_imu.xacro" />
-	<xacro:include filename="$(find realsense2_description)/urdf/_l515.urdf.xacro" />
+	<xacro:include filename="$(find as_description)/urdf/components/_l515.urdf.xacro" />
+	<!-- <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" /> -->
 
 	<xacro:property name="mesh_filetype" value=".dae" />
 	<!-- <xacro:property name="mesh_filetype" value=".stl" /> -->
@@ -104,7 +105,7 @@
 				</geometry>
 			</collision>
 		</link>
-		
+
 		<joint name="extruder_ee_joint" type="fixed">
 			<parent link="extruder_link" />
 			<child link="extruder_ee" />
@@ -119,7 +120,7 @@
 		<joint name="extruder_axes_joint" type="fixed">
 			<parent link="${parent}" />
 			<child link="extruder_axes_link" />
-			<origin xyz="0.038884 -0.018177 -0.001" rpy="0 ${M_PI} ${M_PI}" />
+			<origin xyz="0.018177 0.038884 -0.001" rpy="0 ${M_PI} ${-M_PI/2}" />
 		</joint>
 
 		<link name="extruder_axes_link">
@@ -136,12 +137,12 @@
 				</geometry>
 			</collision>
 		</link>
-		
+
 		<!-- LEFT is D435 -->
 		<joint name="d435_holder_joint" type="fixed">
 			<parent link="${parent}" />
 			<child link="d435_holder_link" />
-			<origin xyz="0 0.056202 -0.001" rpy="0 0 ${M_PI/2}" />
+			<origin xyz="0.056202 0  -0.001" rpy="0 0 0" />
 		</joint>
 
 		<link name="d435_holder_link">
@@ -162,7 +163,7 @@
 		<joint name="d435_mount_joint" type="fixed">
 			<parent link="d435_holder_link" />
 			<child link="d435_mount_link" />
-			<origin xyz="0.1264 0 -0.1244" rpy="${-25*M_PI/180} 0  ${M_PI/2}" />
+			<origin xyz="0.156687 0 -0.1207278" rpy="${-30*M_PI/180} 0  ${M_PI/2}" />
 		</joint>
 
 		<link name="d435_mount_link" />
@@ -171,7 +172,7 @@
 		<joint name="l515_holder_joint" type="fixed">
 			<parent link="${parent}" />
 			<child link="l515_holder_link" />
-			<origin xyz="0 -0.056202 -0.001" rpy="0 0 ${-M_PI/2}" />
+			<origin xyz="-0.056202 0  -0.001" rpy="0 0 ${M_PI}" />
 		</joint>
 
 		<link name="l515_holder_link">
@@ -191,19 +192,25 @@
 
 		<joint name="l515_mount_joint" type="fixed">
 			<parent link="l515_holder_link" />
-			<child link="l515_mount_link" />
-			<origin xyz="0.1264 0 -0.1244" rpy="${-25*M_PI/180} 0  ${M_PI/2}" />
+			<child link="l515_mount_link" />			
+			<origin xyz="0.16113414 0.02 -0.11987969" rpy="${-30*M_PI/180} 0  ${M_PI/2}" />
+			<!-- -161.13414
+			119.87969
+			+-20.00000 -->
 		</joint>
 
 		<link name="l515_mount_link" />
 
-		<xacro:sensor_l515 name="l515" topics_ns="/as_sensors/l515/depth_cam" parent="l515_mount_link" use_nominal_extrinsics="true" publish_pointcloud="true" add_plug="false" use_mesh="true">
-			<origin xyz="0.0305 0  0.011057" rpy="0 ${-90*M_PI/180} 0" />
+		<xacro:sensor_l515 name="l515_mount_link" topics_ns="/as_sensors/l515/depth_cam" parent="l515_mount_link" use_nominal_extrinsics="true" publish_pointcloud="true" add_plug="false" use_mesh="true">			
+			<origin xyz="0.01015 0  0.014" rpy="0 ${-M_PI/2} 0" />		
+			<!-- From starting frame to screw hole closer to usb-c: -0.014;0;0.01015 -->
+			<!-- From starting frame to screw hole further to usb-c: -0.014;0;0.05015 -->	
 		</xacro:sensor_l515>
-		
-		<!-- <xacro:sensor_l515 name="l515" topics_ns="/as_sensors/d435/depth_cam" parent="d435_mount_link" use_nominal_extrinsics="true" publish_pointcloud="true" add_plug="false" use_mesh="true">
-			<origin xyz="0.0305 0  0.011057" rpy="0 ${-90*M_PI/180} 0" />
-		</xacro:sensor_l515> -->
+	
+
+		<!-- <xacro:sensor_d435 parent="d435_mount_link" use_nominal_extrinsics="true" add_plug="false" use_mesh="true">
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+		</xacro:sensor_d435> -->
 
 	</xacro:macro>
 

@@ -16,7 +16,7 @@
         <technique sid="common">
           <lambert>
             <emission>
-              <color sid="emission">0 0 0 1</color>
+              <color sid="emission">0.35 0.35 0.35 1</color>
             </emission>
             <diffuse>
               <color sid="diffuse">0.498039 0.498039 0.498039 1</color>
@@ -33,7 +33,7 @@
         <technique sid="common">
           <lambert>
             <emission>
-              <color sid="emission">0 0 0 1</color>
+              <color sid="emission">0.35 0.35 0.35 1</color>
             </emission>
             <diffuse>
               <color sid="diffuse">0.745098 0.745098 0.745098 1</color>
@@ -50,7 +50,7 @@
         <technique sid="common">
           <lambert>
             <emission>
-              <color sid="emission">0 0 0 1</color>
+              <color sid="emission">0.35 0.35 0.35 1</color>
             </emission>
             <diffuse>
               <color sid="diffuse">0.647059 0.647059 0.647059 1</color>
@@ -67,7 +67,7 @@
         <technique sid="common">
           <lambert>
             <emission>
-              <color sid="emission">0 0 0 1</color>
+              <color sid="emission">0.35 0.35 0.35 1</color>
             </emission>
             <diffuse>
               <color sid="diffuse">0.0862745 0.317647 0.690196 1</color>
@@ -84,7 +84,7 @@
         <technique sid="common">
           <lambert>
             <emission>
-              <color sid="emission">0 0 0 1</color>
+              <color sid="emission">0.35 0.35 0.35 1</color>
             </emission>
             <diffuse>
               <color sid="diffuse">1 1 1 1</color>
@@ -104,7 +104,7 @@
         <technique sid="common">
           <lambert>
             <emission>
-              <color sid="emission">0 0 0 1</color>
+              <color sid="emission">0.35 0.35 0.35 1</color>
             </emission>
             <diffuse>
               <color sid="diffuse">0.627451 0.627451 0.627451 1</color>
@@ -121,7 +121,7 @@
         <technique sid="common">
           <lambert>
             <emission>
-              <color sid="emission">0 0 0 1</color>
+              <color sid="emission">0.35 0.35 0.35 1</color>
             </emission>
             <diffuse>
               <color sid="diffuse">0.313725 0.0705882 0 1</color>
