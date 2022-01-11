@@ -14,8 +14,8 @@ scan_topic: /as_sensors/scan
 mode: localization #localization
 
 # if you'd like to start localizing on bringup in a map and pose
-map_file_name: test_steve
-map_start_pose: [5.0, 1.0, 0.0]
+map_file_name: /home/jj/ws/phd_ws/ws/src/M3DP/m3dp/m3dp_scenes/test_world/test_world
+map_start_pose: [0.0, 0.0, 0.0]
 
 debug_logging: false
 throttle_scans: 1

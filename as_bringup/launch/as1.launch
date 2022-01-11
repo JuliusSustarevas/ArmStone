@@ -6,7 +6,7 @@
   <arg name="base_on" default="true" doc="Turn on/off base" />
   <arg name="sim" default="false" doc="true/false" />
   <arg name="joy_type" default="input/js0" />
-  <arg name="opti_odom" default="false" />
+  <arg name="driver_publish_odom" default="false" />
 
   <!-- ###Stack and Control### -->
   <include file="$(find as_bringup)/launch/_as_stack.launch">
@@ -17,7 +17,7 @@
     <arg name="base_controller" value="$(arg base_controller)" />
     <arg name="xarm_controller" value="$(arg xarm_controller)" />
     <arg name="joy_type" value="$(arg joy_type)" />
-    <arg name="publish_odom_tf" value="$(arg opti_odom)" />
+    <arg name="publish_odom_tf" value="$(arg driver_publish_odom)" />
   </include>
 
   <!-- ###Sensors### -->
@@ -54,7 +54,7 @@
       <remap from="/as_sensors/scan" to="/as_sensors/right_hokuyo/scan" />
     </node>
 
-    <node  unless="$(arg sim)" pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
+    <node unless="$(arg sim)" pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
       <param name="destination_frame" value="base_link_footprint" />
       <param name="cloud_destination_topic" value="/merged_cloud" />
       <param name="scan_destination_topic" value="/as_sensors/scan" />
@@ -68,13 +68,10 @@
     </node>
   </group>
 
-  <!-- ###Slam_toolbox### -->  
+  <!-- ###Slam_toolbox### -->
   <!-- Note can't handle being in a ns -->
-  <include unless = "$(arg opti_odom)" file="$(find as_base_localisation)/launch/base_localisation.launch">
-    <!-- #localisation -->
-    <arg name="mode" value="true" />
-    <!-- #mapping -->
-    <!-- <arg name="mode" value="false" />       -->
-    <!-- <arg name="sim" value="$(arg sim)" />       -->
+  <include file="$(find as_base_localisation)/launch/base_localisation.launch">
+    <arg name="mapping" value="false" />
   </include>
+
 </launch>

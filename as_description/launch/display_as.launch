@@ -20,8 +20,7 @@
                 xarmjoint3: -1.0
                 xarmjoint4: 0
                 xarmjoint5: 1.0
-                xarmjoint6: -1.57079632679
-            
+                xarmjoint6: -1.57079632679            
           </rosparam>
     </node>
 

@@ -4,14 +4,14 @@
     <arg name="xarm_on" default="false" />
     <arg name="base_on" default="true" />
     <arg name="sim" default="false" />
-    <arg name="publish_odom_tf" default="true" />    
+    <arg name="publish_odom_tf" default="true" />
 
     <!-- Controller options -->
     <arg name="xarm_controller" default="xarm_position_trajectory_controller" doc="xarm_position_trajectory_controller or xarm_velocity_trajectory_controller xarm_joint_position_controller or xarm_joint_velocity_controller" />
     <arg name="base_controller" default="as_base_holonomic_controller" doc="as_base_differential_controller  or  as_base_holonomic_controller" />
-    <arg if="$(eval arg('base_on') and not arg('xarm_on'))" name="controllers" default="$(arg base_controller) joint_state_controller" />    
+    <arg if="$(eval arg('base_on') and not arg('xarm_on'))" name="controllers" default="$(arg base_controller) joint_state_controller" />
     <arg if="$(eval arg('base_on') and arg('xarm_on'))" name="controllers" default="$(arg base_controller) $(arg xarm_controller) joint_state_controller" />
-    <arg if="$(eval not arg('base_on') and arg('xarm_on'))" name="controllers" default="$(arg xarm_controller) joint_state_controller" />   
+    <arg if="$(eval not arg('base_on') and arg('xarm_on'))" name="controllers" default="$(arg xarm_controller) joint_state_controller" />
 
     <!-- Load hardware interfaces -->
     <group unless="$(arg sim)">
@@ -22,7 +22,7 @@
             <param name="xarm_report_type" type="str" value="$(arg report_type)" />
             <rosparam file="$(find as_control)/config/joint_limits.yaml" command="load" />
             <node name="xarm_driver" pkg="xarm_api" type="xarm_driver_node" output="screen" />
-            
+
         </group>
 
         <!-- Load interface params -->
@@ -34,7 +34,7 @@
         <!-- arm only -->
         <arg if="$(eval not arg('base_on') and arg('xarm_on'))" name="hw_interfaces" default="[xarm]" />
         <rosparam param="robot_hardware" subst_value="True">$(arg hw_interfaces)</rosparam>
-        <node launch-prefix="nice -n -10" name="armstone_driver" pkg="as_control" type="armstone_hw_interface_node" output="screen" />                               
+        <node launch-prefix="nice -n -10" name="armstone_driver" pkg="as_control" type="armstone_hw_interface_node" output="screen" />
     </group>
 
     <!-- Spawn Controllers -->
@@ -43,23 +43,29 @@
 
     <rosparam subst_value="true">
         as_base_holonomic_controller:
-            enable_odom_tf: $(arg publish_odom_tf)                    
+            enable_odom_tf: $(arg publish_odom_tf)                                
+    </rosparam>
+    <rosparam if="$(arg sim)">
+        as_base_holonomic_controller:
             wheels:
-                r: $(eval 0.107 if arg('sim') else 0.0762)       
+                r: 0.107
+    </rosparam>
+    <rosparam unless="$(arg sim)">
+        as_base_holonomic_controller:
+            wheels:
+                r: 0.0762
     </rosparam>
 
-    <node name="controller_spawner" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" args="spawn $(arg controllers)"/>    
+    <node name="controller_spawner" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" args="spawn $(arg controllers)" />
 
     <!-- Base input mux -->
     <node pkg="twist_mux" type="twist_mux" name="twist_mux" output="screen">
-        <remap from="cmd_vel_out" to="as_base_holonomic_controller/cmd_vel"/>            
-        <rosparam file="$(find as_control)/config/twist_mux.yaml"  command="load"/>
+        <remap from="cmd_vel_out" to="as_base_holonomic_controller/cmd_vel" />
+        <rosparam file="$(find as_control)/config/twist_mux.yaml" command="load" />
     </node>
-    
-    
+
+
 </launch>
-
-
 
 <!-- 
 pause:
