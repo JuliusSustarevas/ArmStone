@@ -9,6 +9,20 @@
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
         <param name="use_gui" value="$(arg jsp_gui)" />
         <param name="rate" value="50" />
+        <rosparam >
+            zeros: 
+                motor_wheel_joint_fl: 0
+                motor_wheel_joint_fr: 0
+                motor_wheel_joint_bl: 0
+                motor_wheel_joint_br: 0
+                xarmjoint1: 0
+                xarmjoint2: -1.0
+                xarmjoint3: -1.0
+                xarmjoint4: 0
+                xarmjoint5: 1.0
+                xarmjoint6: -1.57079632679
+            
+          </rosparam>
     </node>
 
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />

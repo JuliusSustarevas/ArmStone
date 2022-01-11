@@ -25,7 +25,7 @@
   -J xarmjoint3 -1.0
   -J xarmjoint4 0.0
   -J xarmjoint5 1.0
-  -J xarmjoint6 0.0"
+  -J xarmjoint6 -1.57079632679"
    output="screen" />  
 
 </launch>

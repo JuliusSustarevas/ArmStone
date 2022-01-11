@@ -16,7 +16,7 @@
         <technique sid="common">
           <lambert>
             <emission>
-              <color sid="emission">0.35 0.35 0.35 1</color>
+              <color sid="emission">0.15 0.15 0.15 1</color>
             </emission>
             <diffuse>
               <color sid="diffuse">0.898039 0.898039 0.898039 1</color>
@@ -33,7 +33,7 @@
         <technique sid="common">
           <lambert>
             <emission>
-              <color sid="emission">0.35 0.35 0.35 1</color>
+              <color sid="emission">0.15 0.15 0.15 1</color>
             </emission>
             <diffuse>
               <color sid="diffuse">0.952941 0.952941 0.952941 1</color>
@@ -50,7 +50,7 @@
         <technique sid="common">
           <lambert>
             <emission>
-              <color sid="emission">0.35 0.35 0.35 1</color>
+              <color sid="emission">0.15 0.15 0.15 1</color>
             </emission>
             <diffuse>
               <color sid="diffuse">0.968627 0.52549 0.00392157 1</color>
