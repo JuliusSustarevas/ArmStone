@@ -8,10 +8,10 @@
     <!-- as1 -->
     <include file="$(find as_bringup)/launch/as1.launch">
         <arg name="sim" value="true" />
-        <arg name="xarm_on" value="false" />
+        <arg name="xarm_on" value="true" />
         <arg name="base_on" value="true" />
-        <arg name="joy_type" value="STADIA_GREEN" />
-        <!-- <arg name="joy_type" value="input/js1" /> -->
+        <!-- <arg name="joy_type" value="STADIA_GREEN" /> -->
+        <arg name="joy_type" value="input/js0" />
     </include>
 
     <include file="$(find as_bringup)/launch/as2.launch">
@@ -23,7 +23,7 @@
         <!-- <arg name="paused" value="$(eval arg('paused') and not ((arg('xarm_controller')=='xarm_joint_velocity_controller') or (arg('xarm_controller')=='xarm_velocity_trajectory_controller')))" /> -->
         <arg name="paused" value="false" />
         <arg name="use_sim_time" value="$(arg use_sim_time)" />
-        <arg name="spawn_coordinates" value="-x 0 -y 0 -z 0" />
+        <arg name="spawn_coordinates" value="-x 0 -y 0 -z 0.005" />
         <!-- <arg name="world_name" value="empty.world" /> -->
         <!-- <arg name="world_name" value="inspection.world" /> -->
         <!-- <arg name="world_name" value="construction.world" />         

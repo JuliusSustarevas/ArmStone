@@ -10,6 +10,12 @@
       <uri>model://ground_plane</uri>
     </include>
 
+    <physics type="ode">      
+      <real_time_factor>0.5</real_time_factor>      
+      <real_time_update_rate>200</real_time_update_rate>      
+      
+    </physics>
+
     <model name='test_world'>
       <pose frame=''>1.89581 0.315639 0 0 -0 0</pose>
       <link name='Wall_11'>

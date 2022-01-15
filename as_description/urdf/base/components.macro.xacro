@@ -78,7 +78,7 @@
 		<xacro:generic_box name="ic" parent="${parent}" xyz="${xyz}" rpy="${rpy}" dx="${ic_box_dx}" dy="${ic_box_dy}" dz="${ic_box_dz}" m="${ic_m}" material="LightGrey" gmaterial="Gazebo/LightGrey" meshfile="intermediate_assembly${mesh_filetype}" mxyz="${ic_box_dx/2 - 0.03} 0 ${-ic_box_dz/2}" mrpy="0 0 0" />
 	</xacro:macro>
 
-	<xacro:macro name="extruder" params="parent xyz rpy">
+	<xacro:macro name="extruder" params="parent xyz rpy load_sensors='true'">
 
 		<joint name="extruder_joint" type="fixed">
 			<parent link="${parent}" />
@@ -106,6 +106,7 @@
 			</collision>
 		</link>
 
+
 		<joint name="extruder_ee_joint" type="fixed">
 			<parent link="extruder_link" />
 			<child link="extruder_ee" />
@@ -113,29 +114,32 @@
 		</joint>
 
 		<link name="extruder_ee" />
-
-		<xacro:imu prefix="ee" parent="${parent}" xyz="${ee_imu_xyz}" rpy="${ee_imu_rpy}" />
+		
+		<xacro:if value="${load_sensors}">
+			<xacro:imu prefix="ee" parent="${parent}" xyz="${ee_imu_xyz}" rpy="${ee_imu_rpy}" />
+		</xacro:if>		
 
 		<!-- Extruder Axes -->
 		<joint name="extruder_axes_joint" type="fixed">
 			<parent link="${parent}" />
 			<child link="extruder_axes_link" />
-			<origin xyz="0.018177 0.038884 -0.001" rpy="0 ${M_PI} ${-M_PI/2}" />
+			<origin xyz="0.018177 0.04388428 -0.001" rpy="0 ${M_PI} ${-M_PI/2}" />
 		</joint>
+		
 
-		<link name="extruder_axes_link">
+		<link name="extruder_axes_link">			
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				<geometry>
 					<mesh filename="package://as_description/meshes/extruder_axes${mesh_filetype}" />
 				</geometry>
 			</visual>
-			<collision>
+			<!-- <collision>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				<geometry>
 					<mesh filename="package://as_description/meshes/extruder_axes${mesh_filetype}" />
 				</geometry>
-			</collision>
+			</collision> -->
 		</link>
 
 		<!-- LEFT is D435 -->
@@ -152,12 +156,12 @@
 					<mesh filename="package://as_description/meshes/cam_holder${mesh_filetype}" />
 				</geometry>
 			</visual>
-			<collision>
+			<!-- <collision>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				<geometry>
 					<mesh filename="package://as_description/meshes/cam_holder${mesh_filetype}" />
 				</geometry>
-			</collision>
+			</collision> -->
 		</link>
 
 		<joint name="d435_mount_joint" type="fixed">
@@ -182,17 +186,17 @@
 					<mesh filename="package://as_description/meshes/cam_holder${mesh_filetype}" />
 				</geometry>
 			</visual>
-			<collision>
+			<!-- <collision>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				<geometry>
 					<mesh filename="package://as_description/meshes/cam_holder${mesh_filetype}" />
 				</geometry>
-			</collision>
+			</collision> -->
 		</link>
 
 		<joint name="l515_mount_joint" type="fixed">
 			<parent link="l515_holder_link" />
-			<child link="l515_mount_link" />			
+			<child link="l515_mount_link" />
 			<origin xyz="0.16113414 0.02 -0.11987969" rpy="${-30*M_PI/180} 0  ${M_PI/2}" />
 			<!-- -161.13414
 			119.87969
@@ -200,13 +204,16 @@
 		</joint>
 
 		<link name="l515_mount_link" />
-
-		<xacro:sensor_l515 name="l515_mount_link" topics_ns="/as_sensors/l515/depth_cam" parent="l515_mount_link" use_nominal_extrinsics="true" publish_pointcloud="true" add_plug="false" use_mesh="true">			
-			<origin xyz="0.01015 0  0.014" rpy="0 ${-M_PI/2} 0" />		
+		
+		<xacro:if value="${load_sensors}">
+			<xacro:sensor_l515 name="l515_mount_link" topics_ns="/as_sensors/l515/depth_cam" parent="l515_mount_link" use_nominal_extrinsics="true" publish_pointcloud="true" add_plug="false" use_mesh="true">
+			<origin xyz="0.01015 0  0.014" rpy="0 ${-M_PI/2} 0" />
 			<!-- From starting frame to screw hole closer to usb-c: -0.014;0;0.01015 -->
-			<!-- From starting frame to screw hole further to usb-c: -0.014;0;0.05015 -->	
-		</xacro:sensor_l515>
-	
+			<!-- From starting frame to screw hole further to usb-c: -0.014;0;0.05015 -->
+			</xacro:sensor_l515>
+		</xacro:if>
+		
+
 
 		<!-- <xacro:sensor_d435 parent="d435_mount_link" use_nominal_extrinsics="true" add_plug="false" use_mesh="true">
 			<origin xyz="0 0 0" rpy="0 0 0"/>

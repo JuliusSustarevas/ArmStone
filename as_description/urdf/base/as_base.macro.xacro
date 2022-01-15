@@ -43,7 +43,7 @@
 	<xacro:property name="right_hokuyo_xyz" value="${-base_link_dx/2 + 0.235} ${-base_link_dy/2  + 0.02 }  0" />
 	<xacro:property name="right_hokuyo_rpy" value="0 0 ${- M_PI/2}" />
 
-	<xacro:macro name="as_base" params="load_gazebo_plugin='true'">
+	<xacro:macro name="as_base" params="load_gazebo_plugin='true' load_sensors='true'">
 		<!-- Compose the ArmStone Base -->
 		<xacro:as_base_chasis />
 		<xacro:battery48 parent="base_link" xyz="${battery_xyz}" rpy="${battery_rpy}" />
@@ -56,10 +56,12 @@
 		<xacro:ic parent="base_link" xyz="${ic_box_xyz}" rpy="${ic_box_rpy}" />
 		<xacro:backpack parent="base_link" xyz="${backpack_xyz}" rpy="${backpack_rpy}" />	
 		<!-- Sensors -->
-		<xacro:imu prefix="base" parent="base_link" xyz="${base_imu_xyz}" rpy="${base_imu_rpy}" />
-		<xacro:hokuyo prefix="left" parent="base_link" xyz="${left_hokuyo_xyz}" rpy="${left_hokuyo_rpy}" />	
-		<xacro:hokuyo prefix="right" parent="base_link" xyz="${right_hokuyo_xyz}" rpy="${right_hokuyo_rpy}" />
-		<xacro:perfect_lidar parent="base_link" />
+		<xacro:if value="${load_sensors}">
+			<xacro:imu prefix="base" parent="base_link" xyz="${base_imu_xyz}" rpy="${base_imu_rpy}" />
+			<xacro:hokuyo prefix="left" parent="base_link" xyz="${left_hokuyo_xyz}" rpy="${left_hokuyo_rpy}" />	
+			<xacro:hokuyo prefix="right" parent="base_link" xyz="${right_hokuyo_xyz}" rpy="${right_hokuyo_rpy}" />
+			<xacro:perfect_lidar parent="base_link" />
+		</xacro:if>
 	</xacro:macro>
 
 

@@ -6,6 +6,8 @@ ceres_trust_strategy: LEVENBERG_MARQUARDT
 ceres_dogleg_type: TRADITIONAL_DOGLEG
 ceres_loss_function: None
 
+# Don't use dogleg. 
+
 # ROS Parameters
 odom_frame: odom
 map_frame: map

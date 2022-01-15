@@ -6,7 +6,7 @@
   <arg name="base_on" default="true" doc="Turn on/off base" />
   <arg name="sim" default="false" doc="true/false" />
   <arg name="joy_type" default="input/js0" />
-  <arg name="driver_publish_odom" default="false" />
+  <arg name="driver_publish_odom" default="true" />
 
   <!-- ###Stack and Control### -->
   <include file="$(find as_bringup)/launch/_as_stack.launch">
@@ -70,8 +70,15 @@
 
   <!-- ###Slam_toolbox### -->
   <!-- Note can't handle being in a ns -->
-  <include file="$(find as_base_localisation)/launch/base_localisation.launch">
+  <!-- <include file="$(find as_base_localisation)/launch/base_localisation.launch">
     <arg name="mapping" value="false" />
+  </include> -->
+  <!-- ###PMPC### -->
+  <!-- pmpc starts when you press and hold left trigger. It then acts like deadman switch. -->
+  <include file="$(find perceptive_mpc)/launch/as_pmpc.launch">
+    <arg name="KINEMATIC_SIMULATION" value="false" />
+    <arg name="COLLISION_AVOIDANCE" value="false" />
+    <arg name="INTERACTIVE" value="true" />
   </include>
 
 </launch>

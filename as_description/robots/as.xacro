@@ -13,6 +13,7 @@
       <xacro:arg name="effort_control" default="false" />
       <xacro:arg name="velocity_control" default="false" />
       <xacro:arg name="load_gazebo_plugin" default="false" />
+      <xacro:arg name="load_sensors" default="false" />
       <!-- placement -->
       <xacro:property name="arm_xyz" value="${-0.185+base_link_dx/2} 0 ${0.005+0.028-base_link_dz/2}" />
       <xacro:property name="arm_rpy" value="0 0 0" />
@@ -20,7 +21,7 @@
       <xacro:property name="extruder_rpy" value="0 0 ${-M_PI/2}" />      
 
       <!-- formation-->
-      <xacro:as_base load_gazebo_plugin="$(arg load_gazebo_plugin)" />
+      <xacro:as_base load_gazebo_plugin="$(arg load_gazebo_plugin)" load_sensors="$(arg load_sensors)"/>
       <!-- explicit xarm_mount for easier robcogen -->
       <link name="xarm_mount">   
       </link>
@@ -30,7 +31,7 @@
             <origin xyz= "${arm_xyz}" rpy = "${arm_rpy}" />
       </joint>  
       <xacro:xarm6_robot prefix="$(arg prefix)" namespace="$(arg ros_namespace)" limited="$(arg limited)" effort_control="$(arg effort_control)" velocity_control="$(arg velocity_control)" attach_to="xarm_mount" xyz="0 0 0" rpy="0 0 0" load_gazebo_plugin="$(arg load_gazebo_plugin)" />
-      <xacro:extruder parent="xarmlink_eef" xyz="${extruder_xyz}" rpy="${extruder_rpy}" />
+      <xacro:extruder parent="xarmlink_eef" xyz="${extruder_xyz}" rpy="${extruder_rpy}" load_sensors="$(arg load_sensors)"/>
 
 
       <!-- Gazebo: My current understanding is that libgazebo_ros_control is a per-model-plugin
