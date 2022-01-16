@@ -1,11 +1,17 @@
 <launch>
   <!-- ###Launch args### -->
   <arg name="sim" default="false" doc="true/false" />
+  <arg name="map" default="test_world" doc="existing map when in localisation mode" />
+  <!-- <arg name="map" default="jan16" doc="existing map when in localisation mode" /> -->
 
   <!-- ###Slam_toolbox### -->
   <!-- Note can't handle being in a ns -->
   <include file="$(find as_base_localisation)/launch/base_localisation.launch">
     <arg name="mapping" value="false" />
+    <arg name="map" value="$(arg map)" />
+  </include>
+  <!-- ###Extruder -->
+  <include unless="$(arg sim)" file="$(find as_extruder_control)/launch/extruder.launch">    
   </include>
   <!-- ###EE Correction Control### -->
   <group ns="/ee_cc">
