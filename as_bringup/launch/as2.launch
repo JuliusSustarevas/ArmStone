@@ -2,6 +2,11 @@
   <!-- ###Launch args### -->
   <arg name="sim" default="false" doc="true/false" />
 
+  <!-- ###Slam_toolbox### -->
+  <!-- Note can't handle being in a ns -->
+  <include file="$(find as_base_localisation)/launch/base_localisation.launch">
+    <arg name="mapping" value="false" />
+  </include>
   <!-- ###EE Correction Control### -->
   <group ns="/ee_cc">
   </group>

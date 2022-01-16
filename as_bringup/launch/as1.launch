@@ -67,12 +67,7 @@
       <param name="range_max" value="6" />
     </node>
   </group>
-
-  <!-- ###Slam_toolbox### -->
-  <!-- Note can't handle being in a ns -->
-  <!-- <include file="$(find as_base_localisation)/launch/base_localisation.launch">
-    <arg name="mapping" value="false" />
-  </include> -->
+  
   <!-- ###PMPC### -->
   <!-- pmpc starts when you press and hold left trigger. It then acts like deadman switch. -->
   <include file="$(find perceptive_mpc)/launch/as_pmpc.launch">
