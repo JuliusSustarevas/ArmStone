@@ -10,10 +10,9 @@
       <uri>model://ground_plane</uri>
     </include>
 
-    <physics type="ode">      
-      <real_time_factor>0.5</real_time_factor>      
-      <real_time_update_rate>200</real_time_update_rate>      
-      
+    <physics type="ode">            
+      <!-- This will cap realtime factor to 0.8 -->
+      <real_time_update_rate>800</real_time_update_rate>
     </physics>
 
     <model name='test_world'>
