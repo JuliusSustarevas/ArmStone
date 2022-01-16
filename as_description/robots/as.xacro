@@ -13,7 +13,7 @@
       <xacro:arg name="effort_control" default="false" />
       <xacro:arg name="velocity_control" default="false" />
       <xacro:arg name="load_gazebo_plugin" default="false" />
-      <xacro:arg name="load_sensors" default="false" />
+      <xacro:arg name="load_sensors" default="true" />
       <!-- placement -->
       <xacro:property name="arm_xyz" value="${-0.185+base_link_dx/2} 0 ${0.005+0.028-base_link_dz/2}" />
       <xacro:property name="arm_rpy" value="0 0 0" />
