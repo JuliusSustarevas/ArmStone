@@ -31,7 +31,7 @@ print_diagnostics: false
 # Debug settings. Not for the faint of heart. Outputs a ludicrous amount of information to the file specified by
 # debug_out_file. I hope you like matrices! Please note that setting this to true will have strongly deleterious
 # effects on the performance of the node. Defaults to false if unspecified.
-debug: false
+debug: true
 
 # Defaults to "robot_localization_debug.txt" if unspecified. Please specify the full path.
 debug_out_file: /path/to/debug/file.txt
@@ -83,8 +83,8 @@ odom0: /as_control/as_base_holonomic_controller/odom
 # do not provide some of the state variables estimated by the filter. For example, a TwistWithCovarianceStamped message
 # has no pose information, so the first six values would be meaningless in that case. Each vector defaults to all false
 # if unspecified, effectively making this parameter required for each sensor.
-odom0_config: [true,  true,  false,
-               false, false, true,
+odom0_config: [false,  false,  false,
+               false, false, false,
                true, true, false,
                false, false, true,
                false, false, false]
@@ -137,17 +137,17 @@ odom0_twist_rejection_threshold: 1
 # odom1_twist_rejection_threshold: 0.2
 # odom1_nodelay: false
 
-pose0: amcl_pose
-pose0_config: [false,  false,  false,
-               false, false, false,
-               true, true, false,
+pose0: /as_localisation/amcl_pose
+pose0_config: [true,  true,  false,
                false, false, true,
+               false, false, false,
+               false, false, false,
                false, false, false]
-pose0_differential: true
+pose0_differential: false
 pose0_relative: false
 pose0_queue_size: 5
 pose0_rejection_threshold: 2  # Note the difference in parameter name
-pose0_nodelay: false
+pose0_nodelay: true
 
 # twist0: example/twist
 # twist0_config: [false, false, false,

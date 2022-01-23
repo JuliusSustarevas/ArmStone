@@ -6,7 +6,7 @@
   <arg name="base_on" default="true" doc="Turn on/off base" />
   <arg name="sim" default="false" doc="true/false" />
   <arg name="joy_type" default="input/js0" />
-  <arg name="driver_publish_odom" default="true" />
+  <arg name="driver_publish_odom" default="false" />
 
   <!-- ###Stack and Control### -->
   <include file="$(find as_bringup)/launch/_as_stack.launch">
