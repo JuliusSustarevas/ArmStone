@@ -2,7 +2,7 @@
 <launch>
 
     <node pkg="rosserial_python" type="serial_node.py" name="rosserial_extruder">
-        <param name="port" value="EXTRUDER"/>
+        <param name="port" value="/dev/EXT_ARDUINO"/>
     </node>
     
 </launch>
