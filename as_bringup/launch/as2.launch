@@ -2,7 +2,7 @@
   <!-- ###Launch args### -->
   <arg name="sim" default="false" doc="true/false" />
   <arg name="map" default="test_world" doc="existing map when in localisation mode" />
-  <!-- <arg name="map" default="jan16" doc="existing map when in localisation mode" /> -->
+  <!-- <arg name="map" default="jan23" doc="existing map when in localisation mode" /> -->
 
   <!-- ###Slam_toolbox### -->
   <!-- Note can't handle being in a ns -->
