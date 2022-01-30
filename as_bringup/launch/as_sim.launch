@@ -8,7 +8,7 @@
     <!-- as1 -->
     <include file="$(find as_bringup)/launch/as1.launch">
         <arg name="sim" value="true" />
-        <arg name="xarm_on" value="true" />
+        <arg name="xarm_on" value="false" />
         <arg name="base_on" value="true" />
         <!-- <arg name="joy_type" value="STADIA_GREEN" /> -->
         <arg name="joy_type" value="input/js0" />
