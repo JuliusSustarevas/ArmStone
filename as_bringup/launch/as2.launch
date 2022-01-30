@@ -11,11 +11,9 @@
     <arg name="map" value="$(arg map)" />
   </include>
   <!-- ###Extruder -->
-  <include unless="$(arg sim)" file="$(find as_extruder_control)/launch/extruder.launch">    
-  </include>
+  <include unless="$(arg sim)" file="$(find as_extruder_control)/launch/extruder.launch"></include>
   <!-- ###EE Correction Control### -->
-  <group ns="/ee_cc">
-  </group>
+  <group ns="/ee_cc"></group>
   <!-- ###Sensors### -->
   <group ns="/as_sensors">
     <!-- IMU Ext -->
@@ -39,6 +37,9 @@
       <arg name="align_depth" default="true" />
       <arg name="filters" default="pointcloud" />
     </include>
+    
+    <node pkg="as_sensors" type="rs_dymic_reconfigure.py" name="rs_reconf_client" />
+
   </group>
 
 </launch>
