@@ -45,15 +45,15 @@
 
     <!-- Realsense -->
     <!-- https://github.com/IntelRealSense/realsense-ros/issues/2194 -->
-    <include unless="$(arg sim)" file="$(find realsense2_camera)/launch/rs_camera.launch">
+    <!-- <include unless="$(arg sim)" file="$(find realsense2_camera)/launch/rs_camera.launch">
       <arg name="device_type" default="l515" />
       <arg name="json_file_path" default="$(find as_sensors)/config/l515_short_distance.json" />
       <arg name="initial_reset" default="true" />
       <arg name="align_depth" default="true" />
       <arg name="filters" default="pointcloud" />
-    </include>
+    </include> -->
     
-    <node pkg="as_sensors" type="rs_dymic_reconfigure.py" name="rs_reconf_client" />
+    <!-- <node pkg="as_sensors" type="rs_dymic_reconfigure.py" name="rs_reconf_client" /> -->
 
   </group>
 
