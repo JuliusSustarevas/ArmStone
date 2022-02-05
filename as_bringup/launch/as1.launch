@@ -6,7 +6,7 @@
   <arg name="base_on" default="true" doc="Turn on/off base" />
   <arg name="sim" default="false" doc="true/false" />
   <arg name="joy_type" default="input/js0" />
-  <arg name="driver_publish_odom" default="false" doc="always false pls"/>
+  <arg name="driver_publish_odom" default="true" doc="always false pls"/>
 
   <!-- ###Stack and Control### -->
   <include file="$(find as_bringup)/launch/_as_stack.launch">
@@ -54,18 +54,6 @@
       <remap from="/as_sensors/scan" to="/as_sensors/right_hokuyo/scan" />
     </node>
 
-    <node unless="$(arg sim)" pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
-      <param name="destination_frame" value="base_link_footprint" />
-      <param name="cloud_destination_topic" value="/merged_cloud" />
-      <param name="scan_destination_topic" value="/as_sensors/scan" />
-      <param name="laserscan_topics" value="/as_sensors/left_hokuyo/scan /as_sensors/right_hokuyo/scan" /> <!-- LIST OF THE LASER SCAN TOPICS TO SUBSCRIBE -->
-      <param name="angle_min" value="-3.13852469201" />
-      <param name="angle_max" value="3.13852469201" />
-      <param name="angle_increment" value="0.0061359" />
-      <param name="scan_time" value="0.105" />
-      <param name="range_min" value="0.30" />
-      <param name="range_max" value="6" />
-    </node>
   </group>
   
   <!-- ###PMPC### -->

@@ -60,7 +60,7 @@
 			<xacro:imu prefix="base" parent="base_link" xyz="${base_imu_xyz}" rpy="${base_imu_rpy}" />
 			<xacro:hokuyo prefix="left" parent="base_link" xyz="${left_hokuyo_xyz}" rpy="${left_hokuyo_rpy}" />	
 			<xacro:hokuyo prefix="right" parent="base_link" xyz="${right_hokuyo_xyz}" rpy="${right_hokuyo_rpy}" />
-			<xacro:perfect_lidar parent="base_link" />
+			<!-- <xacro:perfect_lidar parent="base_link" /> -->
 		</xacro:if>
 	</xacro:macro>
 

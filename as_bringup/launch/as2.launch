@@ -28,6 +28,21 @@
       <arg name="port" default="BASE_IMU" />
       <arg name="device_frame" default="base_imu" />
     </include>
+
+    <!-- Merger -->
+    <node  pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
+      <param name="destination_frame" value="base_link_footprint" />
+      <param name="cloud_destination_topic" value="/merged_cloud" />
+      <param name="scan_destination_topic" value="/as_sensors/scan" />
+      <param name="laserscan_topics" value="/as_sensors/left_hokuyo/scan /as_sensors/right_hokuyo/scan" /> <!-- LIST OF THE LASER SCAN TOPICS TO SUBSCRIBE -->
+      <param name="angle_min" value="-3.13852469201" />
+      <param name="angle_max" value="3.13852469201" />
+      <param name="angle_increment" value="0.0061359" />
+      <param name="scan_time" value="0.05" />
+      <param name="range_min" value="0.30" />
+      <param name="range_max" value="6" />
+    </node>
+
     <!-- Realsense -->
     <!-- https://github.com/IntelRealSense/realsense-ros/issues/2194 -->
     <include unless="$(arg sim)" file="$(find realsense2_camera)/launch/rs_camera.launch">
