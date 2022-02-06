@@ -15,8 +15,8 @@ mode: localization #localization
 
 # if you'd like to start localizing on bringup in a map and pose
 # map_file_name: /home/jj/ws/phd_ws/ws/src/M3DP/m3dp/m3dp_scenes/jan29/jan29
-# map_file_name: /home/jj/ws/phd_ws/ws/src/M3DP/m3dp/m3dp_scenes/test_world/test_world
-map_file_name: /home/armstone/ws/src/M3DP/m3dp/m3dp_scenes/feb05/0205
+map_file_name: /home/jj/ws/phd_ws/ws/src/M3DP/m3dp/m3dp_scenes/test_world/test_world
+# map_file_name: /home/armstone/ws/src/M3DP/m3dp/m3dp_scenes/feb05/0205
 map_start_pose: [0.0, 0.0, 0.0]
 
 debug_logging: false

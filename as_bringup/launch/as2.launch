@@ -7,7 +7,7 @@
   <!-- ###Slam_toolbox### -->
   <!-- Note can't handle being in a ns -->
   <include file="$(find as_base_localisation)/launch/base_localisation.launch">
-    <arg name="mapping" value="true" />
+    <arg name="mapping" value="false" />
     <arg name="map" value="$(arg map)" />
   </include>
   <!-- ###Extruder -->
