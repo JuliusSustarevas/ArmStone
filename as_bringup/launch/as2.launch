@@ -7,7 +7,7 @@
   <!-- ###Slam_toolbox### -->
   <!-- Note can't handle being in a ns -->
   <include file="$(find as_base_localisation)/launch/base_localisation.launch">
-    <arg name="mapping" value="false" />
+    <arg name="mapping" value="true" />
     <arg name="map" value="$(arg map)" />
   </include>
   <!-- ###Extruder -->
@@ -16,18 +16,17 @@
   <group ns="/ee_cc"></group>
   <!-- ###Sensors### -->
   <group ns="/as_sensors">
-    <!-- IMU Ext -->
-    <include unless="$(arg sim)" file="$(find sensor_imu)/launch/sensor_imu.launch">
+    <!-- IMU Ext  DISABLED-->
+    <!-- <include unless="$(arg sim)" file="$(find sensor_imu)/launch/sensor_imu.launch">
       <arg name="sensor_name" default="ext_imu" />
       <arg name="port" default="EXT_IMU" />
       <arg name="device_frame" default="ext_imu" />
-    </include>
-    <!-- IMU Base -->
+    </include>    
     <include unless="$(arg sim)" file="$(find sensor_imu)/launch/sensor_imu.launch">
       <arg name="sensor_name" default="base_imu" />
       <arg name="port" default="BASE_IMU" />
       <arg name="device_frame" default="base_imu" />
-    </include>
+    </include> -->
 
     <!-- Merger -->
     <node  pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
