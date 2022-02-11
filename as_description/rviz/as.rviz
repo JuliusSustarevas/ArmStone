@@ -1,6 +1,6 @@
 Panels:
   - Class: rviz/Displays
-    Help Height: 78
+    Help Height: 0
     Name: Displays
     Property Tree Widget:
       Expanded:
@@ -16,7 +16,7 @@ Panels:
         - /DepthCloud2/Occlusion Compensation1
         - /DepthCloud2/Autocompute Value Bounds1
       Splitter Ratio: 0.4836065471172333
-    Tree Height: 381
+    Tree Height: 459
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -115,7 +115,39 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        d435_holder_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        d435_mount_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         dc_box_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        ee_imu_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        ee_imu_module:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        extruder_axes_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        extruder_ee:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        extruder_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -125,6 +157,72 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        l515_holder_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        l515_mount_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_mount_link_accel_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_mount_link_accel_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_mount_link_bottom_screw_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_mount_link_color_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_mount_link_color_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_mount_link_depth_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_mount_link_depth_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_mount_link_gyro_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_mount_link_gyro_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_mount_link_infra_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_mount_link_infra_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_mount_link_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        l515_mount_link_lower_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        l515_mount_link_upper_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         left_hokuyo_laser:
           Alpha: 1
           Show Axes: false
@@ -193,6 +291,49 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        xarm_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        xarmlink1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink6:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        xarmlink_eef:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
@@ -222,13 +363,61 @@ Visualization Manager:
           Value: true
         cover_plate_link:
           Value: true
+        d435_holder_link:
+          Value: true
+        d435_mount_link:
+          Value: true
         dc_box_link:
           Value: true
+        ee_imu_frame:
+          Value: true
+        ee_imu_module:
+          Value: true
+        extruder_axes_link:
+          Value: true
+        extruder_ee:
+          Value: true
+        extruder_link:
+          Value: true
         ic_link:
+          Value: true
+        l515_holder_link:
+          Value: true
+        l515_mount_link:
+          Value: true
+        l515_mount_link_accel_frame:
+          Value: true
+        l515_mount_link_accel_optical_frame:
+          Value: true
+        l515_mount_link_bottom_screw_frame:
+          Value: true
+        l515_mount_link_color_frame:
+          Value: true
+        l515_mount_link_color_optical_frame:
+          Value: true
+        l515_mount_link_depth_frame:
+          Value: true
+        l515_mount_link_depth_optical_frame:
+          Value: true
+        l515_mount_link_gyro_frame:
+          Value: true
+        l515_mount_link_gyro_optical_frame:
+          Value: true
+        l515_mount_link_infra_frame:
+          Value: true
+        l515_mount_link_infra_optical_frame:
+          Value: true
+        l515_mount_link_link:
+          Value: true
+        l515_mount_link_lower_mount:
+          Value: true
+        l515_mount_link_upper_mount:
           Value: true
         left_hokuyo_laser:
           Value: true
         left_hokuyo_link:
+          Value: true
+        ma_map:
           Value: true
         map:
           Value: true
@@ -257,6 +446,24 @@ Visualization Manager:
         right_hokuyo_laser:
           Value: true
         right_hokuyo_link:
+          Value: true
+        xarm_mount:
+          Value: true
+        xarmlink1:
+          Value: true
+        xarmlink2:
+          Value: true
+        xarmlink3:
+          Value: true
+        xarmlink4:
+          Value: true
+        xarmlink5:
+          Value: true
+        xarmlink6:
+          Value: true
+        xarmlink_base:
+          Value: true
+        xarmlink_eef:
           Value: true
       Marker Scale: 0.15000000596046448
       Name: TF
@@ -306,6 +513,51 @@ Visualization Manager:
                   right_hokuyo_link:
                     right_hokuyo_laser:
                       {}
+                  xarm_mount:
+                    xarmlink_base:
+                      xarmlink1:
+                        xarmlink2:
+                          xarmlink3:
+                            xarmlink4:
+                              xarmlink5:
+                                xarmlink6:
+                                  xarmlink_eef:
+                                    d435_holder_link:
+                                      d435_mount_link:
+                                        {}
+                                    ee_imu_module:
+                                      ee_imu_frame:
+                                        {}
+                                    extruder_axes_link:
+                                      {}
+                                    extruder_link:
+                                      extruder_ee:
+                                        {}
+                                    l515_holder_link:
+                                      l515_mount_link:
+                                        l515_mount_link_bottom_screw_frame:
+                                          l515_mount_link_link:
+                                            l515_mount_link_color_frame:
+                                              l515_mount_link_accel_frame:
+                                                l515_mount_link_accel_optical_frame:
+                                                  {}
+                                              l515_mount_link_color_optical_frame:
+                                                {}
+                                              l515_mount_link_gyro_frame:
+                                                l515_mount_link_gyro_optical_frame:
+                                                  {}
+                                            l515_mount_link_depth_frame:
+                                              l515_mount_link_depth_optical_frame:
+                                                {}
+                                            l515_mount_link_infra_frame:
+                                              l515_mount_link_infra_optical_frame:
+                                                {}
+                                          l515_mount_link_lower_mount:
+                                            {}
+                                          l515_mount_link_upper_mount:
+                                            {}
+            ma_map:
+              {}
       Update Interval: 0
       Value: true
     - Class: rviz/Marker
@@ -543,7 +795,7 @@ Visualization Manager:
       Axes Radius: 0.009999999776482582
       Class: rviz/PoseArray
       Color: 255; 25; 0
-      Enabled: true
+      Enabled: false
       Head Length: 0.07000000029802322
       Head Radius: 0.029999999329447746
       Name: basePoses
@@ -552,7 +804,7 @@ Visualization Manager:
       Shape: Arrow (Flat)
       Topic: /diagnostics/base_poses
       Unreliable: false
-      Value: true
+      Value: false
     - Alpha: 1
       Arrow Length: 0.30000001192092896
       Axes Length: 0.009999999776482582
@@ -648,25 +900,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10.731559753417969
+      Distance: 6.435667037963867
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 4.201535224914551
-        Y: 0.873284101486206
-        Z: -0.2558729350566864
+        X: -0.15491576492786407
+        Y: 0.6344032287597656
+        Z: -0.22704686224460602
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.389650821685791
+      Pitch: 1.3046506643295288
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 1.589494228363037
+      Yaw: 1.5744941234588623
     Saved: ~
 Window Geometry:
   Displays:
