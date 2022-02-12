@@ -12,7 +12,7 @@
 
     <physics type="ode">            
       <!-- This will cap realtime factor to 0.8 -->
-      <real_time_update_rate>800</real_time_update_rate>
+      <real_time_update_rate>500</real_time_update_rate>
     </physics>
 
     <model name='test_world'>

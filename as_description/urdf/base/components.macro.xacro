@@ -206,13 +206,13 @@
 
 		<link name="l515_mount_link" />
 		
-		<xacro:if value="${load_sensors}">
+		<!-- <xacro:if value="${load_sensors}">
 			<xacro:sensor_l515 name="l515_mount_link" topics_ns="/as_sensors/l515/depth_cam" parent="l515_mount_link" use_nominal_extrinsics="true" publish_pointcloud="true" add_plug="false" use_mesh="true">
-			<origin xyz="0.01015 0  0.014" rpy="0 ${-M_PI/2} 0" />
+			<origin xyz="0.01015 0  0.014" rpy="0 ${-M_PI/2} 0" /> -->
 			<!-- From starting frame to screw hole closer to usb-c: -0.014;0;0.01015 -->
 			<!-- From starting frame to screw hole further to usb-c: -0.014;0;0.05015 -->
-			</xacro:sensor_l515>
-		</xacro:if>
+			<!-- </xacro:sensor_l515> -->
+		<!-- </xacro:if> -->
 		
 
 
