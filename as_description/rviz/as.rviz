@@ -158,63 +158,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        l515_mount_link_accel_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        l515_mount_link_accel_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        l515_mount_link_bottom_screw_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        l515_mount_link_color_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        l515_mount_link_color_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        l515_mount_link_depth_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        l515_mount_link_depth_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        l515_mount_link_gyro_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        l515_mount_link_gyro_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        l515_mount_link_infra_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        l515_mount_link_infra_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        l515_mount_link_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        l515_mount_link_lower_mount:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        l515_mount_link_upper_mount:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         left_hokuyo_laser:
           Alpha: 1
           Show Axes: false
@@ -377,34 +320,6 @@ Visualization Manager:
           Value: true
         l515_mount_link:
           Value: true
-        l515_mount_link_accel_frame:
-          Value: true
-        l515_mount_link_accel_optical_frame:
-          Value: true
-        l515_mount_link_bottom_screw_frame:
-          Value: true
-        l515_mount_link_color_frame:
-          Value: true
-        l515_mount_link_color_optical_frame:
-          Value: true
-        l515_mount_link_depth_frame:
-          Value: true
-        l515_mount_link_depth_optical_frame:
-          Value: true
-        l515_mount_link_gyro_frame:
-          Value: true
-        l515_mount_link_gyro_optical_frame:
-          Value: true
-        l515_mount_link_infra_frame:
-          Value: true
-        l515_mount_link_infra_optical_frame:
-          Value: true
-        l515_mount_link_link:
-          Value: true
-        l515_mount_link_lower_mount:
-          Value: true
-        l515_mount_link_upper_mount:
-          Value: true
         left_hokuyo_laser:
           Value: true
         left_hokuyo_link:
@@ -527,27 +442,7 @@ Visualization Manager:
                                         {}
                                     l515_holder_link:
                                       l515_mount_link:
-                                        l515_mount_link_bottom_screw_frame:
-                                          l515_mount_link_link:
-                                            l515_mount_link_color_frame:
-                                              l515_mount_link_accel_frame:
-                                                l515_mount_link_accel_optical_frame:
-                                                  {}
-                                              l515_mount_link_color_optical_frame:
-                                                {}
-                                              l515_mount_link_gyro_frame:
-                                                l515_mount_link_gyro_optical_frame:
-                                                  {}
-                                            l515_mount_link_depth_frame:
-                                              l515_mount_link_depth_optical_frame:
-                                                {}
-                                            l515_mount_link_infra_frame:
-                                              l515_mount_link_infra_optical_frame:
-                                                {}
-                                          l515_mount_link_lower_mount:
-                                            {}
-                                          l515_mount_link_upper_mount:
-                                            {}
+                                        {}
             ma_map:
               {}
       Update Interval: 0
@@ -690,7 +585,7 @@ Visualization Manager:
       Marker Topic: /diagnostics/base_elipses
       Name: BaseElipses
       Namespaces:
-        "": true
+        {}
       Queue Size: 100
       Value: true
     - Alpha: 1
@@ -714,14 +609,14 @@ Visualization Manager:
       Marker Topic: /diagnostics/task_poses
       Name: TaskPoints
       Namespaces:
-        "": true
+        {}
       Queue Size: 100
       Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: map
+    Fixed Frame: ma_map
     Frame Rate: 30
   Name: root
   Tools:
@@ -745,7 +640,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.9063876867294312
+      Distance: 8.565498352050781
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
