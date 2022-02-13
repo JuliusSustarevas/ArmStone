@@ -18,7 +18,7 @@ class MovingAvg():
         self.fake_map_frame = "map"
         self.map_frame = "ma_map"
         self.odom_frame = "odom"
-        self.filter_len_s = 3
+        self.filter_len_s = 5
         self.hz = 20
         self.values = []
         self.transform = TransformStamped()
