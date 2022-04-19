@@ -27,7 +27,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ComboScan
+    SyncSource: ""
   - Class: slam_toolbox::SlamToolboxPlugin
     Name: SlamToolboxPlugin
 Preferences:
@@ -280,6 +280,12 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        as_base_gt:
+          Value: true
+        as_base_tracked:
+          Value: true
+        as_ee_tracked:
+          Value: true
         backpack_link:
           Value: true
         base_imu_frame:
@@ -323,10 +329,6 @@ Visualization Manager:
         left_hokuyo_laser:
           Value: true
         left_hokuyo_link:
-          Value: true
-        ma_map:
-          Value: true
-        map:
           Value: true
         material3_link:
           Value: true
@@ -378,73 +380,74 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        map:
-          odom:
-            base_link_footprint:
-              base_link_base:
-                base_link:
-                  backpack_link:
-                    {}
-                  base_imu_module:
-                    base_imu_frame:
+        odom:
+          as_base_tracked:
+            as_base_gt:
+              base_link_footprint:
+                base_link_base:
+                  base_link:
+                    backpack_link:
                       {}
-                  battery48_link:
-                    {}
-                  compressor_link:
-                    {}
-                  cover_plate_link:
-                    {}
-                  dc_box_link:
-                    {}
-                  ic_link:
-                    {}
-                  left_hokuyo_link:
-                    left_hokuyo_laser:
+                    base_imu_module:
+                      base_imu_frame:
+                        {}
+                    battery48_link:
                       {}
-                  material3_link:
-                    {}
-                  motor_gearbox_bl:
-                    omniwheel_bl:
+                    compressor_link:
                       {}
-                  motor_gearbox_br:
-                    omniwheel_br:
+                    cover_plate_link:
                       {}
-                  motor_gearbox_fl:
-                    omniwheel_fl:
+                    dc_box_link:
                       {}
-                  motor_gearbox_fr:
-                    omniwheel_fr:
+                    ic_link:
                       {}
-                  mount_plate_link:
-                    {}
-                  right_hokuyo_link:
-                    right_hokuyo_laser:
+                    left_hokuyo_link:
+                      left_hokuyo_laser:
+                        {}
+                    material3_link:
                       {}
-                  xarm_mount:
-                    xarmlink_base:
-                      xarmlink1:
-                        xarmlink2:
-                          xarmlink3:
-                            xarmlink4:
-                              xarmlink5:
-                                xarmlink6:
-                                  xarmlink_eef:
-                                    d435_holder_link:
-                                      d435_mount_link:
+                    motor_gearbox_bl:
+                      omniwheel_bl:
+                        {}
+                    motor_gearbox_br:
+                      omniwheel_br:
+                        {}
+                    motor_gearbox_fl:
+                      omniwheel_fl:
+                        {}
+                    motor_gearbox_fr:
+                      omniwheel_fr:
+                        {}
+                    mount_plate_link:
+                      {}
+                    right_hokuyo_link:
+                      right_hokuyo_laser:
+                        {}
+                    xarm_mount:
+                      xarmlink_base:
+                        xarmlink1:
+                          xarmlink2:
+                            xarmlink3:
+                              xarmlink4:
+                                xarmlink5:
+                                  xarmlink6:
+                                    xarmlink_eef:
+                                      d435_holder_link:
+                                        d435_mount_link:
+                                          {}
+                                      ee_imu_module:
+                                        ee_imu_frame:
+                                          {}
+                                      extruder_axes_link:
                                         {}
-                                    ee_imu_module:
-                                      ee_imu_frame:
-                                        {}
-                                    extruder_axes_link:
-                                      {}
-                                    extruder_link:
-                                      extruder_ee:
-                                        {}
-                                    l515_holder_link:
-                                      l515_mount_link:
-                                        {}
-            ma_map:
-              {}
+                                      extruder_link:
+                                        extruder_ee:
+                                          {}
+                                      l515_holder_link:
+                                        l515_mount_link:
+                                          {}
+          as_ee_tracked:
+            {}
       Update Interval: 0
       Value: true
     - Class: rviz/Marker
@@ -616,7 +619,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: ma_map
+    Fixed Frame: odom
     Frame Rate: 30
   Name: root
   Tools:
