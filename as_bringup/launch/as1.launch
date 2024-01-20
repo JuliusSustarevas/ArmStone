@@ -55,14 +55,5 @@
     </node>
 
   </group>
-  
-  <!-- ###PMPC### -->
-  <!-- pmpc starts when you press and hold left trigger. It then acts like deadman switch. -->
-  <include if="$(arg xarm_on)" file="$(find perceptive_mpc)/launch/as_pmpc.launch">
-    <arg name="KINEMATIC_SIMULATION" value="false" />
-    <arg name="COLLISION_AVOIDANCE" value="false" />
-    <arg name="INTERACTIVE" value="true" />  
-    <arg name="sim" value="$(arg sim)" />  
-  </include>
 
 </launch>
