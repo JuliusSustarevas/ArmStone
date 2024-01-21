@@ -23,24 +23,26 @@ Contains the as1 and as2 launch files. The two files are intended to be launched
 * stores the submodule for xarm drivers
   
 ## Original software setup
-Setup Sofware
-- git clone https://github.com/JuliusSustarevas/ArmStone.git
-- git submodule update --recursive
-- git submodule update --init --recursive
-- catkin build
-- source devel/setup.bash
-- edit as_bringup as1.launch to enable the controls/modes you want
-- roslaunch as_bringup as1.launch
+- Wifi Armstone5G
+  - armstone@ArmStone1 (192.168.1.101) 
+  - armstone@ArmStone2 (192.168.1.102)
+- OS on nucs is u20
+- docker container runs ubuntu 18 (for running ros melodic)
+- DC control box IP 192.168.1.212 (For use with xarm studio)
+- Setup Sofware
+  - Start the docker container and open shell into it
+  - git clone https://github.com/JuliusSustarevas/ArmStone.git
+  - git submodule update --recursive
+  - git submodule update --init --recursive
+  - (in `~/armstone`) catkin build
+  - (in `~/armstone`) source devel/setup.bash
+  - ... Things are already setup till here in the `~/armstone` folder
+  - edit as_bringup as1.launch to enable the controls/modes you want
+    - Remember to turn arm on/off
+  - roslaunch as_bringup as1.launch
 
 ### xARM
 Note that xarm payload is calibrated for  Armstone Extruder and you should recalibrate as needed via xarm firmware software. 
-
-ssh
-armstone@ArmStone1 (192.168.1.101)
- 
-armstone@ArmStone2 (192.168.1.102)
-
-Enverything is in armstone folder
 
 ### Docker
 Armstone uses persistent docker containers. I.e. there is one docker container that is started/stopped as needed but its the same container. 

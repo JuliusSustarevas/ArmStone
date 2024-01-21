@@ -10,4 +10,7 @@ https://cad.onshape.com/documents/b477500cbd234898a8460865/w/df28597f68172f26d1d
 * plug in the charger
 ### Turn off the DC control box
 * Control box is turned off by holding a little power button on the box for 5 seconds or so (not the power switch on armstone dashboard)
-
+* 
+### Power from PSU
+There is a 48V PSU that comes with the system. To the left of the battery there is a connectory labeled `System Raw In` You can switch out PSU and battery power from there.
+WARNING: Please unplug the battery(center of the robot. The big black connector) from the system before plugging in the PSU.
